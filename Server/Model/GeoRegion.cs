@@ -12,9 +12,9 @@ namespace NetPlan.Model
     public  class GeoRegion
     {
 
-        public int EastMin = 0;
-        public int Eastmax = 120;
-        public int NorthMin =0;
-        public int NorthMax = 80;
+        public double EastMin = 0;
+        public double Eastmax = 120;
+        public double NorthMin =0;
+        public double NorthMax = 80;
     }
 }

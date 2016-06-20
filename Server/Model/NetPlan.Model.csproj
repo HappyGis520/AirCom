@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CellSector.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="EDSDB.cs" />
     <Compile Include="Entity\EntityBase.cs" />

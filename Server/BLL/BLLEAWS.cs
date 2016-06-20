@@ -26,7 +26,7 @@ namespace NetPlan.BLL
         public BLLEAWS()
         {
             _CallBackHandle = new EAWSCallBackSolid();
-            _CallBackHandle.RegistEAWSTaskCompletAckEvent(DoEAWSTaskCompulet);
+            RegistEventHandle();
             _callbackContext = new InstanceContext(_CallBackHandle);
             m_EAWSClient = new EAWSClient(_callbackContext, "EAWSHTTPService");
             GlobalInfo.Instance.JobsRunning = new Hashtable();
@@ -36,7 +36,7 @@ namespace NetPlan.BLL
          {
             _CallBackHandle.RegistEditRegionAckEvent(SubDoEditRegionAck);
             _CallBackHandle.RegistEAWSTaskStartStateEvent(SubDoEAWSTaskStartState);
-             _CallBackHandle.RegistEAWSTaskCompletAckEvent(SubDoEAWSTaskStartState);
+            _CallBackHandle.RegistEAWSTaskCompletAckEvent(SubDoEAWSTaskStartState);
             
          }
          public void GetAllTasksREQ()

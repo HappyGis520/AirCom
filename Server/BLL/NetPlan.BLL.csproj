@@ -54,9 +54,6 @@
   <ItemGroup>
     <Compile Include="BLLEAWS.cs" />
     <Compile Include="BLLDoTask.cs" />
-    <Compile Include="BLLImportXML.cs" />
-    <Compile Include="BLLUser.cs" />
-    <Compile Include="EAWSBackEvent.cs" />
     <Compile Include="EAWSCallBackSolid.cs" />
     <Compile Include="LteNodeBuildFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
