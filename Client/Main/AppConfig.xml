@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserConfigParam xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <程序文件路径>
+    c:\aa\tt.exe
+  </程序文件路径>
+  <XML文件存放目录>
+    c:\aa\tt.exe
+  </XML文件存放目录>
+  <可选天线型号>
+    <string>天线型号0</string>
+    <string>天线型号1</string>
+    <string>天线型号2</string>
+    <string>天线型号3</string>
+  </可选天线型号>
+  <可选载波>
+    <MCarrierItem 别名="载波0" 编号="0" />
+    <MCarrierItem 别名="载波1" 编号="1" />
+    <MCarrierItem 别名="载波2" 编号="2" />
+  </可选载波>
+  <工程列表>
+    <MProjectName 所属城市="南京" 工程名称="Nanjing" />
+    <MProjectName 所属城市="宿迁" 工程名称="EAWSTask1" />
+    <MProjectName 所属城市="淮安" 工程名称="EAWSTask2" />
+    <MProjectName 所属城市="盐城" 工程名称="EAWSTask3" />
+  </工程列表>
+  <传播模型>
+    <string>传播模型0</string>
+    <string>传播模型1</string>
+    <string>传播模型2</string>
+  </传播模型>
+  <EDS数据库参数>
+    <string>用户名</string>
+    <string>密码</string>
+    <string>数据库名</string>
+  </EDS数据库参数>
+</UserConfigParam>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD464DD9-7EAC-4023-8269-DE95BCF46E64}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetPlanClient.ServerProxy</RootNamespace>
+    <AssemblyName>NetPlanClient.ServerProxy</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ServerCallBack.cs" />
+    <Compile Include="ServerProxy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\JLIB\JFrameWork.WCFClient\JFrameWork.WCFClient.csproj">
+      <Project>{97b9da6f-9eea-406d-be02-d116b92b358f}</Project>
+      <Name>JFrameWork.WCFClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\JLIB\JFrameWork.WCFServer\JFrameWork.WCFServer.csproj">
+      <Project>{cc27243b-08a4-4729-8e72-705449fe9b71}</Project>
+      <Name>JFrameWork.WCFServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\JLIB\JFramWork.Model\JFrameWork.Model.csproj">
+      <Project>{7c49af4d-9152-44a7-aae1-55df541742a3}</Project>
+      <Name>JFrameWork.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\JLIB\JLIB.CSharp\JLIB.CSharp.csproj">
+      <Project>{865fdbf5-e052-419f-b371-ed0b11251ee6}</Project>
+      <Name>JLIB.CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\JLIB\JLIB.Utility\JLIB.Utility.csproj">
+      <Project>{89536161-ee54-41f2-b138-4d3c0556c1a4}</Project>
+      <Name>JLIB.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\IContract\NetPlan.IContract.csproj">
+      <Project>{6398a0ff-b465-497b-9058-c0c11c626d14}</Project>
+      <Name>NetPlan.IContract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\Model\NetPlan.Model.csproj">
+      <Project>{eef51bfc-3080-4dfd-95f8-3b975a264518}</Project>
+      <Name>NetPlan.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

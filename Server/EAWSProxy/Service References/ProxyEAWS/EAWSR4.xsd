@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/contract/EAWS/Service/2011/04" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/contract/EAWS/Service/2011/04" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd1" namespace="http://www.aircominternational.com/data/EAWS/2011/04" />
+  <xs:element name="SyncStartAWScheduler">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SyncStartAWSchedulerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="SyncStartAWSchedulerResult" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SyncIsAWSchedulerStarted">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SyncIsAWSchedulerStartedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="SyncIsAWSchedulerStartedResult" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ControlRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://www.aircominternational.com/data/EAWS/2011/04" minOccurs="0" maxOccurs="1" name="rJobRequestType" type="q1:JobRequestType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://www.aircominternational.com/data/EAWS/2011/04" minOccurs="0" maxOccurs="1" name="rJobRequestType" type="q2:JobRequestType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://www.aircominternational.com/data/EAWS/2011/04" minOccurs="0" maxOccurs="1" name="rJobRequestType" type="q3:JobRequestType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendUpdate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://www.aircominternational.com/data/EAWS/2011/04" minOccurs="0" maxOccurs="1" name="resp" type="q4:JobResponseType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

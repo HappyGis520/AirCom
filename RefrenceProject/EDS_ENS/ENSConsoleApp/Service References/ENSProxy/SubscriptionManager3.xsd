@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/eventing" elementFormDefault="qualified" targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd1" namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+  <xs:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd3" namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" />
+  <xs:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd2" namespace="http://www.aircominternational.com/contract/ENS/Data/2009/10" />
+  <xs:element name="Subscribe">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.xmlsoap.org/ws/2004/08/addressing" minOccurs="0" maxOccurs="1" name="EndTo" type="q1:EndpointReferenceType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Delivery" type="tns:DeliveryType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Expires" type="tns:ExpirationType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Filter" type="tns:FilterType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="DeliveryType">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://schemas.xmlsoap.org/ws/2004/08/addressing" minOccurs="0" maxOccurs="1" name="NotifyTo" type="q2:EndpointReferenceType" />
+    </xs:sequence>
+    <xs:attribute name="Mode" type="xs:anyURI" />
+  </xs:complexType>
+  <xs:complexType name="ExpirationType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FilterType">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" minOccurs="0" maxOccurs="1" name="Filter" type="q3:XPathMessageFilter" />
+    </xs:sequence>
+    <xs:attribute name="Dialect" type="xs:anyURI" />
+  </xs:complexType>
+  <xs:element name="SubscribeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.xmlsoap.org/ws/2004/08/addressing" minOccurs="0" maxOccurs="1" name="SubscriptionManager" type="q4:EndpointReferenceType" />
+        <xs:element minOccurs="0" maxOccurs="1" name="Expires" type="tns:ExpirationType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SupportedDeliveryMode">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="SupportedDeliveryMode" nillable="true" type="tns:SupportedDeliveryMode" />
+  <xs:complexType name="SupportedDialect">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="SupportedDialect" nillable="true" type="tns:SupportedDialect" />
+  <xs:element name="Renew">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Expires" type="tns:ExpirationType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element xmlns:q5="http://www.aircominternational.com/contract/ENS/Data/2009/10" name="Identifier" type="q5:Identifier" />
+  <xs:element name="RenewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Expires" type="tns:ExpirationType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatus">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="GetStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Expires" type="tns:ExpirationType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Unsubscribe">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SubscriptionsList">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="SubscriptionsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="Subscriptions" type="tns:ArrayOfSubscription" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfSubscription">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Subscription" nillable="true" type="tns:Subscription" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Subscription">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="IsReadOnly" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Manager" type="tns:InternalSubscriptionManager" />
+      <xs:element xmlns:q6="http://schemas.xmlsoap.org/ws/2004/08/addressing" minOccurs="0" maxOccurs="1" name="EndTo" type="q6:EndpointReferenceType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Delivery" type="tns:DeliveryType" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Expires" type="xs:dateTime" />
+      <xs:element xmlns:q7="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" minOccurs="0" maxOccurs="1" name="Filter" type="q7:XPathMessageFilter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InternalSubscriptionManager">
+    <xs:sequence>
+      <xs:element xmlns:q8="http://schemas.xmlsoap.org/ws/2004/08/addressing" minOccurs="0" maxOccurs="1" name="EndpointAddress" type="q8:EndpointReferenceType" />
+      <xs:element xmlns:q9="http://www.aircominternational.com/contract/ENS/Data/2009/10" minOccurs="0" maxOccurs="1" name="Identifier" type="q9:Identifier" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

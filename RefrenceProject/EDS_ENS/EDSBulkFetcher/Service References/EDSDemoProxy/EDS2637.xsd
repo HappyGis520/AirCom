@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/UMTS/2009/05" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/UMTS/2009/05" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd6" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd21" namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="SGSNType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q1:NetworkElementType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PLMN" type="q1:IDType" />
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q2:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="WMSCType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q3:NetworkElementType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PLMN" type="q3:IDType" />
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q4:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RNCType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q5:NetworkElementType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PLMN" type="q5:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RNCID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FunctionID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ElementID" type="xs:string" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q6:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UMTSCodeSchemaType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q7:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="UMTSCodeGroups" type="xs:string" />
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q8:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

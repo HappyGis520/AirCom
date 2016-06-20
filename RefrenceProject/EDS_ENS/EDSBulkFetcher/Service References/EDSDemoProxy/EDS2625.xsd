@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Equipment/2010/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Equipment/2010/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd33" namespace="http://www.aircominternational.com/Schemas/Equipment/2009/09" />
+  <xs:complexType name="RadioEquipv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Equipment/2009/09" base="q1:RadioEquipType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxCapacity" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxIPCapacity" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OperatingMode" type="tns:OperatingModeEnum" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BitsPerBlock" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BlocksPerSecond" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RBERThreshold" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ResidualBER" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SBER" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SESThreshold" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FrameSize" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Latency" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TransitionGap" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="OperatingModeEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Native_TDM" />
+      <xs:enumeration value="Native_IP" />
+      <xs:enumeration value="Hybrid_IP_and_TDM" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

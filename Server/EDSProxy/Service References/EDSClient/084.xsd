@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/EWS/ECSCoverageTypes/2011/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/EWS/ECSCoverageTypes/2011/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:complexType name="ECSCoverageItemGroupType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q1:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfECSCoverageAntennaType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredictionModels" type="tns:ArrayOfECSCoveragePredictionModelType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoverageItems" type="tns:ArrayOfECSCoverageItemType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfECSCoverageAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:ECSCoverageAntennaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ECSCoverageAntennaType">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="ID" type="q2:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AntennaMask" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfECSCoveragePredictionModelType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PredictionModel" type="tns:ECSCoveragePredictionModelType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ECSCoveragePredictionModelType">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="ID" type="q3:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PredictionModelGuid" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PredictionModelParams" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfECSCoverageItemType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CoverageItem" type="tns:ECSCoverageItemType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ECSCoverageItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q4:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Location" type="tns:ECSLocationType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AntennaID" type="q4:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AntennaMask" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredictionModelID" type="q4:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredictionModelGuid" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredictionModelParams" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AntennaAzimuth_Degrees" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AntennaMechanicalTilt_Degrees" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="AntennaHeight_Cm" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Radius_Cm" type="xs:unsignedInt" />
+          <xs:element minOccurs="1" maxOccurs="1" name="Resolution_Cm" type="xs:unsignedInt" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SourceInfoString" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ECSLocationType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="X" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Y" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Z" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="EPSG" type="xs:unsignedInt" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ECSUMTSCoverageItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ECSCoverageItemType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="EIRP" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PilotPower" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ECSGSMCoverageItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ECSCoverageItemType">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Priority" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SignalThreshold" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TAThreshold" type="xs:double" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SignalOffset" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EIRP" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ERP" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

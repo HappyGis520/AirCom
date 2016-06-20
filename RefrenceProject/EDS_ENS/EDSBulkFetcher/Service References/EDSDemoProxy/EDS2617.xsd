@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Common/2009/07" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Common/2009/07" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd5" namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd6" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd19" namespace="http://www.aircominternational.com/Schemas/Connect/2009/09" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd21" namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="QryLocationObjectType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="LocationObjectAttributes" type="tns:QryLocationObjectTypeAttributes" />
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q2:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryLocationObjectTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Address1" />
+      <xs:enumeration value="Address2" />
+      <xs:enumeration value="Town" />
+      <xs:enumeration value="Province" />
+      <xs:enumeration value="State" />
+      <xs:enumeration value="PostCode" />
+      <xs:enumeration value="PropertyCode" />
+      <xs:enumeration value="Comments" />
+      <xs:enumeration value="Longitude" />
+      <xs:enumeration value="Latitude" />
+      <xs:enumeration value="GroundHgt" />
+      <xs:enumeration value="SearchRad" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QryNeighbourType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Query/2009/09" base="q3:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q4:QryRootEntityAttributes" />
+            <xs:element minOccurs="1" maxOccurs="1" name="NbrAttribute" type="tns:QryNeighbourAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryNeighbourAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Technology" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LocationObjectType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q5:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Address1" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Address2" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Town" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Province" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="State" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PostCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PropertyCode" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Longitude" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Latitude" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GroundHgt" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SearchRad" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Tower" type="q5:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MastSpace" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MTTR" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PtPLinkends" type="tns:ArrayOfPtPLinkendBaseType" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q6:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPtPLinkendBaseType">
+    <xs:sequence>
+      <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/Connect/2009/09" minOccurs="0" maxOccurs="unbounded" name="PtPLinkend" type="q7:PtPLinkendBaseType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectHierarchyType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:LocationObjectType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfNetworkElementType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfNetworkElementType">
+    <xs:sequence>
+      <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Child" type="q8:NetworkElementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NeighbourType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q9:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="OutwardNbrs" type="tns:NeighbourRelationshipType" />
+          <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q10:ReadOnlyType" />
+        </xs:sequence>
+        <xs:attribute name="Technology" type="tns:NbrTechnology" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NeighbourRelationshipType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="NbrCarrierID" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Priority" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Protected" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HandoverMargin" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="tns:NbrStatus" />
+    </xs:sequence>
+    <xs:attribute name="CarrierID" type="xs:int" use="required" />
+    <xs:attribute name="NbrCellID" type="xs:string" />
+    <xs:attribute xmlns:q11="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q11:eid" />
+    <xs:attribute name="Technology" type="tns:NbrTechnology" />
+  </xs:complexType>
+  <xs:simpleType name="NbrStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Planned" />
+      <xs:enumeration value="Live" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NbrTechnology">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotUsed" />
+      <xs:enumeration value="AMPS" />
+      <xs:enumeration value="GSM" />
+      <xs:enumeration value="CDMA" />
+      <xs:enumeration value="UMTS" />
+      <xs:enumeration value="UNUSED1" />
+      <xs:enumeration value="UNUSED2" />
+      <xs:enumeration value="WIMAXMOBILE" />
+      <xs:enumeration value="LTE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ProjectType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q12:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Active" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Created" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Modified" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UserPrefsDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UserVectorDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HeightDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClutterDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="VectorDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TextDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ScanMapDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AerialDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BldgVectorDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BldgRasterDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredictionDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PalletteDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ArrayDir" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegionalLoadBoundary">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="1" maxOccurs="1" name="Enabled" type="xs:boolean" />
+                <xs:element minOccurs="0" maxOccurs="1" name="LonMin" type="xs:double" />
+                <xs:element minOccurs="0" maxOccurs="1" name="LonMax" type="xs:double" />
+                <xs:element minOccurs="0" maxOccurs="1" name="LatMin" type="xs:double" />
+                <xs:element minOccurs="0" maxOccurs="1" name="LatMax" type="xs:double" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="MapinfoProjection" type="xs:string" />
+          <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q13:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PLMNType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q14:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MCC" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MNC" type="xs:string" />
+          <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q15:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PredictionModelType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q16:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ModelType" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SystemParams" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ModelParams" type="xs:string" />
+          <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q17:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

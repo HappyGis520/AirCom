@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Common/2011/04" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Common/2011/04" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd5" namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd6" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd7" namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd26" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd24" namespace="http://www.aircominternational.com/Schemas/Connect/2011/04" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd21" namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="QryLogNetworkConnectionType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="NCAttribute" type="tns:QryLogNetworkConnectionTypeAttributes" />
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q2:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryLogNetworkConnectionTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ConnectionType" />
+      <xs:enumeration value="EndA" />
+      <xs:enumeration value="EndB" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RepeaterBasev80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Common/2010/08" base="q3:RepeaterBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="AbsLocation" type="q4:LocationTypeRO" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Repeater3Gv80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RepeaterBasev80Type">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q5:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredResolution" type="xs:double" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="1" name="CalcMethod" type="q6:CalcMethod3G" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectv80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://www.aircominternational.com/Schemas/Common/2010/08" base="q7:LocationObjectv70Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="EPSG" type="xs:unsignedInt" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectHierarchyv80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:LocationObjectv80Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfNetworkElementType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Linkends" type="tns:ArrayOfPtPLinkendv80Type" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfNetworkElementType">
+    <xs:sequence>
+      <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Child" type="q8:NetworkElementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPtPLinkendv80Type">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/Connect/2011/04" minOccurs="0" maxOccurs="unbounded" name="Linkend" type="q9:PtPLinkendv80Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LogNetworkConnectionType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q10:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="1" name="EndA" type="q11:ConnIDType" />
+          <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="1" name="EndB" type="q12:ConnIDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UserComment" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Routes" type="tns:ArrayOfNetworkConnectionRouteType" />
+          <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q13:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfNetworkConnectionRouteType">
+    <xs:sequence>
+      <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="unbounded" name="Route" type="q14:NetworkConnectionRouteType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LogCellularNetworkConnectionType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:LogNetworkConnectionType" />
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

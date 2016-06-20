@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d490cfd6-29d5-43a1-aa22-fe5bf6572575" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:9093/AIRCOM/EAWSR" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EAWSServiceImpl.wsdl" MetadataType="Wsdl" ID="4456f149-d954-4f39-a6bb-7f5b07c4c3ce" SourceId="1" SourceUrl="http://localhost:9093/AIRCOM/EAWSR" />
+    <MetadataFile FileName="EAWSR.xsd" MetadataType="Schema" ID="b73be58c-9719-42d7-bf0d-3c5679104f5e" SourceId="1" SourceUrl="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd1" />
+    <MetadataFile FileName="EAWSR1.xsd" MetadataType="Schema" ID="1386c208-4784-4ecb-b6ba-1effac633a75" SourceId="1" SourceUrl="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd2" />
+    <MetadataFile FileName="EAWSR2.xsd" MetadataType="Schema" ID="183f3eed-5997-4eb5-a11d-5d0314afa613" SourceId="1" SourceUrl="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd3" />
+    <MetadataFile FileName="EAWSR3.xsd" MetadataType="Schema" ID="e7a5ba58-3b6c-49f7-a2ce-93e266972d63" SourceId="1" SourceUrl="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd4" />
+    <MetadataFile FileName="EAWSR4.xsd" MetadataType="Schema" ID="b635604d-8393-4037-b5b8-eebe32d2c29a" SourceId="1" SourceUrl="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

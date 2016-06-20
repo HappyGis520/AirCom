@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{836FC77A-D9F3-42D5-A2CB-D89F851CAE3C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NetPlanClient.UC</RootNamespace>
+    <AssemblyName>NetPlanClient.UC</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar2, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL" />
+    <Reference Include="JLIB.CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\JLIB\JLIB.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="JLIB.Utility, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\JLIB\JLIB.Utility.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\..\lib\JLIB\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ucLTEAntennaType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucLTEAntennaType.Designer.cs">
+      <DependentUpon>ucLTEAntennaType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ucLTEStationType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucLTEStationType.Designer.cs">
+      <DependentUpon>ucLTEStationType.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucLTEAntennaType.resx">
+      <DependentUpon>ucLTEAntennaType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucLTEStationType.resx">
+      <DependentUpon>ucLTEStationType.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Alarm_Bord.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Alarm_Light_Gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Alarm_Light_Green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Alarm_Light_Green_56.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Alarm_Light_Red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Alarm_Light_Yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bt_close_pressed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\camera_Idle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Deleted.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\HasTel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login_Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login_Pwd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login_User.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Mail1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\main.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\man.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\message_success.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NotTel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT_addUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT_addUser2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT_Close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDTloginInfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDTMsg_Person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDTPanelSelected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT按钮经过背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT帮助.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT查询.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT关闭.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT设置.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT视图.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT树用户.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT用户.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT最大化.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PDT最小化.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Person.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sele2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab_grp_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tab_user_selected.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vtool_round_press.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\woman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\按钮分割.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\报警.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\标题背景.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\部门.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\部门打开.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\插话.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\窗口底部.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\窗口选取叠加层.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\发出.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\发短信.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\发短信1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\发短信22.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\挂机.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\关闭_经过.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\呼出.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\呼入.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\环境侦听.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\环境侦听_Check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\监听.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\接收.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\接听.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\紧急呼叫.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\紧急呼叫_Check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\快速查询.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\历史报警.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\连接状态.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\连接状态_断开.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\连接状态中.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\派接插话按钮_正常.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\派接结束按钮_正常.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\派接组底图.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\强拆.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\群发短信.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\设为组.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\树展开.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\树折叠.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\数据同步.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\未接来电.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\小喇叭.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\小喇叭_广播.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\用户组.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\用户组222.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\展开.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\折叠.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\振铃.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\组.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Server\Model\NetPlan.Model.csproj">
+      <Project>{eef51bfc-3080-4dfd-95f8-3b975a264518}</Project>
+      <Name>NetPlan.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NetPlanClient.Model\NetPlanClient.Model.csproj">
+      <Project>{37f46941-0bed-44cb-ac6b-4329ff69c434}</Project>
+      <Name>NetPlanClient.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Enumerations/2011/04" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Enumerations/2011/04" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="RadioCapacityTypev80">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Undefined" />
+      <xs:enumeration value="E0" />
+      <xs:enumeration value="E1" />
+      <xs:enumeration value="E2" />
+      <xs:enumeration value="E3" />
+      <xs:enumeration value="E4" />
+      <xs:enumeration value="E5" />
+      <xs:enumeration value="t1" />
+      <xs:enumeration value="t2" />
+      <xs:enumeration value="t3" />
+      <xs:enumeration value="t4" />
+      <xs:enumeration value="J1" />
+      <xs:enumeration value="J2" />
+      <xs:enumeration value="J3" />
+      <xs:enumeration value="J4" />
+      <xs:enumeration value="J5" />
+      <xs:enumeration value="STM0" />
+      <xs:enumeration value="STM1" />
+      <xs:enumeration value="STM4" />
+      <xs:enumeration value="STM16" />
+      <xs:enumeration value="STM64" />
+      <xs:enumeration value="STM256" />
+      <xs:enumeration value="STS1" />
+      <xs:enumeration value="STS3" />
+      <xs:enumeration value="STS9" />
+      <xs:enumeration value="STS12" />
+      <xs:enumeration value="STS18" />
+      <xs:enumeration value="STS24" />
+      <xs:enumeration value="STS36" />
+      <xs:enumeration value="STS48" />
+      <xs:enumeration value="STS192" />
+      <xs:enumeration value="STS768" />
+      <xs:enumeration value="MAX_ENUM_CapacityType" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PacketTypev80">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IPv4" />
+      <xs:enumeration value="IPv6" />
+      <xs:enumeration value="Frame" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

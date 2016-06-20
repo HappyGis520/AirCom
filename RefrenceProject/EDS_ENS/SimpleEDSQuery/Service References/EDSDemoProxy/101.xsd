@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/contract/Util/2009/10" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/contract/Util/2009/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://microsoft.com/wsdl/types/" />
+  <xs:element xmlns:q1="http://microsoft.com/wsdl/types/" name="itemID" type="q1:guid" />
+  <xs:attribute xmlns:q2="http://microsoft.com/wsdl/types/" name="itemIDRef" type="q2:guid" />
+  <xs:complexType name="ResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:EWSResponseBaseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EWSResponseBaseType" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="tns:StatusType" />
+    </xs:sequence>
+    <xs:attribute xmlns:q3="http://microsoft.com/wsdl/types/" form="qualified" name="masterIDRef" type="q3:guid" />
+    <xs:attribute xmlns:q4="http://microsoft.com/wsdl/types/" form="qualified" name="itemIDRef" type="q4:guid" use="required" />
+  </xs:complexType>
+  <xs:complexType name="StatusType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Status" type="tns:StatusType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="comment" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="code" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ActionNotAuthorized" />
+          <xs:enumeration value="AllReturned" />
+          <xs:enumeration value="DataTooLong" />
+          <xs:enumeration value="DoesNotExist" />
+          <xs:enumeration value="EmptyRequest" />
+          <xs:enumeration value="ExistsAlready" />
+          <xs:enumeration value="ExtensionNotSupported" />
+          <xs:enumeration value="Failed" />
+          <xs:enumeration value="FormatNotSupported" />
+          <xs:enumeration value="InvalidData" />
+          <xs:enumeration value="InvalidExpires" />
+          <xs:enumeration value="InvalidItemIDRef" />
+          <xs:enumeration value="InvalidObjectType" />
+          <xs:enumeration value="InvalidSelect" />
+          <xs:enumeration value="InvalidSetID" />
+          <xs:enumeration value="InvalidSetReq" />
+          <xs:enumeration value="ItemIDDuplicated" />
+          <xs:enumeration value="ResultQueryNotSupported" />
+          <xs:enumeration value="MissingCredentials" />
+          <xs:enumeration value="MissingDataElement" />
+          <xs:enumeration value="MissingExpiration" />
+          <xs:enumeration value="MissingItemID" />
+          <xs:enumeration value="MissingNewDataElement" />
+          <xs:enumeration value="MissingObjectType" />
+          <xs:enumeration value="MissingSelect" />
+          <xs:enumeration value="NewOrExisting" />
+          <xs:enumeration value="NoMoreObjects" />
+          <xs:enumeration value="NoMultipleAllowed" />
+          <xs:enumeration value="NoMultipleResources" />
+          <xs:enumeration value="NoSuchTest" />
+          <xs:enumeration value="ObjectTypeMismatch" />
+          <xs:enumeration value="OK" />
+          <xs:enumeration value="PaginationNotSupported" />
+          <xs:enumeration value="Partial" />
+          <xs:enumeration value="TimeOut" />
+          <xs:enumeration value="UnexpectedError" />
+          <xs:enumeration value="UnspecifiedError" />
+          <xs:enumeration value="UnsupportedObjectType" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute xmlns:q5="http://microsoft.com/wsdl/types/" name="ref" type="q5:guid" use="required" />
+    <xs:attribute xmlns:q6="http://microsoft.com/wsdl/types/" form="qualified" name="masterIDRef" type="q6:guid" />
+  </xs:complexType>
+  <xs:complexType name="EDSFaultContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallStack" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EDSFaultContract" nillable="true" type="tns:EDSFaultContract" />
+</xs:schema>

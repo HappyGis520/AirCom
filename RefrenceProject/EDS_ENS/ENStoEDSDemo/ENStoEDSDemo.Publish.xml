@@ -1,0 +1,15 @@
+<publishData>
+  <publishTarget publishUrl="http://localhost/ENStoEDSDemo">
+    <file relUrl="Properties/AssemblyInfo.cs" publishTime="08/19/2010 08:29:50" />
+    <file relUrl="bin/ENStoEDSDemo.dll.config" publishTime="08/19/2010 08:44:03" />
+    <file relUrl="ENSMessageSubscriber.cs" publishTime="08/19/2010 08:50:31" />
+    <file relUrl="ENStoEDSDemo.csproj.user" publishTime="08/19/2010 08:53:59" />
+    <file relUrl="Web.config" publishTime="08/19/2010 08:44:03" />
+    <file relUrl="bin/ENStoEDSDemo.dll" publishTime="08/19/2010 08:54:04" />
+    <file relUrl="IENSMessageSubscriber.cs" publishTime="08/19/2010 08:53:35" />
+    <file relUrl="bin/ENStoEDSDemo.pdb" publishTime="08/19/2010 08:54:04" />
+    <file relUrl="ENStoEDSDemo.csproj" publishTime="08/19/2010 08:53:59" />
+    <file relUrl="ENStoEDSDemo.ENSMessageSubscriber.svc" publishTime="08/19/2010 08:55:29" />
+    <file relUrl="App.config" publishTime="08/19/2010 08:44:03" />
+  </publishTarget>
+</publishData>

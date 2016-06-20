@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/addressing" elementFormDefault="qualified" targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd2" namespace="http://www.aircominternational.com/contract/ENS/Data/2009/10" />
+  <xs:complexType name="EndpointReferenceType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Address" type="tns:AttributedURI" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferenceProperties" type="tns:ReferencePropertiesType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReferenceParameters" type="tns:ReferenceParametersType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PortType" type="tns:AttributedQName" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ServiceName" type="tns:ServiceNameType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttributedURI">
+    <xs:simpleContent>
+      <xs:extension base="xs:anyURI" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ReferencePropertiesType" />
+  <xs:complexType name="ReferenceParametersType">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://www.aircominternational.com/contract/ENS/Data/2009/10" minOccurs="0" maxOccurs="1" name="Identifier" type="q1:Identifier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttributedQName">
+    <xs:simpleContent>
+      <xs:extension base="xs:QName" />
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ServiceNameType">
+    <xs:simpleContent>
+      <xs:extension base="xs:QName">
+        <xs:attribute name="PortName" type="xs:NCName" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

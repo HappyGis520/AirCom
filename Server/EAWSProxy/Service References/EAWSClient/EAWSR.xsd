@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/data/EAWS/2011/04" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/data/EAWS/2011/04" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd2" namespace="http://www.aircominternational.com/contract/EWS/2011/01" />
+  <xs:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd3" namespace="http://www.aircominternational.com/contract/Util/2009/10" />
+  <xs:complexType name="JobRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/contract/EWS/2011/01" base="q1:EWSRequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="SchemaName" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AllSchemaNamesRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobRequestType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AllSchemaTaskNamesRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobRequestType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TaskRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobRequestType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TaskName" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StartTaskRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TaskRequest" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EditTaskFiltersRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TaskRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="PlanFilters" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="BestServerFilters" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StopTaskRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TaskRequest" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EditTaskRegionRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TaskRequest">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="EastMin" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="EastMax" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NorthMin" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NorthMax" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TaskStatusRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TaskRequest" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeleteTaskRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:TaskRequest" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="JobResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://www.aircominternational.com/contract/Util/2009/10" base="q2:EWSResponseBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Success" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SchemaName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TaskName" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StartTaskResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EditTaskFiltersResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeleteTaskResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TaskStatusResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="NumSucceeded" type="xs:unsignedInt" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NumWarning" type="xs:unsignedInt" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NumError" type="xs:unsignedInt" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NumOutStanding" type="xs:unsignedInt" />
+          <xs:element minOccurs="1" maxOccurs="1" name="NumAwaitingMerge" type="xs:unsignedInt" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TaskCompletionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="Finished" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OutputLocation" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AllSchemaNamesResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AllSchemaNames" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AllSchemaTaskNamesResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="AllTaskNames" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EditTaskRegionResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="StopTaskResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:JobResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:tns="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.xmlsoap.org/ws/2004/08/eventing/Imports">
+      <xsd:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd0" namespace="http://schemas.xmlsoap.org/ws/2004/08/eventing" />
+      <xsd:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd1" namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" />
+      <xsd:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd2" namespace="http://www.aircominternational.com/contract/ENS/Data/2009/10" />
+      <xsd:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd3" namespace="http://schemas.microsoft.com/serviceModel/2004/05/xpathfilter/" />
+      <xsd:import schemaLocation="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SubscribeMsg">
+    <wsdl:part name="Subscribe" element="tns:Subscribe" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeResponseMsg">
+    <wsdl:part name="SubscribeResponse" element="tns:SubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="EventSource_SubscribeOp_SupportedDeliveryMode_FaultMessage">
+    <wsdl:part name="detail" element="tns:SupportedDeliveryMode" />
+  </wsdl:message>
+  <wsdl:message name="EventSource_SubscribeOp_SupportedDialect_FaultMessage">
+    <wsdl:part name="detail" element="tns:SupportedDialect" />
+  </wsdl:message>
+  <wsdl:message name="RenewMsg">
+    <wsdl:part name="Renew" element="tns:Renew" />
+  </wsdl:message>
+  <wsdl:message name="RenewMsg_Headers">
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+  </wsdl:message>
+  <wsdl:message name="RenewResponseMsg">
+    <wsdl:part name="RenewResponse" element="tns:RenewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusMsg">
+    <wsdl:part name="GetStatus" element="tns:GetStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusMsg_Headers">
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+  </wsdl:message>
+  <wsdl:message name="GetStatusResponseMsg">
+    <wsdl:part name="GetStatusResponse" element="tns:GetStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeMsg">
+    <wsdl:part name="Unsubscribe" element="tns:Unsubscribe" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeMsg_Headers">
+    <wsdl:part name="Identifier" element="tns:Identifier" />
+  </wsdl:message>
+  <wsdl:message name="UnsubscribeResponseMsg" />
+  <wsdl:message name="GetSubscriptionListMsg">
+    <wsdl:part name="SubscriptionsList" element="tns:SubscriptionsList" />
+  </wsdl:message>
+  <wsdl:message name="GetSubscriptionListResponseMsg">
+    <wsdl:part name="SubscriptionsListResponse" element="tns:SubscriptionsListResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EventSource">
+    <wsdl:operation name="SubscribeOp">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/EventSource/SubscribeOpRequest" name="SubscribeMsg" message="tns:SubscribeMsg" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/EventSource/SubscribeOpResponse" name="SubscribeResponseMsg" message="tns:SubscribeResponseMsg" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/EventSource/SubscribeOpSupportedDeliveryMode" name="SupportedDeliveryMode" message="tns:EventSource_SubscribeOp_SupportedDeliveryMode_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/EventSource/SubscribeOpSupportedDialect" name="SupportedDialect" message="tns:EventSource_SubscribeOp_SupportedDialect_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SubscriptionManager">
+    <wsdl:operation name="RenewOp">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/SubscriptionManager/RenewOpRequest" name="RenewMsg" message="tns:RenewMsg" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/SubscriptionManager/RenewOpResponse" name="RenewResponseMsg" message="tns:RenewResponseMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStatusOp">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/SubscriptionManager/GetStatusOpRequest" name="GetStatusMsg" message="tns:GetStatusMsg" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/SubscriptionManager/GetStatusOpResponse" name="GetStatusResponseMsg" message="tns:GetStatusResponseMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="UnsubscribeOp">
+      <wsdl:input wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/SubscriptionManager/UnsubscribeOpRequest" name="UnsubscribeMsg" message="tns:UnsubscribeMsg" />
+      <wsdl:output wsaw:Action="http://schemas.xmlsoap.org/ws/2004/08/eventing/SubscriptionManager/UnsubscribeOpResponse" name="UnsubscribeResponseMsg" message="tns:UnsubscribeResponseMsg" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubscriptionListOp">
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/ENS/2010/10/SubscriptionManager/GetSubscriptionListOpRequest" name="GetSubscriptionListMsg" message="tns:GetSubscriptionListMsg" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/ENS/2010/10/SubscriptionManager/GetSubscriptionListOpResponse" name="GetSubscriptionListResponseMsg" message="tns:GetSubscriptionListResponseMsg" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

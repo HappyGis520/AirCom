@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/UMTS/2011/04" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/UMTS/2011/04" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd12" namespace="http://www.aircominternational.com/Schemas/UMTS/2010/07" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd26" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd6" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd7" namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd13" namespace="http://www.aircominternational.com/Schemas/UMTS/2010/08" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd21" namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd14" namespace="http://www.aircominternational.com/Schemas/Common/2011/04" />
+  <xs:complexType name="UMTSAntennav80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/UMTS/2010/07" base="q1:UMTSAntennaType">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="Location" type="q2:RawLocationType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ULGainCorrectionFactor" type="xs:double" />
+          <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="Constraints" type="q3:AntennaConstraintsv80Type" />
+        </xs:sequence>
+        <xs:attribute xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q4:iid" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NodeBv80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://www.aircominternational.com/Schemas/Common/2010/08" base="q5:NetworkElementv70ExType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="NodeBID" type="xs:int" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="NodeBEquipmentType" type="q6:IDType" />
+          <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q7:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Capacity" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:ArrayOfResourceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carriers" type="tns:ArrayOfUMTSCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfUMTSAntennav80Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfUMTSCellv70Type" />
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q8:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfResourceType">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Resource" type="q9:ResourceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCarrierType">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/UMTS/2010/07" minOccurs="0" maxOccurs="unbounded" name="Carrier" type="q10:UMTSCarrierType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSAntennav80Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:UMTSAntennav80Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCellv70Type">
+    <xs:sequence>
+      <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/UMTS/2010/08" minOccurs="0" maxOccurs="unbounded" name="Cell" type="q11:UMTSCellv70Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UMTSRepeaterv80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://www.aircominternational.com/Schemas/Common/2011/04" base="q12:Repeater3Gv80Type">
+        <xs:sequence>
+          <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/UMTS/2010/08" minOccurs="0" maxOccurs="1" form="unqualified" name="RxAntenna" type="q13:UMTSConfiguredRepeaterType" />
+          <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/UMTS/2010/08" minOccurs="0" maxOccurs="1" form="unqualified" name="TxAntenna" type="q14:UMTSConfiguredRepeaterType" />
+          <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q15:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UMTSCarrierConfigType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q16:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="ULChannelNumber" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DLChannelNumber" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FirstAdjacentCarrier" type="tns:UMTSAdjacentCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SecondAdjacentCarrier" type="tns:UMTSAdjacentCarrierType" />
+          <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q17:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UMTSAdjacentCarrierType">
+    <xs:sequence>
+      <xs:element xmlns:q18="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Carrier" type="q18:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULAttenuation" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLAttenuation" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

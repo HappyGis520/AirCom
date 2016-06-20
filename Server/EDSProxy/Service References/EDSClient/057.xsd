@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Equipment/2012/05" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Equipment/2012/05" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Equipment/2011/04" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Equipment/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="AntennaDeviceType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Equipment/2011/04" base="q1:EquipmentBasev80Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Height" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Width" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Depth" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Patterns" type="tns:ArrayOfAntennaPatternv801Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Ports" type="tns:ArrayOfAntennaPortType" />
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q2:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAntennaPatternv801Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Pattern" type="tns:AntennaPatternv801Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AntennaPatternv801Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q3:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Gain" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Frequency" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FrontToBackRatio" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CrossPolarDiscrim" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GainType" type="q3:GainType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TiltType" type="q3:TiltType" />
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/Equipment/2009/09" minOccurs="0" maxOccurs="1" name="Polarisation" type="q4:Polarisation" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ConfigID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ElecBeamAdj" type="tns:PatternAdjustability" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AntennaPatternAngle" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DownTilt" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HorizontalBW" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="VerticalBW" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Description" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ElementArrayIndicator" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HMask" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="VMask" type="xs:string" />
+          <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q5:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="PatternAdjustability">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="REMOTE" />
+      <xs:enumeration value="SWITCH" />
+      <xs:enumeration value="SWAP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfAntennaPortType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Port" type="tns:AntennaPortType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AntennaPortType">
+    <xs:sequence>
+      <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Security" type="q6:SecurityInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+  </xs:complexType>
+</xs:schema>

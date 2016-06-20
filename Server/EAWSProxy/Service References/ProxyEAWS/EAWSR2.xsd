@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/contract/EWS/2011/01" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/contract/EWS/2011/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd3" namespace="http://www.aircominternational.com/contract/Util/2009/10" />
+  <xs:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd4" namespace="http://microsoft.com/wsdl/types/" />
+  <xs:complexType name="EWSRequestBaseType" abstract="true">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://www.aircominternational.com/contract/Util/2009/10" minOccurs="1" maxOccurs="1" ref="q1:itemID" />
+      <xs:element xmlns:q2="http://microsoft.com/wsdl/types/" minOccurs="0" maxOccurs="1" name="masterID" type="q2:guid" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

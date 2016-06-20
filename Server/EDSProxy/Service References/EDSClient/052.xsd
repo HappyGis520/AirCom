@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/GSM/2012/05" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/GSM/2012/05" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/GSM/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Enumerations/2009/07" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2012/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="QryGSMCellv801Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="GSMCell801Attribute" type="tns:QryGSMCellv801TypeAttributes" />
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q2:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryGSMCellv801TypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="CellName" />
+      <xs:enumeration value="GSMId" />
+      <xs:enumeration value="MNC" />
+      <xs:enumeration value="MCC" />
+      <xs:enumeration value="BCC" />
+      <xs:enumeration value="RAC" />
+      <xs:enumeration value="LAC" />
+      <xs:enumeration value="NSEI" />
+      <xs:enumeration value="CellEquipment" />
+      <xs:enumeration value="CGI" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CellSitev801Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Common/2010/08" base="q3:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q4:IDType" />
+          <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="BTS" type="q5:IDType" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Cabin" type="q6:IDType" />
+          <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Tower" type="q7:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BCFs" type="tns:ArrayOfBCFType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BTSFixed" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GSMTimeSlotsPerCarrier" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GSMExtents" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfGSMCellv801Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Capacity" type="xs:double" />
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q8:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBCFType">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/GSM/2009/09" minOccurs="0" maxOccurs="unbounded" name="BCF" type="q9:BCFType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfGSMCellv801Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cell" type="tns:GSMCellv801Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GSMCellv801Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q10:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="q10:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CellName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GSMId" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MNC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MCC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LAC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RAC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NSEI" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BSICSchema" type="q10:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NCC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BCC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CellEquipment" type="q10:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CellCorrectionDB" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DTXEnableDownlink" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DTXVoiceActivityFactor" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FCCCategory" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UseAntennaGain" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AMRSupported" type="xs:boolean" />
+          <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/Enumerations/2009/07" minOccurs="0" maxOccurs="1" name="CityType" type="q11:CityType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaximumRadiusFront" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaximumRadiusBack" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GSMCellTypeId" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SegmentId" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SegmentName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CGI" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SignallingOverhead" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CarriedTrafficDetails" type="tns:ArrayOfCarriedTrafficDetailType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SubCells" type="tns:ArrayOfSubCellType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfAntennav801Type" />
+          <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q12:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCarriedTrafficDetailType">
+    <xs:sequence>
+      <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="unbounded" name="CarriedTrafficDetail" type="q13:CarriedTrafficDetailType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfSubCellType">
+    <xs:sequence>
+      <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/GSM/2009/09" minOccurs="0" maxOccurs="unbounded" name="SubCell" type="q14:SubCellType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAntennav801Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:Antennav801Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Antennav801Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://www.aircominternational.com/Schemas/Common/2012/05" base="q15:LogicalAntennaType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InheritMasterPattern" type="xs:int" />
+          <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Feeder" type="q16:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FeederLength" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ConfiguredAntennas" type="tns:ArrayOfConfiguredAntennaType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfConfiguredAntennaType">
+    <xs:sequence>
+      <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/GSM/2009/09" minOccurs="0" maxOccurs="unbounded" name="ConfiguredAntenna" type="q17:ConfiguredAntennaType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/contract/EDS/2009/05" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/contract/EDS/2009/05" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd1" namespace="http://www.aircominternational.com/contract/EDS/DST/2009/10" />
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd2" namespace="http://www.aircominternational.com/contract/Util/2009/10" />
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd4" namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd5" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd3" namespace="http://microsoft.com/wsdl/types/" />
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="data" type="tns:CreateRequestType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CreateRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q1:RequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="CreateItems" type="tns:CreateItemType" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ResultQuery" type="tns:QueryItemBaseType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeleteRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q2:RequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="DeleteItems" type="tns:DeleteItemType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeleteItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DataItemBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/Query/2009/09" minOccurs="1" maxOccurs="1" name="objectType" type="q3:QueryableTypes" />
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/Query/2009/09" minOccurs="0" maxOccurs="1" name="Select" type="q4:QrySelectType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DataItemBaseType">
+    <xs:sequence>
+      <xs:element xmlns:q5="http://www.aircominternational.com/contract/Util/2009/10" minOccurs="1" maxOccurs="1" ref="q5:itemID" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="QueryItemBaseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DataItemBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/Query/2009/09" minOccurs="0" maxOccurs="1" name="Select" type="q6:QrySelectType" />
+        </xs:sequence>
+        <xs:attribute xmlns:q7="http://www.aircominternational.com/Schemas/Query/2009/09" form="qualified" name="objectType" type="q7:QueryableTypes" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QueryItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QueryItemBaseType">
+        <xs:attribute name="count" type="xs:int" use="required" />
+        <xs:attribute name="offset" type="xs:int" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CreateItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DataItemBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="NewData" type="tns:AppDataType" />
+        </xs:sequence>
+        <xs:attribute xmlns:q8="http://www.aircominternational.com/contract/EDS/DST/2009/10" ref="q8:objectType" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AppDataType">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="AppData" type="q9:RootEntityType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ItemDataType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:AppDataType">
+        <xs:attribute xmlns:q10="http://www.aircominternational.com/contract/Util/2009/10" ref="q10:itemIDRef" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DataType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ItemDataType">
+        <xs:attribute name="remaining" type="xs:int" use="required" />
+        <xs:attribute name="nextOffset" type="xs:int" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TestItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DataItemBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/Query/2009/09" minOccurs="0" maxOccurs="1" name="TestOp" type="q11:QrySelectType" />
+        </xs:sequence>
+        <xs:attribute xmlns:q12="http://www.aircominternational.com/Schemas/Query/2009/09" name="objectType" type="q12:QueryableTypes" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ModifyItemType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DataItemBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/Query/2009/09" minOccurs="0" maxOccurs="1" name="Select" type="q13:QrySelectType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NewData" type="tns:AppDataType" />
+        </xs:sequence>
+        <xs:attribute xmlns:q14="http://www.aircominternational.com/Schemas/Query/2009/09" form="qualified" name="objectType" type="q14:QueryableTypes" use="required" />
+        <xs:attribute form="qualified" name="CreateIfNotFound" type="xs:boolean" use="required" />
+        <xs:attribute form="qualified" name="IgnoreQueryAndDoBulkUpdate" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TestRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q15:RequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="TestItems" type="tns:TestItemType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ModifyRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q16:RequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ModifyItems" type="tns:ModifyItemType" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ResultQuery" type="tns:QueryItemBaseType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QueryRequestType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q17="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q17:RequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="QueryItems" type="tns:QueryItemType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="CreateResult" type="tns:CreateResponseType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="CreateResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DataResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DataResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q18="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q18:DataResponseBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemData" type="tns:ItemDataType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeleteResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://www.aircominternational.com/contract/Util/2009/10" base="q19:ResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TestResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q20="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q20:DataResponseBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="q20:TestResult" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QueryResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q21="http://www.aircominternational.com/contract/EDS/DST/2009/10" base="q21:DataResponseBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="Data" type="tns:DataType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ModifyResponseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:DataResponseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element xmlns:q22="http://www.aircominternational.com/contract/Util/2009/10" name="Fault" nillable="true" type="q22:EDSFaultContract" />
+  <xs:element name="Query">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="data" type="tns:QueryRequestType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="QueryResult" type="tns:QueryResponseType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Modify">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="data" type="tns:ModifyRequestType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ModifyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="ModifyResult" type="tns:ModifyResponseType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Delete">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="data" type="tns:DeleteRequestType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="DeleteResult" type="tns:DeleteResponseType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryableTypes">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="QueryableTypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="QueryableTypesResult" type="tns:SupportedTypes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="SupportedTypes">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Types" type="tns:ArrayOfString" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WriteableTypes">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="WriteableTypesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="WriteableTypesResult" type="tns:SupportedTypes" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Status">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="StatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="StatusResult" type="tns:StatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="StatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Status" type="tns:ArrayOfHeartBeatPacket" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfHeartBeatPacket">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Item" nillable="true" type="tns:HeartBeatPacket" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeartBeatPacket">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="ResponseTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MachineName" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ProcessName" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ProcessID" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NonpagedSystemMemorySize" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PagedMemorySize" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PagedSystemMemorySize" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PeakPagedMemorySize" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PeakVirtualMemorySize" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PeakWorkingSet" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartTime" type="xs:dateTime" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VirtualMemorySize" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="WorkingSet" type="xs:long" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InstanceName" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute xmlns:q23="http://microsoft.com/wsdl/types/" name="HostID" type="q23:guid" use="required" />
+  </xs:complexType>
+  <xs:complexType name="EDSHeartBeatPacket">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:HeartBeatPacket">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Creates" type="tns:EDSPerformanceData" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Reads" type="tns:EDSPerformanceData" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Updates" type="tns:EDSPerformanceData" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Deletes" type="tns:EDSPerformanceData" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EDSPerformanceData">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfMessagesRecieved" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfSuccessMessagesSent" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfFailureMessagesSent" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberOfExceptionMessagesSent" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MinimumTimeForProcessedMessage" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AverageTimeForProcessingMessage" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MaximumTimeForProcessedMessage" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ENSHeartBeatPacket">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:HeartBeatPacket">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalSubscribers" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ActiveSubscribers" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="InActiveSubscribers" type="xs:int" />
+          <xs:element minOccurs="1" maxOccurs="1" name="TotalMessages" type="xs:long" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SuccessFirstTimeMessages" type="xs:long" />
+          <xs:element minOccurs="1" maxOccurs="1" name="SuccessAfterRetryMessages" type="xs:long" />
+          <xs:element minOccurs="1" maxOccurs="1" name="FailedMessages" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="HistoricalStatus">
+    <xs:complexType />
+  </xs:element>
+  <xs:element name="HistoricalStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="HistoricalStatusResult" type="tns:HistoricalStatusResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="HistoricalStatusResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="HistoricalStatus" type="tns:ArrayOfHeartBeatPacket" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Common/2012/05" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Common/2012/05" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2011/04" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Connect/2011/04" />
+  <xs:complexType name="LogicalAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RepeaterAntenna" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CorrectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ElectricalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalDownTilt" type="xs:double" />
+      <xs:element xmlns:q1="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AntennaPatternType" type="q1:IDType" />
+      <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PrimaryModel" type="q2:PredictionModelReferenceType" />
+      <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="SecondaryModel" type="q3:PredictionModelReferenceType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Constraints" type="tns:AntennaConstraintsv801Type" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Ports" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Diplexers" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntenna" type="tns:PhysicalAntennaBaseType" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+    <xs:attribute xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q4:iid" />
+  </xs:complexType>
+  <xs:complexType name="AntennaConstraintsv801Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AntennaPatternFixed" type="xs:boolean" />
+      <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="TotalMinimumDowntilt" type="q5:DownTiltType" />
+      <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="TotalMaximumDowntilt" type="q6:DownTiltType" />
+      <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="ElectricalMinimumDowntilt" type="q7:DownTiltType" />
+      <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="ElectricalMaximumDowntilt" type="q8:DownTiltType" />
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="ElectricalDowntiltStep" type="q9:DownTiltStepType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PhysicalAntennaBaseType">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Security" type="q10:SecurityInfo" />
+      <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AntennaDevice" type="q11:IDType" />
+      <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MasterPattern1" type="q12:IDType" />
+      <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MasterPattern2" type="q13:IDType" />
+      <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MasterPattern3" type="q14:IDType" />
+      <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MasterPattern4" type="q15:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="InstanceID" type="xs:string" />
+      <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AbsLocation" type="q16:LocationTypeType" />
+      <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="Location" type="q17:RawLocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SpatialDiversity" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Azimuth" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Tilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Height" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Constraints" type="tns:PhyAntennaConstraintsType" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="PhyAntennaConstraintsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="AntennaDeviceFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UseForbiddenAzimuth" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ForbiddenAzimuthFrom" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ForbiddenAzimuthTo" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AzimuthFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MechanicalTiltFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HeightFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MinMechanicalTiltFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MinMechanicalTilt" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxMechanicalTiltFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxMechanicalTilt" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MechanicalTiltStepFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MechanicalTiltStep" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PhysicalAntennaPortType">
+    <xs:sequence>
+      <xs:element xmlns:q18="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Security" type="q18:SecurityInfo" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PortInformation" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FeederType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FeederLength" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FeederInformation" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MHAType" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MHAGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MHAInfo" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RRUElements" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RRUInformation" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RET_ID" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexID1" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexInfo1" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexID2" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexInfo2" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexID3" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexInfo3" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexID4" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiplexInfo4" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Custom1" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Custom2" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AntennaPortInfo" type="tns:AntennaPortInfoTypeRO" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="AntennaPortInfoTypeRO">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Type" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Location" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="Readonly" type="xs:boolean" />
+  </xs:complexType>
+  <xs:complexType name="PhysicalAntennaType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PhysicalAntennaBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntennaPorts" type="tns:ArrayOfPhysicalAntennaPortType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPhysicalAntennaPortType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PhysicalAntennaPort" type="tns:PhysicalAntennaPortType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectHierarchyv801Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://www.aircominternational.com/Schemas/Common/2011/04" base="q19:LocationObjectv80Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntennas" type="tns:ArrayOfPhysicalAntennaType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfNetworkElementType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Linkends" type="tns:ArrayOfPtPLinkendv80Type" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPhysicalAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PhysicalAntenna" type="tns:PhysicalAntennaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfNetworkElementType">
+    <xs:sequence>
+      <xs:element xmlns:q20="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Child" type="q20:NetworkElementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPtPLinkendv80Type">
+    <xs:sequence>
+      <xs:element xmlns:q21="http://www.aircominternational.com/Schemas/Connect/2011/04" minOccurs="0" maxOccurs="unbounded" name="Linkend" type="q21:PtPLinkendv80Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectv801Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q22="http://www.aircominternational.com/Schemas/Common/2011/04" base="q22:LocationObjectv80Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntennas" type="tns:ArrayOfPhysicalAntennaType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

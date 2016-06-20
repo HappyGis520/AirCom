@@ -1,0 +1,18 @@
+最近做一个C#项目需要访问Oracle 11数据库。发现使用原来访问 Oracle 9的老办法不可行了。
+花了点时间研究了一下，终于解决了，而且不用安装Oracle客户端。
+1、下载并引用：Oracle.ManagedDataAccess.dll
+http://www.oracle.com/technetwork/database/windows/downloads/odpmbeta-1696432.html?ssSourceSiteId=otncn
+2、代码用引用 using Oracle.ManagedDataAccess.Client;
+3、连接字符串复杂一点，
+try
+ {
+     string connStr="User Id=admin;Password=admin;Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.1.100)(PORT=1521)))(CONNECT_DATA=(SERVICE_NAME=orcl)))"
+     using (var conn = new OracleConnection(connStr))
+     {
+         conn.Open();
+     }
+ }
+ catch (OracleException ex)
+ {
+     throw new Exception(ex.Message);
+ }

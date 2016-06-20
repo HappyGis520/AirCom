@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.aircominternational.com/contract/EAWS/Service/2011/04" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EAWSServiceImpl" targetNamespace="http://www.aircominternational.com/contract/EAWS/Service/2011/04" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="EAWSTCPService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="EAWSHTTPService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <cdp:CompositeDuplex xmlns:cdp="http://schemas.microsoft.com/net/2006/06/duplex" />
+        <ow:OneWay xmlns:ow="http://schemas.microsoft.com/ws/2005/05/routing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.aircominternational.com/contract/EAWS/Service/2011/04/Imports">
+      <xsd:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd0" namespace="http://www.aircominternational.com/contract/EAWS/Service/2011/04" />
+      <xsd:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd1" namespace="http://www.aircominternational.com/data/EAWS/2011/04" />
+      <xsd:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd2" namespace="http://www.aircominternational.com/contract/EWS/2011/01" />
+      <xsd:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd3" namespace="http://www.aircominternational.com/contract/Util/2009/10" />
+      <xsd:import schemaLocation="http://localhost:9093/AIRCOM/EAWSR?xsd=xsd4" namespace="http://microsoft.com/wsdl/types/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EAWS_SyncStartAWScheduler_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncStartAWScheduler" />
+  </wsdl:message>
+  <wsdl:message name="EAWS_SyncStartAWScheduler_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncStartAWSchedulerResponse" />
+  </wsdl:message>
+  <wsdl:message name="EAWS_SyncIsAWSchedulerStarted_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncIsAWSchedulerStarted" />
+  </wsdl:message>
+  <wsdl:message name="EAWS_SyncIsAWSchedulerStarted_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncIsAWSchedulerStartedResponse" />
+  </wsdl:message>
+  <wsdl:message name="EAWS_ControlRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:ControlRequest" />
+  </wsdl:message>
+  <wsdl:message name="EAWS_QueryRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRequest" />
+  </wsdl:message>
+  <wsdl:message name="EAWS_EditRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditRequest" />
+  </wsdl:message>
+  <wsdl:message name="EAWS_SendUpdate_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:SendUpdate" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="EAWS">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SyncStartAWScheduler">
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncStartAWScheduler" message="tns:EAWS_SyncStartAWScheduler_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncStartAWSchedulerResponse" message="tns:EAWS_SyncStartAWScheduler_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SyncIsAWSchedulerStarted">
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncIsAWSchedulerStarted" message="tns:EAWS_SyncIsAWSchedulerStarted_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncIsAWSchedulerStartedResponse" message="tns:EAWS_SyncIsAWSchedulerStarted_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ControlRequest">
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/ControlRequest" message="tns:EAWS_ControlRequest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="QueryRequest">
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/QueryRequest" message="tns:EAWS_QueryRequest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="EditRequest">
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/EditRequest" message="tns:EAWS_EditRequest_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SendUpdate">
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SendUpdate" message="tns:EAWS_SendUpdate_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EAWSTCPService" type="tns:EAWS">
+    <wsp:PolicyReference URI="#EAWSTCPService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="SyncStartAWScheduler">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncStartAWScheduler" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncIsAWSchedulerStarted">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncIsAWSchedulerStarted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ControlRequest">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/ControlRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRequest">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/QueryRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="EditRequest">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/EditRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendUpdate">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SendUpdate" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EAWSHTTPService" type="tns:EAWS">
+    <wsp:PolicyReference URI="#EAWSHTTPService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SyncStartAWScheduler">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncStartAWScheduler" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncIsAWSchedulerStarted">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SyncIsAWSchedulerStarted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ControlRequest">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/ControlRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRequest">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/QueryRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="EditRequest">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/EditRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="SendUpdate">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EAWS/Service/2011/04/EAWS/SendUpdate" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EAWSServiceImpl">
+    <wsdl:port name="EAWSTCPService" binding="tns:EAWSTCPService">
+      <soap12:address location="net.tcp://localhost:9092/AIRCOM/EAWSR" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:9092/AIRCOM/EAWSR</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="EAWSHTTPService" binding="tns:EAWSHTTPService">
+      <soap12:address location="http://localhost:9091/AIRCOM/EAWSR/ep" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:9091/AIRCOM/EAWSR/ep</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

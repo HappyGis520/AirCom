@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/GSM/2010/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/GSM/2010/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Enumerations/2009/07" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/GSM/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2010/08" />
+  <xs:complexType name="QryGSMRepeaterType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" form="unqualified" name="RootAttribute" type="q2:QryRootEntityAttributes" />
+            <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" form="unqualified" name="NEAttribute" type="q3:QryNetworkElementAttributes" />
+            <xs:element minOccurs="1" maxOccurs="1" form="unqualified" name="GSMRepeaterAttribute" type="tns:QryGSMRepeaterTypeAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryGSMRepeaterTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="DLGain" />
+      <xs:enumeration value="ULGain" />
+      <xs:enumeration value="ULNoiseFigure" />
+      <xs:enumeration value="Cabin" />
+      <xs:enumeration value="Tower" />
+      <xs:enumeration value="BTS" />
+      <xs:enumeration value="BTSFixed" />
+      <xs:enumeration value="OutputPower" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="MSCv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://www.aircominternational.com/Schemas/Common/2010/08" base="q4:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/Enumerations/2009/07" minOccurs="0" maxOccurs="1" name="Type" type="q5:LegacyNetworkType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BSCs" type="tns:ArrayOfBSCv70Type" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q6:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBSCv70Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BSC" type="tns:BSCv70Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="BSCv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://www.aircominternational.com/Schemas/Common/2010/08" base="q7:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Parent" type="q8:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SMLCId" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BSCId" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Sites" type="tns:ArrayOfIDType" />
+          <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q9:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfIDType">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Sites" type="q10:IDType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CellSitev70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://www.aircominternational.com/Schemas/Common/2010/08" base="q11:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="ParentMSC" type="q12:IDType" />
+          <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="ParentBSC" type="q13:IDType" />
+          <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="BTS" type="q14:IDType" />
+          <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Cabin" type="q15:IDType" />
+          <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Tower" type="q16:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BCFs" type="tns:ArrayOfBCFType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BTSFixed" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GSMTimeSlotsPerCarrier" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GSMExtents" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfGSMCellv70Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Capacity" type="xs:double" />
+          <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q17:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfBCFType">
+    <xs:sequence>
+      <xs:element xmlns:q18="http://www.aircominternational.com/Schemas/GSM/2009/09" minOccurs="0" maxOccurs="unbounded" name="BCF" type="q18:BCFType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfGSMCellv70Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cell" type="tns:GSMCellv70Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GSMCellv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q19="http://www.aircominternational.com/Schemas/GSM/2009/09" base="q19:GSMCellType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CGI_RO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SignallingOverhead" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CarriedTrafficDetails" type="tns:ArrayOfCarriedTrafficDetailType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Antennav70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q20="http://www.aircominternational.com/Schemas/GSM/2009/09" base="q20:AntennaType">
+        <xs:sequence>
+          <xs:element xmlns:q21="http://www.aircominternational.com/Schemas/CommonTypes/2010/08" minOccurs="0" maxOccurs="1" name="Constraints" type="q21:AntennaConstraintsType" />
+        </xs:sequence>
+        <xs:attribute xmlns:q22="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q22:iid" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCarriedTrafficDetailType">
+    <xs:sequence>
+      <xs:element xmlns:q23="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="unbounded" name="CarriedTrafficDetail" type="q23:CarriedTrafficDetailType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConfiguredRepeater2GRxType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q24="http://www.aircominternational.com/Schemas/Common/2010/08" base="q24:ConfiguredRepeaterBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Threshold" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Signal" type="xs:double" />
+          <xs:element xmlns:q25="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q25:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConfiguredRepeater2GTxType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q26="http://www.aircominternational.com/Schemas/Common/2010/08" base="q26:ConfiguredRepeaterBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q27="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="PrimaryModel" type="q27:PredictionModelReferenceType" />
+          <xs:element xmlns:q28="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="SecondaryModel" type="q28:PredictionModelReferenceType" />
+          <xs:element xmlns:q29="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q29:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GSMRepeaterType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q30="http://www.aircominternational.com/Schemas/Common/2010/08" base="q30:RepeaterBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="PhotoFile" type="xs:string" />
+          <xs:element xmlns:q31="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="Cabin" type="q31:IDType" />
+          <xs:element xmlns:q32="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="Tower" type="q32:IDType" />
+          <xs:element xmlns:q33="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="BTS" type="q33:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="BTSFixed" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="SignalCalcMethod" type="tns:CalcMethod2G" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="RxAntenna" type="tns:ConfiguredRepeater2GRxType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="TxAntenna" type="tns:ConfiguredRepeater2GTxType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="OutputPower" type="xs:double" />
+          <xs:element xmlns:q34="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q34:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="CalcMethod2G">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PredictRx" />
+      <xs:enumeration value="SpecifyRx" />
+      <xs:enumeration value="SpecifyTx" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="CellLayerv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q35="http://www.aircominternational.com/Schemas/GSM/2009/09" base="q35:CellLayerType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CIThreshold" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

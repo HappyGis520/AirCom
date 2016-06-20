@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Connect/2010/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Connect/2010/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd19" namespace="http://www.aircominternational.com/Schemas/Connect/2009/09" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd23" namespace="http://www.aircominternational.com/Schemas/Enumerations/2010/08" />
+  <xs:complexType name="PtPLinkendNonMicrowavev70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Connect/2009/09" base="q1:PtPLinkendNonMicrowaveType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="AdditionalLinkTraffic" type="xs:double" />
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="ChannelCapacity" type="q2:RadioCapacityTypev70" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EthernetIP" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NoOfChannels" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UsePDHSDH" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkendv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Connect/2009/09" base="q3:PtPLinkendType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DivHighPriorityThroughput" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DivRequiredAvailability" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HighPriorityThroughput" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredAvailability" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AdditionalLinkTraffic" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DivHighPriorityAvailability" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HighPriorityAvailability" type="xs:double" />
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="ChannelCapacity" type="q4:RadioCapacityTypev70" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EthernetIP" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NoOfChannels" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UsePDHSDH" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://www.aircominternational.com/Schemas/Connect/2009/09" base="q5:PtPLinkType">
+        <xs:sequence>
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="DuplexMethod" type="q6:DuplexMethod" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PacketSize" type="xs:int" />
+          <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="PacketType" type="q7:PacketType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Symmetry" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SyncDelay" type="xs:double" />
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="SyncMode" type="q8:SyncMode" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SymmetryMP" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Bandv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://www.aircominternational.com/Schemas/Connect/2009/09" base="q9:Band">
+        <xs:sequence>
+          <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="BandDuplexMethod" type="q10:DuplexMethod" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

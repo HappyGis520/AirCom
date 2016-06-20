@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Enumerations/2010/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Enumerations/2010/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="SuMimoSpatialMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DIVERSITY" />
+      <xs:enumeration value="MULTIPLEXING" />
+      <xs:enumeration value="ADAPTIVE_SWITCHING" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TimingAdvanceMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MAXTA" />
+      <xs:enumeration value="MAXRANGE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CellEdgeThreshMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RSRP" />
+      <xs:enumeration value="RELRSRP" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SchedulerKey">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="RoundRobin" />
+      <xs:enumeration value="MaxSINR" />
+      <xs:enumeration value="ProportionalFair" />
+      <xs:enumeration value="ProportionalDemand" />
+      <xs:enumeration value="ProportionalRate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ModulationKey">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="QAM16" />
+      <xs:enumeration value="QAM64" />
+      <xs:enumeration value="BPSK" />
+      <xs:enumeration value="QPSK" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RadioCapacityTypev70">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNKNOWN" />
+      <xs:enumeration value="E0" />
+      <xs:enumeration value="E1" />
+      <xs:enumeration value="E2" />
+      <xs:enumeration value="E3" />
+      <xs:enumeration value="E4" />
+      <xs:enumeration value="E5" />
+      <xs:enumeration value="t1" />
+      <xs:enumeration value="t2" />
+      <xs:enumeration value="t3" />
+      <xs:enumeration value="t4" />
+      <xs:enumeration value="J1" />
+      <xs:enumeration value="J2" />
+      <xs:enumeration value="J3" />
+      <xs:enumeration value="J4" />
+      <xs:enumeration value="J5" />
+      <xs:enumeration value="STM0" />
+      <xs:enumeration value="STM1" />
+      <xs:enumeration value="STM4" />
+      <xs:enumeration value="STM16" />
+      <xs:enumeration value="STM64" />
+      <xs:enumeration value="STM256" />
+      <xs:enumeration value="STS1" />
+      <xs:enumeration value="STS3" />
+      <xs:enumeration value="STS9" />
+      <xs:enumeration value="STS12" />
+      <xs:enumeration value="STS18" />
+      <xs:enumeration value="STS24" />
+      <xs:enumeration value="STS36" />
+      <xs:enumeration value="STS48" />
+      <xs:enumeration value="STS192" />
+      <xs:enumeration value="STS768" />
+      <xs:enumeration value="MAX_ENUM_CapacityType" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="StartEnd">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ENDA" />
+      <xs:enumeration value="ENDB" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DuplexMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FDD" />
+      <xs:enumeration value="TDD" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PacketType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="IPv4" />
+      <xs:enumeration value="IPv6" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SyncMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ATENDA" />
+      <xs:enumeration value="ATENDB" />
+      <xs:enumeration value="ASYNC" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DuplexMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NONE" />
+      <xs:enumeration value="FDD" />
+      <xs:enumeration value="TDD" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LTEFrameConfig">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNUSED" />
+      <xs:enumeration value="Standard" />
+      <xs:enumeration value="Custom" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CyclicPrefix">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNUSED" />
+      <xs:enumeration value="Normal" />
+      <xs:enumeration value="Extended" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ICICMethod">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Reuse1" />
+      <xs:enumeration value="SoftReuse" />
+      <xs:enumeration value="ReusePartitioning" />
+      <xs:enumeration value="Undefined" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SER_NETTYPE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UMTS" />
+      <xs:enumeration value="CDMA" />
+      <xs:enumeration value="HDR" />
+      <xs:enumeration value="TDSCDMA" />
+      <xs:enumeration value="TWOG" />
+      <xs:enumeration value="UMTS_TDD" />
+      <xs:enumeration value="WIMAX" />
+      <xs:enumeration value="WIMAX_MOBILE" />
+      <xs:enumeration value="LTE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ServiceTech">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="GSM" />
+      <xs:enumeration value="UMTS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BRDirection">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UPLINK" />
+      <xs:enumeration value="DOWNLINK" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TG_TRAFFICTYPE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="VOICE" />
+      <xs:enumeration value="NRT" />
+      <xs:enumeration value="RT" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PRECEDENCE_CLASS">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNUSED" />
+      <xs:enumeration value="IPPremiumv4" />
+      <xs:enumeration value="Standard" />
+      <xs:enumeration value="Best_Effort" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TRAFFIC_CLASS">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNUSED" />
+      <xs:enumeration value="Conversational_Audio" />
+      <xs:enumeration value="Conversational_Data" />
+      <xs:enumeration value="Streaming_Audio" />
+      <xs:enumeration value="Streaming_Video" />
+      <xs:enumeration value="Streaming_Data" />
+      <xs:enumeration value="Interactive_Audio" />
+      <xs:enumeration value="Interactive_Data" />
+      <xs:enumeration value="Background" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LTETrafficClass">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ConversationalVoice" />
+      <xs:enumeration value="ConversationalVideo" />
+      <xs:enumeration value="RealTimeGaming" />
+      <xs:enumeration value="NonConversationalVideo" />
+      <xs:enumeration value="IMSSignalling" />
+      <xs:enumeration value="BufferedStreaming" />
+      <xs:enumeration value="LiveStreaming" />
+      <xs:enumeration value="Background" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="BEARER_TECH">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UMTS" />
+      <xs:enumeration value="CDMA" />
+      <xs:enumeration value="HDR" />
+      <xs:enumeration value="TDSCDMA" />
+      <xs:enumeration value="GSMVOICE" />
+      <xs:enumeration value="GPRS" />
+      <xs:enumeration value="EGPRS" />
+      <xs:enumeration value="HSCSD" />
+      <xs:enumeration value="ECSD" />
+      <xs:enumeration value="UMTS_TDD" />
+      <xs:enumeration value="UMTS_HSDPA" />
+      <xs:enumeration value="WIMAX" />
+      <xs:enumeration value="WIMAX_MOBILE" />
+      <xs:enumeration value="LTE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MODULATION">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNKNOWN" />
+      <xs:enumeration value="QPSK" />
+      <xs:enumeration value="QAM16" />
+      <xs:enumeration value="ERROR3" />
+      <xs:enumeration value="QAM64" />
+      <xs:enumeration value="ERROR5" />
+      <xs:enumeration value="ERROR6" />
+      <xs:enumeration value="ERROR7" />
+      <xs:enumeration value="BPSK" />
+      <xs:enumeration value="ERROR9" />
+      <xs:enumeration value="ERROR10" />
+      <xs:enumeration value="ERROR11" />
+      <xs:enumeration value="ERROR12" />
+      <xs:enumeration value="ERROR13" />
+      <xs:enumeration value="ERROR14" />
+      <xs:enumeration value="ERROR15" />
+      <xs:enumeration value="PAM4" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RADIO_CONFIG">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="RC1" />
+      <xs:enumeration value="RC2" />
+      <xs:enumeration value="RC3" />
+      <xs:enumeration value="RC4" />
+      <xs:enumeration value="RC5" />
+      <xs:enumeration value="RC6" />
+      <xs:enumeration value="RC7" />
+      <xs:enumeration value="RC8" />
+      <xs:enumeration value="RC9" />
+      <xs:enumeration value="RC10" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SUPPPORT_HALFRATE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NO" />
+      <xs:enumeration value="YES" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SUPPPORT_AMR">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NO" />
+      <xs:enumeration value="YES" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SU_MIMO_SUPPORT">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NO" />
+      <xs:enumeration value="YES" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MU_MIMO_SUPPORT">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NO" />
+      <xs:enumeration value="YES" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MIMO_MODE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Not_Supported" />
+      <xs:enumeration value="Spatial_Diversity" />
+      <xs:enumeration value="Spatial_Multiplexing" />
+      <xs:enumeration value="Adaptive_Switching" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SUBCHANNEL_MODE">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UNKNOWN" />
+      <xs:enumeration value="FUSC" />
+      <xs:enumeration value="PUSC" />
+      <xs:enumeration value="AMC" />
+      <xs:enumeration value="OPUSC" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SFCodes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SF2x2plusSF4x2" />
+      <xs:enumeration value="SF2x2" />
+      <xs:enumeration value="SF4x2" />
+      <xs:enumeration value="SF4" />
+      <xs:enumeration value="SF8" />
+      <xs:enumeration value="SF16" />
+      <xs:enumeration value="SF32" />
+      <xs:enumeration value="SF64" />
+      <xs:enumeration value="SF128" />
+      <xs:enumeration value="SF256" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="AssociationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Slave" />
+      <xs:enumeration value="Master" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SpreadType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Density" />
+      <xs:enumeration value="Weight" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="VectorSpreadType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Absolute" />
+      <xs:enumeration value="Density" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LTE_MaxModulationScheme">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="SixtyFourQAM" />
+      <xs:enumeration value="SixteenQAM" />
+      <xs:enumeration value="QPSK" />
+      <xs:enumeration value="BPSK" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LTE_SU_MIMO_Mode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unknown" />
+      <xs:enumeration value="Diversity" />
+      <xs:enumeration value="Multiplexing" />
+      <xs:enumeration value="AdaptiveSwitching" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

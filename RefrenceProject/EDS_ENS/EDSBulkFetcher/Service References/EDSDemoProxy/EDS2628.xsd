@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/UMTS/2010/07" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/UMTS/2010/07" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd5" namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd6" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd20" namespace="http://www.aircominternational.com/Schemas/Enumerations/2009/07" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd21" namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="QryUMTSCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="UMTSCellAttribute" type="tns:QryUMTSCellTypeAttributes" />
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q2:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryUMTSCellTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="CellName" />
+      <xs:enumeration value="UMTSCellID" />
+      <xs:enumeration value="LocalCellID" />
+      <xs:enumeration value="RAC" />
+      <xs:enumeration value="SAC" />
+      <xs:enumeration value="LAC" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QryNodeBType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Query/2009/09" base="q3:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q4:QryRootEntityAttributes" />
+            <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="NEAttribute" type="q5:QryNetworkElementAttributes" />
+            <xs:element minOccurs="1" maxOccurs="1" name="NodeBAttribute" type="tns:QryNodeBTypeAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryNodeBTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NodeBID" />
+      <xs:enumeration value="NodeBEquipmentType" />
+      <xs:enumeration value="PLMN" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="UMTSCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q6:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="q6:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CellName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UMTSCellID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LocalCellID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LAC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SAC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RAC" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LCR" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA3" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA4" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA5" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA6" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA7" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="URA8" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WLCSEID" type="xs:int" />
+          <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/Enumerations/2009/07" minOccurs="0" maxOccurs="1" name="MultiPathType" type="q7:MultiPathType" />
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/Enumerations/2009/07" minOccurs="0" maxOccurs="1" name="CoverageType" type="q8:CoverageType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxCellRadiusFront" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxCellRadiusBack" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OverflowDLPower" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OverflowULNoiseRise" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MinDLPowerPerConnection" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxDLPowerPerConnection" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkPowerOffset" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefDLBitrate" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefDL-EBNO" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="OTSRConfigEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HSDPA">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="1" name="HSDPA-Supported" type="xs:boolean" />
+                <xs:element minOccurs="0" maxOccurs="1" name="Max-HSDPA-Blocksize" type="xs:double" />
+                <xs:element minOccurs="0" maxOccurs="1" name="Max-HSDPA-Modulation" type="xs:int" />
+                <xs:element minOccurs="0" maxOccurs="1" name="Code-Multiplexing-Enabled" type="xs:boolean" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="HSUPA">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="1" name="HSUPA-Supported" type="xs:boolean" />
+                <xs:element minOccurs="0" maxOccurs="1" name="Max-HSUPA-Codes" type="xs:int" />
+                <xs:element minOccurs="0" maxOccurs="1" name="Min-SF" type="xs:int" />
+                <xs:element minOccurs="0" maxOccurs="1" name="TTI-2MS-Enabled" type="xs:boolean" />
+                <xs:element minOccurs="0" maxOccurs="1" name="Modulation-4PAM-Supported" type="xs:int" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:ArrayOfResourceType" />
+          <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q9:ReadOnlyType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carrier" type="tns:UMTSCellCarrierType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfResourceType">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Resource" type="q10:ResourceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UMTSCellCarrierType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="E-AGCH-Power" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-AGCH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-AGCH-Activity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-RGCH-Power" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-RGCH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-RGCH-Activity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-HICH-Power" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-HICH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="E-HICH-Activity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Dynamic-HS-SCCH-Support" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HS-SCCH-Power" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HS-SCCH-MeanPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoiseRise" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Orthogonality" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PilotPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CellMaxTxPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CommonChannelPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SecondCommonChannelPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SyncChannelPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SecondSyncChannelPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SoftHandOverSearch" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CellBackgroundNoise" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxActiveSet" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ScramblingCode" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ScramblingCodeGroup" type="xs:int" />
+      <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="UMTSCodeSchema" type="q11:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MeanAchievedUplinkNoiseRise" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MeanDownlinkTrafficPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MeanHSDPADownlinkTrafficPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OTSRSplitterLoss" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UseRelativeChannelPowers" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TX-Power-Fixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Channel-Power-Fixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Max-DL-Power-Fixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PCCPCH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SCCPCH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PSCH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SSCH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AICH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PICH-Enabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxHSDPAPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AICH-Power" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PICH-Power" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AICH-Activity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PICH-Activity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SCCPCH-Activity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HandoverMargin" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MultiUserDetectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DownlinkLoadingLevel" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="HSDPAPowerFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DSCHPowerTDD" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DSCHTDDEnabled" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute name="CarrierID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="UMTSCellFeederType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Length" type="xs:double" />
+      <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="FeederType" type="q12:IDType" />
+      <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MHAType" type="q13:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MHAGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TXDiversity" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RXDiversity" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxPAPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Noise" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherLosses" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MIMOEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MIMOTX" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MIMORX" type="xs:int" />
+      <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/Enumerations/2009/07" minOccurs="0" maxOccurs="1" name="MIMOSpatialMode" type="q14:SpatialMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PilotEiRP" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxTxEiRP" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FeederLoss" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute name="UMTSCellID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="NodeBType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q15:NetworkElementType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="NodeBID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NodeBEquipmentType" type="q15:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PLMN" type="q15:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:ArrayOfResourceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carriers" type="tns:ArrayOfUMTSCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfUMTSAntennaType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfUMTSCellType" />
+          <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q16:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCarrierType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Carrier" type="tns:UMTSCarrierType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UMTSCarrierType">
+    <xs:sequence>
+      <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Resources" type="q17:ResourceType" />
+    </xs:sequence>
+    <xs:attribute name="CarrierID" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:UMTSAntennaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UMTSAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RepeaterAntenna" type="xs:boolean" />
+      <xs:element xmlns:q18="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AbsLocation" type="q18:LocationTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Azimuth" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Height" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CorrectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MechanicalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ElectricalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalDownTilt" type="xs:double" />
+      <xs:element xmlns:q19="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AntennaPatternType" type="q19:IDType" />
+      <xs:element xmlns:q20="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PrimaryModel" type="q20:PredictionModelReferenceType" />
+      <xs:element xmlns:q21="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="SecondaryModel" type="q21:PredictionModelReferenceType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SharedAntennaID" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Feeders" type="tns:ArrayOfUMTSCellFeederType" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCellFeederType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Feeder" type="tns:UMTSCellFeederType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCellType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cell" type="tns:UMTSCellType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

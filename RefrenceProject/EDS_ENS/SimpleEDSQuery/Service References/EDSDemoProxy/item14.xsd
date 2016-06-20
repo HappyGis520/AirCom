@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ReadOnlyType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ReadOnly" />
+      <xs:enumeration value="ReadWrite" />
+      <xs:enumeration value="ReadCreateUpdate" />
+      <xs:enumeration value="ReadUpdateDelete" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

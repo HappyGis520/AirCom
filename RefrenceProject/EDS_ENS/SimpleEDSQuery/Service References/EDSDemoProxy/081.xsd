@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Common/2010/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Common/2010/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2009/07" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Enumerations/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="QryNetworkConnectionType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="NCAttribute" type="tns:QryNetworkConnectionTypeAttributes" />
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q2:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryNetworkConnectionTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ConnectionType" />
+      <xs:enumeration value="EndA" />
+      <xs:enumeration value="EndB" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="NetworkElementv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q3:NetworkElementType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="SignallingOverhead" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="CarriedTrafficTotal" type="tns:CarriedTrafficTotalGroupType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CarriedTrafficTotalGroupType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PSCarriedTrafficTotal" type="tns:CarriedTrafficTotalType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CSCarriedTrafficTotal" type="tns:CarriedTrafficTotalType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CarriedTrafficTotalType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Protected" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ThroughputDL" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ThroughputUL" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberOfTerminals" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute name="AutoAggregated" type="xs:boolean" use="required" />
+  </xs:complexType>
+  <xs:complexType name="CarriedTrafficTotalExType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CarriedTrafficTotalType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InterHandoverThroughputDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterHandoverThroughputUL" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NetworkElementv70ExType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ExtendedCarriedTrafficTotal" type="tns:CarriedTrafficTotalGroupExType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CarriedTrafficTotalGroupExType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="PSCarriedTrafficTotal" type="tns:CarriedTrafficTotalExType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CSCarriedTrafficTotal" type="tns:CarriedTrafficTotalExType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CarriedTrafficDetailExType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CarriedTrafficDetailType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="IntraHandoverThroughputDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IntraHandoverThroughputUL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterHandoverThroughputDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterHandoverThroughputUL" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="CarriedTrafficDetailType">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Service" type="q4:IDType" />
+      <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="TerminalType" type="q5:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Protected" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ThroughputDL" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ThroughputUL" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NumberOfTerminals" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q6:eid" />
+  </xs:complexType>
+  <xs:complexType name="RepeaterBaseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="Parent" type="q7:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="DLGain" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ULGain" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ULNoiseFigure" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Repeater3GType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RepeaterBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="PLMN" type="q8:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="PredResolution" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="CalcMethod" type="tns:CalcMethod3G" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="CalcMethod3G">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DLGainSpecified" />
+      <xs:enumeration value="OutputPowerSpecified" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ConfiguredRepeater3GType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ConfiguredRepeaterBaseType">
+        <xs:sequence>
+          <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" minOccurs="0" maxOccurs="1" form="unqualified" name="Security" type="q9:SecurityInfoEx" />
+          <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="FeederType" type="q10:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="FeederLength" type="xs:double" />
+          <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="MHAType" type="q11:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="MHAGain" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="CorrectionFactor" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConfiguredRepeaterBaseType">
+    <xs:sequence>
+      <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="AntennaPatternType" type="q12:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Height" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Azimuth" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="MechanicalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ElectricalDownTilt_RO" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="TotalDownTilt_RO" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q13="http://www.aircominternational.com/Schemas/Common/2009/07" base="q13:LocationObjectType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CarriedTrafficTotal" type="tns:CarriedTrafficTotalGroupType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BuildingHeight" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Mounting_RO" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectHierarchyv70Type">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:LocationObjectv70Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfNetworkElementType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfNetworkElementType">
+    <xs:sequence>
+      <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Child" type="q14:NetworkElementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkConnectionType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q15="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q15:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="EndA" type="tns:ConnIDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EndB" type="tns:ConnIDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UserComment" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" name="ConnectionType" type="tns:ConnectionTypes" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Routes" type="tns:ArrayOfNetworkConnectionRouteType" />
+          <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q16:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ConnIDType">
+    <xs:attribute xmlns:q17="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q17:iid" />
+    <xs:attribute xmlns:q18="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q18:eid" />
+    <xs:attribute name="elementType" type="tns:ConnectionElementTypes" use="required" />
+  </xs:complexType>
+  <xs:simpleType name="ConnectionElementTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WMSC" />
+      <xs:enumeration value="SGSN" />
+      <xs:enumeration value="RNC" />
+      <xs:enumeration value="NodeB" />
+      <xs:enumeration value="CDMAMSC" />
+      <xs:enumeration value="CDMABSC" />
+      <xs:enumeration value="CDMABS" />
+      <xs:enumeration value="MSC" />
+      <xs:enumeration value="BSC" />
+      <xs:enumeration value="CellSite" />
+      <xs:enumeration value="LTENode" />
+      <xs:enumeration value="LTESAEGW" />
+      <xs:enumeration value="LTEMME" />
+      <xs:enumeration value="Node" />
+      <xs:enumeration value="DNode" />
+      <xs:enumeration value="WiFiNode" />
+      <xs:enumeration value="WiFiCell" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ConnectionTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NetworkConnection" />
+      <xs:enumeration value="NetworkCellularConnection" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfNetworkConnectionRouteType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Route" type="tns:NetworkConnectionRouteType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkConnectionRouteType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Hops" type="tns:ArrayOfNetworkConnectionRouteHopType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="UserComment" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfNetworkConnectionRouteHopType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Hop" type="tns:NetworkConnectionRouteHopType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NetworkConnectionRouteHopType">
+    <xs:sequence>
+      <xs:element xmlns:q19="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="1" maxOccurs="1" name="StartEnd" type="q19:StartEnd" />
+      <xs:element xmlns:q20="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Link" type="q20:IDType" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" />
+  <xs:complexType name="QryUserDefinedFieldType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="CustomFieldGroup" type="xs:string" />
+          <xs:element minOccurs="1" maxOccurs="1" form="unqualified" name="CustomFieldType" type="tns:QryUserDefinedFieldGroupType" />
+        </xs:sequence>
+        <xs:attribute name="name" type="tns:QryUserDefinedFieldAttributes" use="required" />
+        <xs:attribute name="op" type="q1:QryOperationType" use="required" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryUserDefinedFieldGroupType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="picklist" />
+      <xs:enumeration value="string" />
+      <xs:enumeration value="float" />
+      <xs:enumeration value="int" />
+      <xs:enumeration value="bool" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="QryUserDefinedFieldAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="field" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="iid" type="xs:string" />
+  <xs:attribute name="bvid" type="xs:string" />
+  <xs:attribute name="eid" type="xs:int" />
+  <xs:simpleType name="QryRootEntityAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="iid" />
+      <xs:enumeration value="bvid" />
+      <xs:enumeration value="eid" />
+      <xs:enumeration value="CreateDate" />
+      <xs:enumeration value="ModifyDate" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QryRootEntityType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://www.aircominternational.com/Schemas/Query/2009/09" base="q2:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" form="unqualified" name="RootAttribute" type="tns:QryRootEntityAttributes" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QryNetworkElementType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Query/2009/09" base="q3:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" form="unqualified" name="NEAttribute" type="tns:QryNetworkElementAttributes" />
+            <xs:element minOccurs="1" maxOccurs="1" form="unqualified" name="RootAttribute" type="tns:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryNetworkElementAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Name1" />
+      <xs:enumeration value="Name2" />
+      <xs:enumeration value="Comments" />
+      <xs:enumeration value="Location" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="RootEntityType">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" minOccurs="0" maxOccurs="1" form="unqualified" name="Security" type="q4:SecurityInfoEx" />
+    </xs:sequence>
+    <xs:attribute form="qualified" name="iid" type="xs:string" />
+    <xs:attribute form="qualified" name="bvid" type="xs:string" />
+    <xs:attribute form="qualified" name="eid" type="xs:int" />
+  </xs:complexType>
+  <xs:complexType name="SecurityInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="CreateDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ModifyDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="CreateUser" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ModifyUser" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="UserGroup" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Permissions" type="tns:Permission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Permission">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Owner" type="tns:SecurityPermissions" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Group" type="tns:SecurityPermissions" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="All" type="tns:SecurityPermissions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SecurityPermissions">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="read" />
+      <xs:enumeration value="NOTUSED" />
+      <xs:enumeration value="write" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="IDType">
+    <xs:attribute form="qualified" name="iid" type="xs:string" />
+    <xs:attribute form="qualified" name="eid" type="xs:int" />
+  </xs:complexType>
+  <xs:complexType name="NetworkElementBaseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="CustomFields" type="tns:ArrayOfFieldType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFieldType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" form="unqualified" name="Field" type="tns:FieldType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FieldType">
+    <xs:attribute name="Group" type="xs:string" />
+    <xs:attribute name="Value" type="xs:string" />
+    <xs:attribute name="Default" type="xs:boolean" />
+  </xs:complexType>
+  <xs:complexType name="NetworkElementType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Location" type="tns:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Comments" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Name1" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Name2" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ResourceType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ULTotal" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="DLTotal" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ULPriority" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="DLPriority" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ULHandover" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="DLHandover" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PredictionModelReferenceType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ModelType" type="tns:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="RadiusKM" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ResolutionMetres" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationTypeType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Longitude" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Latitude" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute name="EPSG" type="xs:unsignedInt" />
+  </xs:complexType>
+  <xs:complexType name="EquipmentBaseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Description" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="PhotoFile" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="File" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Cost" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Weight" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Supplier" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="GainType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="dBI" />
+      <xs:enumeration value="dBD" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TiltType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ELECTRICAL" />
+      <xs:enumeration value="MECHANICAL" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

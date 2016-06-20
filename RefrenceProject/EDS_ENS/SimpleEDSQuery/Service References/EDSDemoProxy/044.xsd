@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/LTE/2011/04" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/LTE/2011/04" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/LTE/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2011/04" />
+  <xs:complexType name="LTEMMEType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Common/2010/08" base="q1:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q2:IDType" />
+          <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q3:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LTESAEGWType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://www.aircominternational.com/Schemas/Common/2010/08" base="q4:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q5:IDType" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q6:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LTENodev80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://www.aircominternational.com/Schemas/Common/2010/08" base="q7:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="NodeID" type="xs:int" />
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q8:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carriers" type="tns:ArrayOfLTENodeCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfLTEAntennav80Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfLTECellType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredRadius" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredResolution" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Capacity" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HandoverPercentage" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IsNominatedSGW" type="xs:boolean" />
+          <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q9:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTENodeCarrierType">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/LTE/2010/08" minOccurs="0" maxOccurs="unbounded" name="Carrier" type="q10:LTENodeCarrierType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTEAntennav80Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:LTEAntennav80Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LTEAntennav80Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RepeaterAntenna" type="xs:boolean" />
+      <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AbsLocation" type="q11:LocationTypeType" />
+      <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="Location" type="q12:RawLocationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Azimuth" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Height" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CorrectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULGainCorrectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MechanicalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ElectricalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalDownTilt_RO" type="xs:double" />
+      <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AntennaPatternType" type="q13:IDType" />
+      <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PrimaryModel" type="q14:PredictionModelReferenceType" />
+      <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="SecondaryModel" type="q15:PredictionModelReferenceType" />
+      <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" minOccurs="0" maxOccurs="1" name="Constraints" type="q16:AntennaConstraintsv80Type" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SharedAntennaID" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Feeders" type="tns:ArrayOfLTECellFeederType" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+    <xs:attribute xmlns:q17="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q17:iid" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTECellFeederType">
+    <xs:sequence>
+      <xs:element xmlns:q18="http://www.aircominternational.com/Schemas/LTE/2010/08" minOccurs="0" maxOccurs="unbounded" name="Feeder" type="q18:LTECellFeederType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTECellType">
+    <xs:sequence>
+      <xs:element xmlns:q19="http://www.aircominternational.com/Schemas/LTE/2010/08" minOccurs="0" maxOccurs="unbounded" name="Cell" type="q19:LTECellType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LTERepeaterv80Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q20="http://www.aircominternational.com/Schemas/Common/2011/04" base="q20:Repeater3Gv80Type">
+        <xs:sequence>
+          <xs:element xmlns:q21="http://www.aircominternational.com/Schemas/LTE/2010/08" minOccurs="0" maxOccurs="1" form="unqualified" name="RxAntenna" type="q21:LTEConfiguredRepeaterType" />
+          <xs:element xmlns:q22="http://www.aircominternational.com/Schemas/LTE/2010/08" minOccurs="0" maxOccurs="1" form="unqualified" name="TxAntenna" type="q22:LTEConfiguredRepeaterType" />
+          <xs:element xmlns:q23="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q23:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

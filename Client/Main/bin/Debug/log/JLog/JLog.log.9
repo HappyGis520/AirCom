@@ -1,0 +1,22 @@
+2016-05-22 17:07:43,676 [1] [INFO ] - 初始化WebService对象 
+2016-05-22 17:08:15,249 [1] [INFO ] - 生成XMLE:\SendXML05-08-15.xml 
+2016-05-22 17:08:15,287 [1] [INFO ] - 调用传对象接口 
+2016-05-22 17:08:15,288 [1] [INFO ] - 开始创建任务，执行一系列操作 
+2016-05-22 17:08:15,290 [1] [INFO ] - 外部程序调用，添加仿真数据 
+2016-05-22 17:08:15,291 [8] [INFO ] - 仿真线程已启动..... 
+2016-05-22 17:08:15,292 [1] [INFO ] - 保存路径D:\XML 
+2016-05-22 17:08:15,292 [1] [INFO ] - 添加到仿真数据队列，当前共计1 
+2016-05-22 17:08:15,294 [8] [INFO ] - 开始生成XML文件.... 
+2016-05-22 17:08:15,315 [8] [INFO ] - 开始生成导入基站XML文件 
+2016-05-22 17:08:16,154 [8] [INFO ] - 开始生成删除基站XML文件 
+2016-05-22 17:08:16,823 [8] [INFO ] - 开始生成导入位置信息XML文件 
+2016-05-22 17:08:17,577 [8] [INFO ] - 开始生成删除位置信息XML文件 
+2016-05-22 17:08:18,249 [8] [INFO ] - 开始生成XML成功,开始导入XML文件... 
+2016-05-22 17:08:18,256 [8] [ERROR] - ::System.ComponentModel.Win32Exception (0x80004005): 系统找不到指定的文件。
+   在 System.Diagnostics.Process.StartWithShellExecuteEx(ProcessStartInfo startInfo)
+   在 NetPlan.BLL.BLLDoTask.ExecuteCommand(String Command, Int32 WaitForTime) 位置 H:\AirCom\Code_New\Server\BLL\BLLDoTask.cs:行号 248
+   在 NetPlan.BLL.BLLDoTask.DoWork() 位置 H:\AirCom\Code_New\Server\BLL\BLLDoTask.cs:行号 92
+   在 System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   在 System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   在 System.Threading.ThreadHelper.ThreadStart() 

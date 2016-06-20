@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/UMTS/2013/03" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/UMTS/2013/03" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/UMTS/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/UMTS/2010/07" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2013/03" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2011/04" />
+  <xs:complexType name="UMTSCellv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/UMTS/2010/08" base="q1:UMTSCellv70Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="MCHSPA">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="1" name="MC-HSPA-Supported" type="xs:boolean" />
+                <xs:element minOccurs="0" maxOccurs="1" name="MC-HSPA-Cell-ID" type="xs:string" />
+                <xs:element minOccurs="0" maxOccurs="1" name="HSPA-Only" type="xs:boolean" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="NodeBv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://www.aircominternational.com/Schemas/Common/2010/08" base="q2:NetworkElementv70ExType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="NodeBID" type="xs:int" />
+          <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="NodeBEquipmentType" type="q3:IDType" />
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q4:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Capacity" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Resources" type="tns:ArrayOfResourceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carriers" type="tns:ArrayOfUMTSCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfUMTSAntennav81Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfUMTSCellv81Type" />
+          <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q5:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfResourceType">
+    <xs:sequence>
+      <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Resource" type="q6:ResourceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCarrierType">
+    <xs:sequence>
+      <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/UMTS/2010/07" minOccurs="0" maxOccurs="unbounded" name="Carrier" type="q7:UMTSCarrierType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSAntennav81Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:UMTSAntennav81Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UMTSAntennav81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://www.aircominternational.com/Schemas/Common/2013/03" base="q8:LogicalAntennav81Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InheritMasterPattern" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ULGainCorrectionFactor" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Feeders" type="tns:ArrayOfUMTSCellFeederType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCellFeederType">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/UMTS/2010/07" minOccurs="0" maxOccurs="unbounded" name="Feeder" type="q9:UMTSCellFeederType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfUMTSCellv81Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cell" type="tns:UMTSCellv81Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UMTSConfiguredRepeaterv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://www.aircominternational.com/Schemas/UMTS/2010/08" base="q10:UMTSConfiguredRepeaterType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="HeightPredOffset" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="HeightPred" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="UMTSRepeaterv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://www.aircominternational.com/Schemas/Common/2011/04" base="q11:Repeater3Gv80Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="RxAntenna" type="tns:UMTSConfiguredRepeaterv81Type" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="TxAntenna" type="tns:UMTSConfiguredRepeaterv81Type" />
+          <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q12:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

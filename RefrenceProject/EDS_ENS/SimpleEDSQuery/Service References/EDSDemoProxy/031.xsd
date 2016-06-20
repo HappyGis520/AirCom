@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/WIFI/2013/03" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/WIFI/2013/03" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2013/03" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:complexType name="QryWiFiNodeType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="NEAttribute" type="q2:QryNetworkElementAttributes" />
+            <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q3:QryRootEntityAttributes" />
+            <xs:element minOccurs="1" maxOccurs="1" name="WiFiNodeAttribute" type="tns:QryWiFiNodeTypeAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryWiFiNodeTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PLMN" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QryWiFiCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://www.aircominternational.com/Schemas/Query/2009/09" base="q4:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="WiFiCellAttribute" type="tns:QryWiFiCellTypeAttributes" />
+            <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q5:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryWiFiCellTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="CellName" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="WiFiCarrierType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q6:RootEntityType">
+        <xs:sequence>
+          <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q7:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="WiFiAntennaType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://www.aircominternational.com/Schemas/Common/2013/03" base="q8:LogicalAntennav81Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="InheritMasterPattern" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ULGainCorrectionFactor" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Feeders" type="tns:ArrayOfWiFiCellFeederType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfWiFiCellFeederType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Feeder" type="tns:WiFiCellFeederType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WiFiCellFeederType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Length" type="xs:double" />
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="FeederType" type="q9:IDType" />
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MHAType" type="q10:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MHAGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EiRP" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute name="CellID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="WiFiNodeType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q11="http://www.aircominternational.com/Schemas/Common/2010/08" base="q11:NetworkElementv70ExType">
+        <xs:sequence>
+          <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q12:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Capacity" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carriers" type="tns:ArrayOfWiFiNodeCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfWiFiAntennaType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfWiFiCellType" />
+          <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q13:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfWiFiNodeCarrierType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Carrier" type="tns:WiFiNodeCarrierType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WiFiNodeCarrierType">
+    <xs:attribute name="CarrierID" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfWiFiAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:WiFiAntennaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfWiFiCellType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cell" type="tns:WiFiCellType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WiFiCellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q14:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="q14:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CellName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CellID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carrier" type="tns:WiFiCellCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SignallingOverhead" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CarriedTrafficDetails" type="tns:ArrayOfCarriedTrafficDetailType" />
+          <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q15:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="WiFiCellCarrierType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="TxPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLCoverageThreshold" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLDistanceThreshold" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLCapacity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLReservedCapacity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLAvailableCapacity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULCapacity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULReservedCapacity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULAvailableCapacity" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxUsers" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute name="CarrierID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCarriedTrafficDetailType">
+    <xs:sequence>
+      <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="unbounded" name="CarriedTrafficDetail" type="q16:CarriedTrafficDetailType" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

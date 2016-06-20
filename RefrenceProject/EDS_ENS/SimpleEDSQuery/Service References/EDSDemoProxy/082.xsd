@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/LTE/2010/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/LTE/2010/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Enumerations/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="QryLTECellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Query/2009/09" base="q1:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="LTECellAttribute" type="tns:QryLTECellTypeAttributes" />
+            <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q2:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryLTECellTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="CellName" />
+      <xs:enumeration value="LTECellID" />
+      <xs:enumeration value="SuMimoDlSupport" />
+      <xs:enumeration value="SuMimoUlSupport" />
+      <xs:enumeration value="SuMimoTxElems" />
+      <xs:enumeration value="SuMimoRxElems" />
+      <xs:enumeration value="MuMimoDlSupport" />
+      <xs:enumeration value="MuMimoUlSupport" />
+      <xs:enumeration value="MuMimoDlTerms" />
+      <xs:enumeration value="MuMimoUlTerms" />
+      <xs:enumeration value="NbrLimitIntraIntra" />
+      <xs:enumeration value="NbrLimitIntraInter" />
+      <xs:enumeration value="NbrLimitInterGsm" />
+      <xs:enumeration value="NbrLimitInterUmts" />
+      <xs:enumeration value="NbrLimitInterCdma" />
+      <xs:enumeration value="SignallingOverhead" />
+      <xs:enumeration value="Tac" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QryLTENodeType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Query/2009/09" base="q3:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="1" maxOccurs="1" name="LTENodeAttribute" type="tns:QryLTENodeTypeAttributes" />
+            <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="NEAttribute" type="q4:QryNetworkElementAttributes" />
+            <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" name="RootAttribute" type="q5:QryRootEntityAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryLTENodeTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NodeID" />
+      <xs:enumeration value="PLMN" />
+      <xs:enumeration value="PredRadius" />
+      <xs:enumeration value="PredResolution" />
+      <xs:enumeration value="Capacity" />
+      <xs:enumeration value="HandoverPercentage" />
+      <xs:enumeration value="IsNominatedSGW" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QryLTERepeaterType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://www.aircominternational.com/Schemas/Query/2009/09" base="q6:QryAttributeBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" form="unqualified" name="RootAttribute" type="q7:QryRootEntityAttributes" />
+            <xs:element minOccurs="1" maxOccurs="1" form="unqualified" name="LTERepeaterAttribute" type="tns:QryLTERepeaterTypeAttributes" />
+            <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="1" maxOccurs="1" form="unqualified" name="NEAttribute" type="q8:QryNetworkElementAttributes" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QryLTERepeaterTypeAttributes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Parent" />
+      <xs:enumeration value="DLGain" />
+      <xs:enumeration value="ULGain" />
+      <xs:enumeration value="ULNoiseFigure" />
+      <xs:enumeration value="PLMN" />
+      <xs:enumeration value="PredResolution" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="LTECellFeederType">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="FeederType" type="q9:IDType" />
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MHAType" type="q10:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MHAGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Length" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CorrFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DLGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Noise" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OtherLosses" type="xs:double" />
+    </xs:sequence>
+    <xs:attribute name="LTECellID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="LTENodeCarrierType">
+    <xs:attribute name="CarrierID" type="xs:int" use="required" />
+  </xs:complexType>
+  <xs:complexType name="LTECellCarrierType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxTxPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TrafficOffset" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ControlOffset" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SyncOffset" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BroadcastOffset" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MulticastOffset" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoiseFigure" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxPowerFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RefSignalSnrThreshEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TimingAdvanceEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AdaptiveMimoThreshEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MuMimoThreshEnabled" type="xs:boolean" />
+      <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="TimingAdvanceMode" type="q11:TimingAdvanceMode" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxTa" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxRange" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RefSignalSnrThresh" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AdaptiveMimoThresh" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MuMimoThresh" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxScheduledUsers" type="xs:int" />
+      <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="LTECodeSchema" type="q12:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PhysicalCellID" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PCIGroup_RO" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PCICode_RO" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CellSpecificFreqShift_RO" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CellSpecificFreqOffsets" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DlCellCenterLoad" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DlCellEdgeLoad" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MeanUlCellCenterIntfLevel" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MeanUlCellEdgeIntfLevel" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="IcicSchemesEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Rsrp" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RelRsrp" type="xs:double" />
+      <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="CellEdgeThreshMode" type="q13:CellEdgeThreshMode" />
+      <xs:element xmlns:q14="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="SchedulerKey" type="q14:SchedulerKey" />
+      <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="ModulationKey" type="q15:ModulationKey" />
+    </xs:sequence>
+    <xs:attribute name="CarrierID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="LTENodeType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q16="http://www.aircominternational.com/Schemas/Common/2010/08" base="q16:NetworkElementv70Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="NodeID" type="xs:int" />
+          <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PLMN" type="q17:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carriers" type="tns:ArrayOfLTENodeCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfLTEAntennaType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cells" type="tns:ArrayOfLTECellType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredRadius" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PredResolution" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Capacity" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HandoverPercentage" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IsNominatedSGW" type="xs:boolean" />
+          <xs:element xmlns:q18="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q18:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTENodeCarrierType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Carrier" type="tns:LTENodeCarrierType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTEAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:LTEAntennaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LTEAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RepeaterAntenna" type="xs:boolean" />
+      <xs:element xmlns:q19="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AbsLocation" type="q19:LocationTypeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Azimuth" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Height" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CorrectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ULGainCorrectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MechanicalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ElectricalDownTilt_RO" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalDownTilt_RO" type="xs:double" />
+      <xs:element xmlns:q20="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AntennaPatternType" type="q20:IDType" />
+      <xs:element xmlns:q21="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PrimaryModel" type="q21:PredictionModelReferenceType" />
+      <xs:element xmlns:q22="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="SecondaryModel" type="q22:PredictionModelReferenceType" />
+      <xs:element xmlns:q23="http://www.aircominternational.com/Schemas/CommonTypes/2010/08" minOccurs="0" maxOccurs="1" name="Constraints" type="q23:AntennaConstraintsType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="SharedAntennaID" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Feeders" type="tns:ArrayOfLTECellFeederType" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+    <xs:attribute xmlns:q24="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q24:iid" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTECellFeederType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Feeder" type="tns:LTECellFeederType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfLTECellType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cell" type="tns:LTECellType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LTECellType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q25="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q25:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Parent" type="q25:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CellName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LTECellID" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SuMimoDlSupport" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SuMimoUlSupport" type="xs:boolean" />
+          <xs:element xmlns:q26="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="SuMimoDlSpatialMode" type="q26:SuMimoSpatialMode" />
+          <xs:element xmlns:q27="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="SuMimoUlSpatialMode" type="q27:SuMimoSpatialMode" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SuMimoTxElems" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SuMimoRxElems" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MuMimoDlSupport" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MuMimoUlSupport" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MuMimoDlTerms" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MuMimoUlTerms" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NbrLimitIntraIntra" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NbrLimitIntraInter" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NbrLimitInterGsm" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NbrLimitInterUmts" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NbrLimitInterCdma" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SignallingOverhead" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Tac" type="xs:int" />
+          <xs:element xmlns:q28="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q28:ReadOnlyType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Carrier" type="tns:LTECellCarrierType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CarriedTrafficDetails" type="tns:ArrayOfCarriedTrafficDetailType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfCarriedTrafficDetailType">
+    <xs:sequence>
+      <xs:element xmlns:q29="http://www.aircominternational.com/Schemas/Common/2010/08" minOccurs="0" maxOccurs="unbounded" name="CarriedTrafficDetail" type="q29:CarriedTrafficDetailType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LTEConfiguredRepeaterType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q30="http://www.aircominternational.com/Schemas/Common/2010/08" base="q30:ConfiguredRepeater3GType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="RxSignalCalcParams" type="tns:LTERxSignalCalcParamsType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="TxSignalCalcParams" type="tns:LTETxSignalCalcParamsType" />
+          <xs:element xmlns:q31="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="RxModel" type="q31:IDType" />
+          <xs:element xmlns:q32="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="PrimaryModel" type="q32:PredictionModelReferenceType" />
+          <xs:element xmlns:q33="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" form="unqualified" name="SecondaryModel" type="q33:PredictionModelReferenceType" />
+          <xs:element xmlns:q34="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q34:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LTERxSignalCalcParamsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="RxSignal" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LTETxSignalCalcParamsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="OutputPower" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LTERepeaterType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q35="http://www.aircominternational.com/Schemas/Common/2010/08" base="q35:Repeater3GType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="RxAntenna" type="tns:LTEConfiguredRepeaterType" />
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="TxAntenna" type="tns:LTEConfiguredRepeaterType" />
+          <xs:element xmlns:q36="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" form="unqualified" name="AllowedOperations" type="q36:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LTECodeSchemaType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q37="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q37:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="LTECodeGroups" type="xs:string" />
+          <xs:element xmlns:q38="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q38:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LTEFrameType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q39="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q39:RootEntityType">
+        <xs:sequence>
+          <xs:element xmlns:q40="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="DuplexMode" type="q40:DuplexMode" />
+          <xs:element xmlns:q41="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="Configuration" type="q41:LTEFrameConfig" />
+          <xs:element xmlns:q42="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="CyclicPrefix" type="q42:CyclicPrefix" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SubcarrierSpacing" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FrameDuration" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NumSlotsPerSubframe" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NumSymbolsRBDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NumSymbolsRBUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NumSubcarriersRBDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NumSubcarriersRBUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefSignalSubcarriers" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TDDFrameConfig" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TDDSubframesDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TDDSubframesUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TDDSubframesSP" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SubframePosition" type="xs:string" />
+          <xs:element xmlns:q43="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q43:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LTEFreqBandType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q44="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q44:RootEntityType">
+        <xs:sequence>
+          <xs:element xmlns:q45="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="DuplexMode" type="q45:DuplexMode" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EUTRABand" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DLStartFreq" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DLChannelRaster" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DLLowerRangeLimit" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DLUpperRangeLimit" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ULStartFreq" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ULChannelRaster" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ULLowerRangeLimit" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ULUpperRangeLimit" type="xs:int" />
+          <xs:element xmlns:q46="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q46:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LTECarrierType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q47="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q47:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FrameStruct" type="q47:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FreqBand" type="q47:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SamplingFactor" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BandwidthMHz" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NumResourceBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FFTSize" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FreqLowDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LowEARFCNDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FreqHighDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HighEARFCNDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AttenuationDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FreqLowUL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LowEARFCNUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FreqHighUL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HighEARFCNUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AttenuationUL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefSignalSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefSignalSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefSignalSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefSignalNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RefSignalNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPDCCHSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPDCCHSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPDCCHSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPDCCHNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPDCCHNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BcastSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BcastSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BcastSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BcastNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BcastNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SyncSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SyncSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SyncSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SyncNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SyncNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="McastSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="McastSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="McastSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="McastNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="McastNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPUCCHSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPUCCHSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPUCCHSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPUCCHNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CtrlPUCCHNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoundingRefSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoundingRefSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoundingRefSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoundingRefNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoundingRefNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DemodRefSubframeTx1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DemodRefSubframeTx2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DemodRefSubframeTx2Plus" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DemodRefNumSubframes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DemodRefNumResBlocks" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ICICSchemesEnabled" type="xs:boolean" />
+          <xs:element xmlns:q48="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="ICICMethod" type="q48:ICICMethod" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Reuse1Partitions" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Reuse1CoordFactor" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoftReuseCEPartitions" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoftReusePowerRatio" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoftReuseSoftBwRatio" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SoftReuseCoordFactor" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReusePartCEPartitions" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReusePartPowerRatio" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReusePartBwRatio" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReusePartCoordFactor" type="xs:double" />
+          <xs:element xmlns:q49="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q49:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.aircominternational.com/contract/EDS/2009/05" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EDS.Service" targetNamespace="http://www.aircominternational.com/contract/EDS/2009/05" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="EDSEndpoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsoma:OptimizedMimeSerialization xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="EDSWCFNetTCPEndPoint_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <msf:Streamed xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.aircominternational.com/contract/EDS/2009/05/Imports">
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd0" namespace="http://www.aircominternational.com/contract/EDS/2009/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd1" namespace="http://www.aircominternational.com/contract/EDS/DST/2009/10" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd2" namespace="http://www.aircominternational.com/contract/EWS/2011/01" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd3" namespace="http://www.aircominternational.com/contract/Util/2009/10" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd4" namespace="http://microsoft.com/wsdl/types/" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd5" namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd6" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd7" namespace="http://www.aircominternational.com/Schemas/Common/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd8" namespace="http://www.aircominternational.com/Schemas/LTE/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd9" namespace="http://www.aircominternational.com/Schemas/LTE/2012/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd10" namespace="http://www.aircominternational.com/Schemas/GSM/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd11" namespace="http://www.aircominternational.com/Schemas/Common/2009/07" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd12" namespace="http://www.aircominternational.com/Schemas/UMTS/2010/07" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd13" namespace="http://www.aircominternational.com/Schemas/UMTS/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd14" namespace="http://www.aircominternational.com/Schemas/Common/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd15" namespace="http://www.aircominternational.com/Schemas/GSM/2009/09" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd16" namespace="http://www.aircominternational.com/Schemas/GSM/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd17" namespace="http://www.aircominternational.com/Schemas/GSM/2012/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd18" namespace="http://www.aircominternational.com/Schemas/EWS/ECSCoverageTypes/2011/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd19" namespace="http://www.aircominternational.com/Schemas/Connect/2009/09" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd20" namespace="http://www.aircominternational.com/Schemas/Enumerations/2009/07" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd21" namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd22" namespace="http://www.aircominternational.com/Schemas/Connect/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd23" namespace="http://www.aircominternational.com/Schemas/Enumerations/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd24" namespace="http://www.aircominternational.com/Schemas/Connect/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd25" namespace="http://www.aircominternational.com/Schemas/Enumerations/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd26" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd27" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd28" namespace="http://www.aircominternational.com/Schemas/Common/2012/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd29" namespace="http://www.aircominternational.com/Schemas/UMTS/2012/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd30" namespace="http://www.aircominternational.com/Schemas/UMTS/2009/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd31" namespace="http://www.aircominternational.com/Schemas/UMTS/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd32" namespace="http://www.aircominternational.com/Schemas/LTE/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd33" namespace="http://www.aircominternational.com/Schemas/Equipment/2009/09" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd34" namespace="http://www.aircominternational.com/Schemas/Equipment/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd35" namespace="http://www.aircominternational.com/Schemas/Equipment/2011/04" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd36" namespace="http://www.aircominternational.com/Schemas/Equipment/2012/05" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd37" namespace="http://www.aircominternational.com/Schemas/Configuration/2010/08" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd38" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd39" namespace="http://www.microsoft.com/practices/EnterpriseLibrary/2007/01/wcf/validation" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd40" namespace="http://schemas.datacontract.org/2004/07/Microsoft.Practices.EnterpriseLibrary.Validation.Integration.WCF" />
+      <xsd:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd41" namespace="http://www.aircominternational.com/contract/EWS/Metric/2011/07" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="EDS_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Create_Fault_FaultMessage">
+    <wsdl:part name="detail" element="tns:Fault" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Query_InputMessage">
+    <wsdl:part name="parameters" element="tns:Query" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Query_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Query_Fault_FaultMessage">
+    <wsdl:part name="detail" element="tns:Fault" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Modify_InputMessage">
+    <wsdl:part name="parameters" element="tns:Modify" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Modify_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Modify_Fault_FaultMessage">
+    <wsdl:part name="detail" element="tns:Fault" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Delete_InputMessage">
+    <wsdl:part name="parameters" element="tns:Delete" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Delete_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Delete_Fault_FaultMessage">
+    <wsdl:part name="detail" element="tns:Fault" />
+  </wsdl:message>
+  <wsdl:message name="EDS_QueryableTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryableTypes" />
+  </wsdl:message>
+  <wsdl:message name="EDS_QueryableTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryableTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDS_WriteableTypes_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteableTypes" />
+  </wsdl:message>
+  <wsdl:message name="EDS_WriteableTypes_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteableTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Status_InputMessage">
+    <wsdl:part name="parameters" element="tns:Status" />
+  </wsdl:message>
+  <wsdl:message name="EDS_Status_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="EDS_HistoricalStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:HistoricalStatus" />
+  </wsdl:message>
+  <wsdl:message name="EDS_HistoricalStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HistoricalStatusResponse" />
+  </wsdl:message>
+  <wsdl:portType name="EDS">
+    <wsdl:documentation>
+      <summary>EDS Web Service 1.0</summary>
+    </wsdl:documentation>
+    <wsdl:operation name="Create">
+      <wsdl:documentation>
+        <summary>Allows creation of a single or multiple items within the DB. A CreateRequest can contain multiple 'CreateItems' which in turn hold a collection of data for a given object type</summary>
+        <returns>'CreateResponse' will contain the 'Status' item response indicating success or failure and optionally a resultset if the request included a result-query.If multiple CreateItems were supplied, a sub-Status item will be included to correlate each request</returns>
+        <param name="data">'CreateRequest' contains a collection of 'CreateItems' to be created and optionally a result-query.A single 'CreateItem' can hold a collection of data for a single object type which is indicated by the ObjectType property on the CreateItem structure</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Create" message="tns:EDS_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/CreateResponse" message="tns:EDS_Create_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Faults/EDSFault" name="Fault" message="tns:EDS_Create_Fault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <wsdl:documentation>
+        <summary>Allows querying of a single or multiple items from the DB. Each QueryItem represents a single query for a given object type, multiple types may be queried at the same time by supplying multiple query items</summary>
+        <returns>'QueryResponse' contains the 'StatusItem' response indicating success or failure and a resultset of 'Data' items containing collections of data matching the queries supplied in the request</returns>
+        <param name="data">'QueryRequest' contains a collection of 'QueryItems' which allow for multiple queries to concurrently be executed against the db</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Query" message="tns:EDS_Query_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/QueryResponse" message="tns:EDS_Query_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Faults/EDSFault" name="Fault" message="tns:EDS_Query_Fault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Modify">
+      <wsdl:documentation>
+        <summary>Allows modification of a single or multiple items within the DB. A 'ModifyRequest' can contain multiple 'ModifyItems' however each item must only contain one object and one query which indicates which object to update within the DB</summary>
+        <returns>'ModifyResponse' will contain the 'Status' item response indicating success or failure and optionally a resultset if the ModifyRequestItem included a result-query.If multiple ModifyItems were supplied, a sub-Status item will be included to correlate each request</returns>
+        <param name="data">'ModifyRequest' contains a collection of 'ModifyItems' which indicate which objects to update via queries.ModifyItems may also be used to create new objects if the embedded query can not locate the object</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Modify" message="tns:EDS_Modify_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/ModifyResponse" message="tns:EDS_Modify_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Faults/EDSFault" name="Fault" message="tns:EDS_Modify_Fault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <wsdl:documentation>
+        <summary>Allows deletion of a single or multiple items within the DB. A 'DeleteRequest' can contain multiple 'DeleteItems' however each item must only indicate one object using query to be deleted - bulk deletions are not supported</summary>
+        <returns>'DeleteResponse' will contain the 'Status' item response indicating success or failure.</returns>
+        <param name="data">'DeleteRequest' contains a collection of 'DeleteItems' which indicate which objects to update via queries.</param>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Delete" message="tns:EDS_Delete_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/DeleteResponse" message="tns:EDS_Delete_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Faults/EDSFault" name="Fault" message="tns:EDS_Delete_Fault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryableTypes">
+      <wsdl:documentation>
+        <summary>Returns a collection of supported object types by this service</summary>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/QueryableTypes" message="tns:EDS_QueryableTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/QueryableTypesResponse" message="tns:EDS_QueryableTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteableTypes">
+      <wsdl:documentation>
+        <summary>Returns a subset collection of all writable supported object types by this service</summary>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/WriteableTypes" message="tns:EDS_WriteableTypes_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/WriteableTypesResponse" message="tns:EDS_WriteableTypes_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Status">
+      <wsdl:documentation>
+        <summary>Used for performance monitoring of service performance</summary>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Status" message="tns:EDS_Status_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/StatusResponse" message="tns:EDS_Status_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="HistoricalStatus">
+      <wsdl:documentation>
+        <summary>Used for performance monitoring of service performance</summary>
+      </wsdl:documentation>
+      <wsdl:input wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/HistoricalStatus" message="tns:EDS_HistoricalStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.aircominternational.com/contract/EDS/2009/05/EDS/HistoricalStatusResponse" message="tns:EDS_HistoricalStatus_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EDSEndpoint" type="tns:EDS">
+    <wsp:PolicyReference URI="#EDSEndpoint_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Create">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Create" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Query" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Modify">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Modify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Delete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryableTypes">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/QueryableTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteableTypes">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/WriteableTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Status">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Status" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HistoricalStatus">
+      <soap:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/HistoricalStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="EDSWCFNetTCPEndPoint" type="tns:EDS">
+    <wsp:PolicyReference URI="#EDSWCFNetTCPEndPoint_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap12:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Query">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Query" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap12:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Modify">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Modify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap12:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Delete">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Delete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="Fault">
+        <soap12:fault use="literal" name="Fault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="QueryableTypes">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/QueryableTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WriteableTypes">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/WriteableTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Status">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/Status" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HistoricalStatus">
+      <soap12:operation soapAction="http://www.aircominternational.com/contract/EDS/2009/05/EDS/HistoricalStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EDS.Service">
+    <wsdl:port name="EDSEndpoint" binding="tns:EDSEndpoint">
+      <soap:address location="http://localhost:8732/Aircom/EDS/WS" />
+    </wsdl:port>
+    <wsdl:port name="EDSWCFNetTCPEndPoint" binding="tns:EDSWCFNetTCPEndPoint">
+      <soap12:address location="net.tcp://localhost:8734/Aircom/EDS/TCP" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8734/Aircom/EDS/TCP</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

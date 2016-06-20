@@ -1,0 +1,24 @@
+﻿<Window x:Class="EAWSTestApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="530" Width="525">
+    <Grid Background="#50807777" Height="504">
+        <Label Content="EAWS Test Harness" Height="39" HorizontalAlignment="Center" Margin="130,25,129,0" Name="label1" VerticalAlignment="Top" Width="244" FontSize="20" FontFamily="Verdana" />
+        <Button Content="Test End Point" Height="27" HorizontalAlignment="Left" Margin="36,70,0,0" Name="IDC_BUTTON_TEST" VerticalAlignment="Top" Width="82" Click="IDC_BUTTON_TEST_Click" />
+        <TextBox Height="182" HorizontalAlignment="Left" Margin="51,306,0,0" Name="IDC_RESULT_TEXT" VerticalAlignment="Top" Width="418" AcceptsTab="False" TextWrapping="WrapWithOverflow" VerticalScrollBarVisibility="Auto" AutoWordSelection="False" />
+        <Button Content="Start a task" Height="27" HorizontalAlignment="Left" Margin="127,70,0,0" Name="IDC_StartTaskButton" VerticalAlignment="Top" Width="75" Click="IDC_StartTaskButton_Click" />
+        <Button Content="Stop a task" Height="27" HorizontalAlignment="Left" Margin="210,70,0,0" Name="IDC_STOP_TASK_BUT" VerticalAlignment="Top" Width="75" Click="IDC_STOP_TASK_BUT_Click" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="106,207,0,0" Name="IDC_SCHEMA_COMBO" VerticalAlignment="Top" Width="242" />
+        <Label Content="Schema:" Height="28" HorizontalAlignment="Left" Margin="35,207,0,0" Name="label2" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="106,0,0,232" Name="IDC_TASK_COMBO" VerticalAlignment="Bottom" Width="242" />
+        <Label Content="Task:" Height="28" HorizontalAlignment="Left" Margin="36,249,0,0" Name="label3" VerticalAlignment="Top" />
+        <Button Content="Load Schemas" Height="23" HorizontalAlignment="Left" Margin="368,0,0,274" Name="IDC_LOAD_SCHEMAS_BUT" VerticalAlignment="Bottom" Width="81" Click="IDC_LOAD_SCHEMAS_BUT_Click" />
+        <Button Content="Load Tasks" Height="23" HorizontalAlignment="Left" Margin="368,249,0,0" Name="IDC_LOAD_TASKS_BUT" VerticalAlignment="Top" Width="81" Click="IDC_LOAD_TASKS_BUT_Click" />
+        <Button Content="Status update" Height="27" HorizontalAlignment="Left" Margin="291,70,0,0" Name="IDC_TASK_STATUS_BUT" VerticalAlignment="Top" Width="83" Click="IDC_TASK_STATUS_BUT_Click" />
+        <Button Content="Delete a task" Height="27" HorizontalAlignment="Left" Margin="380,70,0,0" Name="IDC_DELETE_TASK_BUT" VerticalAlignment="Top" Width="83" Click="IDC_DELETE_TASK_BUT_Click" />
+        <Button Content="Edit Region" Height="27" HorizontalAlignment="Left" Margin="36,106,0,0" Name="IDC_EditRegionButton" VerticalAlignment="Top" Width="82" Click="IDC_EditRegionButton_Click"/>
+        <Button Content="Edit Filters" Height="27" HorizontalAlignment="Left" Margin="127,106,0,0" Name="IDC_EditFilterButton" VerticalAlignment="Top" Width="82"  Click="IDC_EditFiltersButton_Click"/>
+        <Label Content="End Point:" Height="28" HorizontalAlignment="Left" Margin="35,164,0,0" Name="label4" VerticalAlignment="Top" />
+        <ComboBox Height="23" HorizontalAlignment="Left" Margin="106,164,0,0" Name="IDC_ENDPOINT_COMBO" VerticalAlignment="Top" Width="242" />
+    </Grid>
+</Window>

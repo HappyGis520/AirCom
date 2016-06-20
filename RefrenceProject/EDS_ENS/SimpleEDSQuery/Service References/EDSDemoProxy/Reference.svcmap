@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f007b9cb-31ab-4be7-b3af-ce1200c7aea6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8732/Aircom/EDS/WS/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="05.wsdl" MetadataType="Wsdl" ID="7e3f24a9-2749-4184-a391-ada6fba754d0" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="05.xsd" MetadataType="Schema" ID="4227df4b-b9b8-4e89-9afc-5aa92f42ea62" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="10.xsd" MetadataType="Schema" ID="9661471c-300c-4aed-94f5-23e041214f20" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="01.xsd" MetadataType="Schema" ID="535c35ed-b860-4033-a5d3-0c8fd0587874" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="101.xsd" MetadataType="Schema" ID="fb2ae7b4-a028-47cc-a313-78e62e313449" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="e3110f94-7521-4a2d-96e7-1a39c5fa6d79" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="09.xsd" MetadataType="Schema" ID="83b78898-f64c-49f9-8038-f89818a1e016" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="051.xsd" MetadataType="Schema" ID="0b6d5ff5-b8bf-43ce-87b3-70fc40f67800" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="03.xsd" MetadataType="Schema" ID="d56c8139-98f8-4f98-9da8-9bfe3fccda7d" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="091.xsd" MetadataType="Schema" ID="f25dd634-8fe2-48fc-9f28-f8d2caa7d17c" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="07.xsd" MetadataType="Schema" ID="dbada575-76e7-4bec-b242-42a4cbe5cb5b" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="031.xsd" MetadataType="Schema" ID="2e7926b0-9111-4112-9f95-89819b7fee14" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="08.xsd" MetadataType="Schema" ID="c8f991b5-239d-4fc2-9807-537916bf0553" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="081.xsd" MetadataType="Schema" ID="5f0e6280-8a4b-487f-b88d-5a4204d534db" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="04.xsd" MetadataType="Schema" ID="cc104802-c01a-4192-a015-f7fcfb421568" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="032.xsd" MetadataType="Schema" ID="cd861eba-fab5-4cab-a8aa-2b9832513e0e" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="041.xsd" MetadataType="Schema" ID="57225893-78df-436a-b5e9-ea7598bfbde7" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="052.xsd" MetadataType="Schema" ID="3fc0b0ce-9b86-4460-afae-48a15e8c4be7" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="033.xsd" MetadataType="Schema" ID="834866ea-9ba9-4623-9981-d2ded5b57b64" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="082.xsd" MetadataType="Schema" ID="abad312e-d9db-4543-b05c-cb21694f7bd9" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="053.xsd" MetadataType="Schema" ID="ccaef9f3-78df-4dd6-a395-accb2311030a" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="071.xsd" MetadataType="Schema" ID="562ac327-d180-4b6a-936f-40b3c8b0f3fe" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="083.xsd" MetadataType="Schema" ID="6ad6b570-0032-4b9b-a260-65a28d29bd7f" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="011.xsd" MetadataType="Schema" ID="f84ca22f-aec0-42a9-b50f-6a1e99dee51e" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="084.xsd" MetadataType="Schema" ID="0238669c-38b0-4a7c-8104-7e84bb47729b" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="072.xsd" MetadataType="Schema" ID="cd7ffea9-d1da-487f-a1b6-01efae362bb1" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="054.xsd" MetadataType="Schema" ID="7de01cce-5acd-407b-95e5-3a678ff3e2ae" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="055.xsd" MetadataType="Schema" ID="d97ec48e-6bab-4a4d-8843-d8f262fbf0ab" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="042.xsd" MetadataType="Schema" ID="69a66698-2182-489c-9212-4b9c812f7a2e" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="034.xsd" MetadataType="Schema" ID="bdd04ee7-be17-495c-a65a-5f596a75b41a" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="035.xsd" MetadataType="Schema" ID="872d3c57-2b5f-4d3f-9f85-a478a69b5598" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="043.xsd" MetadataType="Schema" ID="2456e921-bf35-46e5-866d-e78ae641269c" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="085.xsd" MetadataType="Schema" ID="f0e8a4ab-55cf-4412-be36-4e1f9fe68bf7" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="086.xsd" MetadataType="Schema" ID="c510975c-6432-4342-be93-12b5801ac5e7" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="044.xsd" MetadataType="Schema" ID="fe11dd42-a2a1-47c9-997f-ef582b43abff" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="056.xsd" MetadataType="Schema" ID="11eeb6b6-b4cf-4109-af57-72bb9eaa9b10" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="092.xsd" MetadataType="Schema" ID="89a0d7ba-8c33-4a56-9180-8a77a5b32093" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="087.xsd" MetadataType="Schema" ID="6e22c35d-476c-4b04-b4fb-676fe5a94c35" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="045.xsd" MetadataType="Schema" ID="e335420c-1f9f-4958-b1c4-0f8fe7ad01e6" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="046.xsd" MetadataType="Schema" ID="f6d096f3-22c9-4bf0-a055-595aa48c2f34" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="093.xsd" MetadataType="Schema" ID="a2738806-e2f6-4f63-b466-c07cb227e762" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="036.xsd" MetadataType="Schema" ID="2bc2a27f-0746-4f1a-9eb2-ecf3406abb52" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="088.xsd" MetadataType="Schema" ID="a6c93994-f035-4508-84ac-e043e26d629e" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="047.xsd" MetadataType="Schema" ID="b18ff0ae-ee29-4841-b09c-02ec5917caf5" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="057.xsd" MetadataType="Schema" ID="afcd9ce8-426c-49d1-b5dd-c19e7ed1e00b" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="089.xsd" MetadataType="Schema" ID="a5bbd781-e807-43b0-84d8-fac55f619e69" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="037.xsd" MetadataType="Schema" ID="603508a2-4db3-4e9d-a383-5ce3990868ec" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="136b04ec-56bd-4232-beaf-78961fcf7652" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+    <MetadataFile FileName="073.xsd" MetadataType="Schema" ID="dedb78e9-4067-406a-b919-5d0727199881" SourceId="1" SourceUrl="http://localhost:8732/Aircom/EDS/WS/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

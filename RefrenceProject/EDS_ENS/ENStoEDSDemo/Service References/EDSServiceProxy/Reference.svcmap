@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b882b79b-e8d6-49c6-aa4c-0862d662dbc9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://snpts675:8732/?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="81bfda45-cb8f-4540-9753-5314c2f60b37" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd11" />
+    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="6d43ea02-7a48-4f22-add9-df752da09989" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd7" />
+    <MetadataFile FileName="item13.xsd" MetadataType="Schema" ID="4f326a9b-bbcc-4fef-966c-2545e7297f6e" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd3" />
+    <MetadataFile FileName="item9.xsd" MetadataType="Schema" ID="2ef5f0a3-e7c9-4441-9b6f-922b88066412" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd5" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="7cb74a32-e332-40fe-aed8-2a4551084c36" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd12" />
+    <MetadataFile FileName="EDS.wsdl" MetadataType="Wsdl" ID="441d37b4-35a4-4b0d-b8b6-e4300df240e0" SourceId="1" SourceUrl="http://snpts675:8732/?wsdl" />
+    <MetadataFile FileName="item12.xsd" MetadataType="Schema" ID="a72556f4-6bf3-45ff-ad82-3a1b631a8284" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd6" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="9baef2ce-e12f-419e-bb89-bcd20edd2f87" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd2" />
+    <MetadataFile FileName="item11.xsd" MetadataType="Schema" ID="66f9b5db-c19b-4246-8a35-511950d2aa63" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd13" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="f894b933-fb31-4412-b43c-438eac396ca8" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd14" />
+    <MetadataFile FileName="item8.xsd" MetadataType="Schema" ID="123e0afd-d16b-4902-b15b-aaa74fe70366" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd16" />
+    <MetadataFile FileName="item14.xsd" MetadataType="Schema" ID="06eb1b17-8808-465b-b1c1-02a639d940e2" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd10" />
+    <MetadataFile FileName="item16.xsd" MetadataType="Schema" ID="1b347c80-3da5-470c-979b-0f7b1b517c2b" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd1" />
+    <MetadataFile FileName="item10.xsd" MetadataType="Schema" ID="abfd2525-1de2-4fa6-bf5f-19672d8e06f2" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd15" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="3c42a462-9bdc-4caa-8c18-054b7b491bc8" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd9" />
+    <MetadataFile FileName="item7.xsd" MetadataType="Schema" ID="2768b7d4-ce8e-4031-9f84-14e665111bf8" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd8" />
+    <MetadataFile FileName="item15.xsd" MetadataType="Schema" ID="25760155-6a9b-4743-a218-e7bf8199ce95" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd4" />
+    <MetadataFile FileName="item6.xsd" MetadataType="Schema" ID="91a9a62e-b6af-437a-b8d0-b20142649a39" SourceId="1" SourceUrl="http://snpts675:8732/?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Configuration/2013/03" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Configuration/2013/03" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Configuration/2010/08" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Enumerations/2010/08" />
+  <xs:complexType name="NeighbourLimitType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q1:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TotalLimits" type="tns:SECTIONLIMIT" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TypeLimits" type="tns:TYPELIMIT" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Limit" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LimitEnabled" type="xs:boolean" />
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q2:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="SECTIONLIMIT">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unused" />
+      <xs:enumeration value="TotalLimitsPerCell" />
+      <xs:enumeration value="NeighbourTypeLimitsPerCell" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TYPELIMIT">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unused" />
+      <xs:enumeration value="MaxGSMRelations" />
+      <xs:enumeration value="MaxUMTSRelations" />
+      <xs:enumeration value="GSM2GSM" />
+      <xs:enumeration value="GSM2UMTS" />
+      <xs:enumeration value="UMTS2GSM" />
+      <xs:enumeration value="UMTS2UMTSIntraFrequency" />
+      <xs:enumeration value="UMTS2UMTSInterFrequency" />
+      <xs:enumeration value="MaxMobileWiMAXRelations" />
+      <xs:enumeration value="unused1" />
+      <xs:enumeration value="unused2" />
+      <xs:enumeration value="GSM2LTE" />
+      <xs:enumeration value="UMTS2LTE" />
+      <xs:enumeration value="CDMA2LTE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Servicev81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/Configuration/2010/08" base="q3:ServiceType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ServiceUMTSv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Servicev81Type">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="TrafficType" type="q4:TG_TRAFFICTYPE" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UseCQI" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MinSupportedDataRate" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UseSoftHO" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IgnorePriority" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PrioritiseCsTraffic" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ServicePriority" type="xs:int" />
+          <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="PrecedenceClass" type="q5:PRECEDENCE_CLASS" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/Enumerations/2010/08" minOccurs="0" maxOccurs="1" name="TrafficClass" type="q6:TRAFFIC_CLASS" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MacPowerOffset" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanPacketInterarrivalTimeDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxNumRetransmissionsDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SessionTimeOutDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanPacketSizeDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanPacketSizeUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanNumCallsPerSessionDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanNumCallsPerSessionUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanReadingTimeDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanReadingTimeUL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanNumPacketsPerCallDL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MeanNumPacketsPerCallUL" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterPacketArrTimeDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InterPacketArrTimeUL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BlerDL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BlerUL" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="UplinkUserBitrate" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DownlinkUserBitrate" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WiFiSupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WiFiDLServiceRate" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WiFiULServiceRate" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Terminalv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://www.aircominternational.com/Schemas/Configuration/2010/08" base="q7:TerminalType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TerminalTypeGSM_UMTSv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Terminalv81Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TwoGRxSensitivity" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TwoGRxSNR" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TwoGRxNoiseFigure" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TwoGRxMaxNumTimeslots" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SupportTwoG" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SupportThreeG" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GPRS_CCS1" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GPRS_CCS2" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GPRS_CCS3" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="GPRS_CCS4" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EGPRS_LINK_ADAPTATION_FAMILIES_A" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EGPRS_LINK_ADAPTATION_FAMILIES_B" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="EGPRS_LINK_ADAPTATION_FAMILIES_C" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TTClutter3GList" type="tns:ArrayOfTTClutter3GType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxMobilePower" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TxDynamicRange" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredPilotSIR" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredEcIo" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PowerStep" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredRSCP" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredHSSCCH" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AntennaGain" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BodyLoss" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NoiseFigure" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HsdpaSupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsdpaCodes" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsdpaBlockSize" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsdpaModulation" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MimoSupportEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MimoRxElements" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ChipEqSupport" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ChipEqEfficiency" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IntfCancellationSupport" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IntfCancellationEfficiency" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HsupaSupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsupaCodes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MinSF" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Is2msTTISupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Modulation4PAMSupport" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TTServiceList" type="tns:ArrayOfTTServiceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HSDPATerminalCategory" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HSUPATerminalCategory" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WiFiParms" type="tns:WiFiParms" />
+          <xs:element minOccurs="0" maxOccurs="1" name="McHspaParms" type="tns:McHspaParms" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTTClutter3GType">
+    <xs:sequence>
+      <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/Configuration/2010/08" minOccurs="0" maxOccurs="unbounded" name="TTClutter3G" type="q8:TTClutter3GType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTTServiceType">
+    <xs:sequence>
+      <xs:element xmlns:q9="http://www.aircominternational.com/Schemas/Configuration/2010/08" minOccurs="0" maxOccurs="unbounded" name="TTService" type="q9:TTServiceType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WiFiParms">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Supported" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ReqSignalStrength" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AntennaGain" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="BodyLoss" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxMobilePower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TXDynamicRange" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NoiseFigure" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="McHspaParms">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="SupportedCarriers" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxDLCarriers" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" name="MaxULCarriers" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TerminalTypeUMTSv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Terminalv81Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="TTClutter3GList" type="tns:ArrayOfTTClutter3GType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxMobilePower" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TxDynamicRange" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredPilotSIR" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredEcIo" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PowerStep" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredRSCP" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RequiredHSSCCH" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AntennaGain" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BodyLoss" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="NoiseFigure" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HsdpaSupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsdpaCodes" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsdpaBlockSize" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsdpaModulation" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MimoSupportEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MimoRxElements" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ChipEqSupport" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ChipEqEfficiency" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IntfCancellationSupport" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="IntfCancellationEfficiency" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HsupaSupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxHsupaCodes" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MinSF" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Is2msTTISupported" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Modulation4PAMSupport" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TTServiceList" type="tns:ArrayOfTTServiceType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HSDPATerminalCategory" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HSUPATerminalCategory" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="WiFiParms" type="tns:WiFiParms" />
+          <xs:element minOccurs="0" maxOccurs="1" name="McHspaParms" type="tns:McHspaParms" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

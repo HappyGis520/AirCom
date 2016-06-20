@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Query/2009/09" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Query/2009/09" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="QrySelectType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QryBaseType">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="0" maxOccurs="1" name="Not" type="tns:QryNotPredicateType" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Type" type="tns:QryListElementType" />
+            <xs:element minOccurs="0" maxOccurs="1" name="And" type="tns:QryAndPredicateType" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Attribute" type="tns:QryAttributeBaseType" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Or" type="tns:QryOrPredicateType" />
+            <xs:element minOccurs="0" maxOccurs="1" name="Simple" type="tns:QrySimpleTextType" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QryBaseType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="OverrideCacheDefault">
+        <xs:complexType>
+          <xs:attribute default="false" name="UseQueryCache" type="xs:boolean" />
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="QryOperationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ieq" />
+      <xs:enumeration value="eq" />
+      <xs:enumeration value="gt" />
+      <xs:enumeration value="lt" />
+      <xs:enumeration value="start" />
+      <xs:enumeration value="end" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="QryOrPredicateType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QryBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="lhs" type="tns:QrySelectType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="rhs" type="tns:QrySelectType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QryAndPredicateType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QryBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="lhs" type="tns:QrySelectType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="rhs" type="tns:QrySelectType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QryListElementType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QryBaseType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QrySimpleTextType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QryBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Query" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QryAttributeBaseType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QryBaseType">
+        <xs:attribute name="op" type="tns:QryOperationType" use="required" />
+        <xs:attribute name="value" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="QryNotPredicateType">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:QrySelectType" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="QueryableTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PtPInterconv80Type" />
+      <xs:enumeration value="LogNetworkConnectionType" />
+      <xs:enumeration value="LogCellularNetworkConnectionType" />
+      <xs:enumeration value="NetworkConnectionType" />
+      <xs:enumeration value="LocationObjectType" />
+      <xs:enumeration value="LocationObjectv70Type" />
+      <xs:enumeration value="LocationObjectHierarchyv70Type" />
+      <xs:enumeration value="CellSiteType" />
+      <xs:enumeration value="BCFType" />
+      <xs:enumeration value="GSMCellType" />
+      <xs:enumeration value="GSMCellv70Type" />
+      <xs:enumeration value="MSCType" />
+      <xs:enumeration value="BSCType" />
+      <xs:enumeration value="LTENodev801Type" />
+      <xs:enumeration value="LTECellv801Type" />
+      <xs:enumeration value="LTENodev80Type" />
+      <xs:enumeration value="LTECellType" />
+      <xs:enumeration value="LTESAEGWType" />
+      <xs:enumeration value="LTEMMEType" />
+      <xs:enumeration value="LTENodeType" />
+      <xs:enumeration value="CellSitev801Type" />
+      <xs:enumeration value="GSMCellv801Type" />
+      <xs:enumeration value="CellSitev80Type" />
+      <xs:enumeration value="GSMCellv80Type" />
+      <xs:enumeration value="BSCv80Type" />
+      <xs:enumeration value="MSCv80Type" />
+      <xs:enumeration value="CellSitev70Type" />
+      <xs:enumeration value="MSCv70Type" />
+      <xs:enumeration value="BSCv70Type" />
+      <xs:enumeration value="RNCv70Type" />
+      <xs:enumeration value="NodeBv70Type" />
+      <xs:enumeration value="UMTSCellv70Type" />
+      <xs:enumeration value="GSMRepeaterType" />
+      <xs:enumeration value="GSMRepeaterv80Type" />
+      <xs:enumeration value="LTERepeaterv80Type" />
+      <xs:enumeration value="UMTSRepeaterv80Type" />
+      <xs:enumeration value="LTERepeaterType" />
+      <xs:enumeration value="UMTSRepeaterType" />
+      <xs:enumeration value="NodeBv801Type" />
+      <xs:enumeration value="NodeBv80Type" />
+      <xs:enumeration value="NodeBType" />
+      <xs:enumeration value="UMTSCellType" />
+      <xs:enumeration value="RNCType" />
+      <xs:enumeration value="SGSNType" />
+      <xs:enumeration value="WMSCType" />
+      <xs:enumeration value="LocationObjectv80Type" />
+      <xs:enumeration value="LocationObjectHierarchyv801Type" />
+      <xs:enumeration value="LocationObjectv801Type" />
+      <xs:enumeration value="LocationObjectHierarchyv80Type" />
+      <xs:enumeration value="LocationObjectHierarchyType" />
+      <xs:enumeration value="TerminalType" />
+      <xs:enumeration value="TerminalTypeLTEType" />
+      <xs:enumeration value="TerminalTypeWIMAX_MOBILE_FDDType" />
+      <xs:enumeration value="TerminalTypeWIMAX_MOBILE_TDDType" />
+      <xs:enumeration value="TerminalTypeWIMAXType" />
+      <xs:enumeration value="TerminalTypeGSM_UMTSType" />
+      <xs:enumeration value="TerminalTypeEVDOType" />
+      <xs:enumeration value="TerminalTypeCDMAType" />
+      <xs:enumeration value="TerminalTypeEGPRSType" />
+      <xs:enumeration value="TerminalTypeUMTSType" />
+      <xs:enumeration value="TerminalTypePSType" />
+      <xs:enumeration value="TerminalTypeCSType" />
+      <xs:enumeration value="BearerConfigType" />
+      <xs:enumeration value="BearerLTEType_DL" />
+      <xs:enumeration value="BearerLTEType_UL" />
+      <xs:enumeration value="BearerWIMAX_MobileType_DL" />
+      <xs:enumeration value="BearerUnknownType_DL" />
+      <xs:enumeration value="BearerUnknownType_UL" />
+      <xs:enumeration value="BearerWIMAX_MobileType_UL" />
+      <xs:enumeration value="BearerWIMAXType_DL" />
+      <xs:enumeration value="BearerWIMAXType_UL" />
+      <xs:enumeration value="BearerEGPRSType_DL" />
+      <xs:enumeration value="BearerGPRSType_DL" />
+      <xs:enumeration value="BearerGSMVoiceType_DL" />
+      <xs:enumeration value="BearerCDMA2000Type_DL" />
+      <xs:enumeration value="BearerCDMA2000Type_UL" />
+      <xs:enumeration value="BearerUMTSType_DL" />
+      <xs:enumeration value="BearerUMTSType_UL" />
+      <xs:enumeration value="ServiceType" />
+      <xs:enumeration value="ServiceLTEType" />
+      <xs:enumeration value="ServiceEVDOType" />
+      <xs:enumeration value="ServiceWIMAXMobileType" />
+      <xs:enumeration value="ServiceWIMAXType" />
+      <xs:enumeration value="ServiceCDMA2000Type" />
+      <xs:enumeration value="ServiceUMTSType" />
+      <xs:enumeration value="LTECarrierType" />
+      <xs:enumeration value="LTEFreqBandType" />
+      <xs:enumeration value="LTEFrameType" />
+      <xs:enumeration value="LTECodeSchemaType" />
+      <xs:enumeration value="Bandv80Type" />
+      <xs:enumeration value="TIObjectiveType" />
+      <xs:enumeration value="LinkType" />
+      <xs:enumeration value="Band" />
+      <xs:enumeration value="Bandv70Type" />
+      <xs:enumeration value="ModulationType" />
+      <xs:enumeration value="BSICSchemaType" />
+      <xs:enumeration value="CellLayerType" />
+      <xs:enumeration value="CellLayerv70Type" />
+      <xs:enumeration value="CarrierLayerType" />
+      <xs:enumeration value="GSMCarrierType" />
+      <xs:enumeration value="BCFTypeType" />
+      <xs:enumeration value="AntennaPatternv801Type" />
+      <xs:enumeration value="AntennaDeviceType" />
+      <xs:enumeration value="RadioEquipv80Type" />
+      <xs:enumeration value="SupplierType" />
+      <xs:enumeration value="AntennaPatternType" />
+      <xs:enumeration value="AntennaPatternv80Type" />
+      <xs:enumeration value="CellEquipmentType" />
+      <xs:enumeration value="TowerEquipType" />
+      <xs:enumeration value="CabinEquipType" />
+      <xs:enumeration value="BTSEquipType" />
+      <xs:enumeration value="NodeBEquipmentType" />
+      <xs:enumeration value="MastHeadAmplifierType" />
+      <xs:enumeration value="FeederType" />
+      <xs:enumeration value="LinkTerminalType" />
+      <xs:enumeration value="RadioEquipType" />
+      <xs:enumeration value="RadioEquipv70Type" />
+      <xs:enumeration value="MWAntennaType" />
+      <xs:enumeration value="PredictionModelType" />
+      <xs:enumeration value="PLMNType" />
+      <xs:enumeration value="ProjectType" />
+      <xs:enumeration value="NeighbourType" />
+      <xs:enumeration value="UMTSCarrierConfigType" />
+      <xs:enumeration value="UMTSCodeSchemaType" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

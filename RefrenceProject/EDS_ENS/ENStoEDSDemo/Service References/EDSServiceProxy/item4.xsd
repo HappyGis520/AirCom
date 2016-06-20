@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Enumerations/2009/07" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Enumerations/2009/07" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="ColourCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="sat" />
+      <xs:enumeration value="dcc" />
+      <xs:enumeration value="dvcc" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LegacyNetworkType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ALL" />
+      <xs:enumeration value="GSM" />
+      <xs:enumeration value="AMPS" />
+      <xs:enumeration value="UMTS" />
+      <xs:enumeration value="NONE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ChannelTRXMap">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="Standard_GSM" />
+      <xs:enumeration value="Standard_GSM_TCH" />
+      <xs:enumeration value="Standard_AMPS" />
+      <xs:enumeration value="Standard_TDMA" />
+      <xs:enumeration value="Standard_TETRA" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RadioCapacityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="E0" />
+      <xs:enumeration value="E1" />
+      <xs:enumeration value="E2" />
+      <xs:enumeration value="E3" />
+      <xs:enumeration value="E4" />
+      <xs:enumeration value="E5" />
+      <xs:enumeration value="t1" />
+      <xs:enumeration value="t2" />
+      <xs:enumeration value="t3" />
+      <xs:enumeration value="t4" />
+      <xs:enumeration value="J1" />
+      <xs:enumeration value="J2" />
+      <xs:enumeration value="J3" />
+      <xs:enumeration value="J4" />
+      <xs:enumeration value="J5" />
+      <xs:enumeration value="STM0" />
+      <xs:enumeration value="STM1" />
+      <xs:enumeration value="STM4" />
+      <xs:enumeration value="STM16" />
+      <xs:enumeration value="STM64" />
+      <xs:enumeration value="STM256" />
+      <xs:enumeration value="STS1" />
+      <xs:enumeration value="STS3" />
+      <xs:enumeration value="STS9" />
+      <xs:enumeration value="STS12" />
+      <xs:enumeration value="STS18" />
+      <xs:enumeration value="STS36" />
+      <xs:enumeration value="STS48" />
+      <xs:enumeration value="STS192" />
+      <xs:enumeration value="STS768" />
+      <xs:enumeration value="UNUSED" />
+      <xs:enumeration value="MAX_ENUM_CapacityType" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="SpatialMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Diversity" />
+      <xs:enumeration value="Multiplexing" />
+      <xs:enumeration value="Dynamic" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MultiPathType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Urban" />
+      <xs:enumeration value="Suburban" />
+      <xs:enumeration value="Mixed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CoverageType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Outdoor" />
+      <xs:enumeration value="Indoor" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Urban" />
+      <xs:enumeration value="Suburban" />
+      <xs:enumeration value="OpenRural" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ConfiguredHoppingType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NonHopping" />
+      <xs:enumeration value="Hopping" />
+      <xs:enumeration value="AssociatedMAList" />
+      <xs:enumeration value="AllocatedMAList" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

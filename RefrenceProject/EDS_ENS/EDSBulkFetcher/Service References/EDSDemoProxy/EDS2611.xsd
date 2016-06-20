@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/contract/EDS/DST/2009/10" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/contract/EDS/DST/2009/10" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd2" namespace="http://www.aircominternational.com/contract/EWS/2011/01" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd5" namespace="http://www.aircominternational.com/Schemas/Query/2009/09" />
+  <xs:import schemaLocation="http://localhost:8730/Aircom/EDS?xsd=xsd3" namespace="http://www.aircominternational.com/contract/Util/2009/10" />
+  <xs:complexType name="RequestBaseType" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/contract/EWS/2011/01" base="q1:EWSRequestBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="1" maxOccurs="1" name="TimeoutOverride" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:attribute name="UseQueryCache" type="xs:boolean" />
+  <xs:attribute xmlns:q2="http://www.aircominternational.com/Schemas/Query/2009/09" name="objectType" type="q2:QueryableTypes" />
+  <xs:complexType name="DataResponseBaseType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/contract/Util/2009/10" base="q3:ResponseType">
+        <xs:attribute name="timeStamp" type="xs:dateTime" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="TestResult" type="tns:TestResultType" />
+  <xs:complexType name="TestResultType">
+    <xs:simpleContent>
+      <xs:extension base="xs:boolean">
+        <xs:attribute xmlns:q4="http://www.aircominternational.com/contract/Util/2009/10" ref="q4:itemIDRef" />
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

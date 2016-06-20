@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Common/2013/03" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Common/2013/03" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2012/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Common/2011/04" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/Connect/2011/04" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" />
+  <xs:complexType name="PhysicalAntennaBasev81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/Common/2012/05" base="q1:PhysicalAntennaBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="HeightPredOffset" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HeightPred" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PhysicalAntennav81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:PhysicalAntennaBasev81Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntennaPorts" type="tns:ArrayOfPhysicalAntennaPortType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPhysicalAntennaPortType">
+    <xs:sequence>
+      <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/Common/2012/05" minOccurs="0" maxOccurs="unbounded" name="PhysicalAntennaPort" type="q2:PhysicalAntennaPortType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LogicalAntennav81Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="RepeaterAntenna" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CorrectionFactor" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ElectricalDownTilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TotalDownTilt" type="xs:double" />
+      <xs:element xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="AntennaPatternType" type="q3:IDType" />
+      <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="PrimaryModel" type="q4:PredictionModelReferenceType" />
+      <xs:element xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="SecondaryModel" type="q5:PredictionModelReferenceType" />
+      <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/Common/2012/05" minOccurs="0" maxOccurs="1" name="Constraints" type="q6:AntennaConstraintsv801Type" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Ports" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Diplexers" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntenna" type="tns:PhysicalAntennaBasev81Type" />
+    </xs:sequence>
+    <xs:attribute name="Index" type="xs:int" use="required" />
+    <xs:attribute xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" ref="q7:iid" />
+  </xs:complexType>
+  <xs:complexType name="LocationObjectv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://www.aircominternational.com/Schemas/Common/2011/04" base="q8:LocationObjectv80Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntennas" type="tns:ArrayOfPhysicalAntennav81Type" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPhysicalAntennav81Type">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PhysicalAntenna" type="tns:PhysicalAntennav81Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationObjectHierarchyv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://www.aircominternational.com/Schemas/Common/2011/04" base="q9:LocationObjectv80Type">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PhysicalAntennas" type="tns:ArrayOfPhysicalAntennav81Type" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Children" type="tns:ArrayOfNetworkElementType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Linkends" type="tns:ArrayOfPtPLinkendv80Type" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfNetworkElementType">
+    <xs:sequence>
+      <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="unbounded" name="Child" type="q10:NetworkElementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPtPLinkendv80Type">
+    <xs:sequence>
+      <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/Connect/2011/04" minOccurs="0" maxOccurs="unbounded" name="Linkend" type="q11:PtPLinkendv80Type" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DatabaseInfoType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q12:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="OSID" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HostName" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Version" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Status" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ShutdownPending" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="DatabaseStatus" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ActiveState" type="xs:string" />
+          <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q13:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="FileLoadType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q14:RootEntityType">
+        <xs:sequence>
+          <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" minOccurs="0" maxOccurs="1" name="FileItem" type="q15:FileItem" />
+          <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q16:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

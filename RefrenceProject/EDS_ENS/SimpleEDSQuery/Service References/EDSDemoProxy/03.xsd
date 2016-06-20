@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/CommonTypes/2013/03" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:simpleType name="NbrTechDiscriminatorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NotUsed" />
+      <xs:enumeration value="GSM" />
+      <xs:enumeration value="CDMA" />
+      <xs:enumeration value="UMTS" />
+      <xs:enumeration value="WIMAXFIXED" />
+      <xs:enumeration value="WIMAXMOBILE" />
+      <xs:enumeration value="LTE" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="NetworkDiscriminatorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="NetworkCellularConnection" />
+      <xs:enumeration value="NetworkConnection" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="SecurityInfoEx">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q1:SecurityInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="VisibilityInfo" type="tns:VisibilityInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="VisibilityInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="UserGroup" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Visibility" type="tns:Visibility" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Visibility">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Owner" type="tns:SelectedState" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Group" type="tns:SelectedState" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="All" type="tns:SelectedState" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="SelectedState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="disallow" />
+      <xs:enumeration value="NOTUSED" />
+      <xs:enumeration value="allow" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="FileItem">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="URI" type="xs:anyURI" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Impersonate" type="tns:Impersonation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Impersonation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Domain" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="User" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="Password" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

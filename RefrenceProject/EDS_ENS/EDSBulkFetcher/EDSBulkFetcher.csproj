@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{36684BCB-D6C6-4CB9-B08D-C03A5E2713AC}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EDSBulkFetcher</RootNamespace>
+    <AssemblyName>EDSBulkFetcher</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\EDSDemoProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Service References\EDSDemoProxy\EDS1.wsdl" />
+    <None Include="Service References\EDSDemoProxy\EDS26.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS261.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2610.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2611.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2612.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2613.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2614.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2615.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2616.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2617.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2618.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2619.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS262.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2620.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2621.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2622.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2623.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2624.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2625.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2626.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2627.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2628.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2629.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS263.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2630.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2631.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2632.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2633.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2634.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2635.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2636.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2637.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2638.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2639.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS264.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2640.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS2641.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS265.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS266.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS267.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS268.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDS269.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDSBulkFetcher.EDSDemoProxy.CreateResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDSBulkFetcher.EDSDemoProxy.DeleteResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDSBulkFetcher.EDSDemoProxy.HistoricalStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDSBulkFetcher.EDSDemoProxy.ModifyResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDSBulkFetcher.EDSDemoProxy.QueryResponseType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDSBulkFetcher.EDSDemoProxy.StatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\EDSDemoProxy\EDSBulkFetcher.EDSDemoProxy.SupportedTypes.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\EDSDemoProxy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EDSDemoProxy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EDSDemoProxy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\EDSDemoProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

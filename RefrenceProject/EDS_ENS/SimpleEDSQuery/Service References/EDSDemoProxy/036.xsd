@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Equipment/2013/03" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Equipment/2013/03" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:complexType name="BTSEquipv81Type">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q1:EquipmentBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="CellLayerPower" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MinimumTransmissionPower" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaximumTransmissionPower" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SiteSpacing" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxSiteSpacing" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Cellspacing" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaxCellspacing" type="xs:int" />
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q2:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

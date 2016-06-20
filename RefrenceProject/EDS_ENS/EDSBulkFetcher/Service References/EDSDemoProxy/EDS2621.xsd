@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/CommonTypes/2010/08" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/CommonTypes/2010/08" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="AntennaConstraintsType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="UseBearingConstraints" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ClockwiseBearingAngle" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="AntiClockwiseBearingAngle" type="xs:int" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="AntennaDeviceFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="AntennaPatternFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="MechanicalDownTiltFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="AzimuthFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="HeightFixed" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="ConstrainMaximumMainLobeTilt" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" form="unqualified" name="MaximumMainLobeTilt" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

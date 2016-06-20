@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.aircominternational.com/Schemas/Connect/2009/09" elementFormDefault="qualified" targetNamespace="http://www.aircominternational.com/Schemas/Connect/2009/09" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd5" namespace="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" />
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd10" namespace="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" />
+  <xs:import schemaLocation="http://snpts675:8732/?xsd=xsd11" namespace="http://www.aircominternational.com/Schemas/Enumerations/2009/07" />
+  <xs:complexType name="Band">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q1:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="BandWidth" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Channels" type="tns:ArrayOfChannel" />
+          <xs:element xmlns:q2="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q2:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Channel" type="tns:Channel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Channel">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q3:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="LowFrequency" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="HighFrequency" type="xs:double" />
+          <xs:element xmlns:q4="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q4:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ModulationType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q5:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="DefaultKN" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="BitsPerSymbol" type="xs:double" />
+          <xs:element xmlns:q6="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q6:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LinkType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q7:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Bearer" type="tns:BearerType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="InstallationCost" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="MaintenanceCost" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RentalCost" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Manufacturer" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+          <xs:element xmlns:q8="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q8:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="BearerType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Microwave" />
+      <xs:enumeration value="FibreOptic" />
+      <xs:enumeration value="Coaxial" />
+      <xs:enumeration value="Satellite" />
+      <xs:enumeration value="TwistedPair" />
+      <xs:enumeration value="LeasedLine" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="PtPLinkType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q9:NetworkElementBaseType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name1" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Name2" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkType" type="q9:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SingleValueEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="SingleValue" type="xs:int" />
+          <xs:element xmlns:q10="http://www.aircominternational.com/Schemas/Enumerations/2009/07" minOccurs="0" maxOccurs="1" name="RadioCapacityType" type="q10:RadioCapacityType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ControlOverhead" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PdhSdhMultiple" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkLength" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkLOSStatus" type="q9:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LOSRequestDate" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkMain" type="tns:PtPLinkMainOrDiversityType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkDiversity" type="tns:PtPLinkMainOrDiversityType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="FrequencyDiversityEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PropagationCalculationMethod" type="tns:CalculationMethodType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Alpha" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TerrainType" type="tns:TerrainType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PLValue" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoverCoastalEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoastalArea" type="tns:CoastalAreaType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="CoastalProportion" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="KFactor" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TerrainRoughnessFactorValue53012" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PointRefractivityGradient" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimateTerrainFactor" type="tns:ClimateTerrainFactorType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimateTerrainFactorValue" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimateTemperatureFactorRO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimateTemperatureFactorValue" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TerrainRoughnessFactorVigantsRO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TerrainRoughnessFactorValueVigants" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimateFactorRO" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimateFactorValue" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RainfallModel" type="tns:RainfallModelType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RainfallPercentExceeded" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RainRate" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="AutoCalcRainRateEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimateRegionEnabled" type="xs:boolean" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimaticRegionITU" type="tns:ClimaticRegionITUType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ClimaticRegionCrane" type="tns:ClimaticRegionCraneType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RegionEffect" type="tns:RegionEffectType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="PropagationEffect" type="tns:PropagationEffectType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReliabilityPeriodValue" type="xs:int" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReliabilityPeriodUnit" type="tns:ReliabilityPeriodUnitType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ReliabilityPeriodType" type="tns:ReliabilityPeriodType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkObjectiveCalculationMethod" type="tns:LinkObjectiveCalculationMethodType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkGrade" type="tns:LinkGradeType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="ErrorPerformance" type="xs:double" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Linkends" type="tns:ArrayOfPtPLinkendType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="TimeSlots" type="tns:ArrayOfPtPLinkTimeSlotType" />
+          <xs:element xmlns:q11="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q11:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkMainOrDiversityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ChannelBasedEnabled" type="xs:boolean" />
+      <xs:element xmlns:q12="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Band" type="q12:IDType" />
+      <xs:element xmlns:q13="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="Channel" type="q13:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Polarisation" type="tns:PolarisationType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PolarisationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Horizontal" />
+      <xs:enumeration value="Vertical" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CalculationMethodType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CM_5310" />
+      <xs:enumeration value="CM_5307" />
+      <xs:enumeration value="CM_VIGANTS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TerrainType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TT7_UNKNOWN" />
+      <xs:enumeration value="TT7_PLAINS" />
+      <xs:enumeration value="TT7_HILLS" />
+      <xs:enumeration value="TT7_MOUNTAINS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="CoastalAreaType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CA_INLAND" />
+      <xs:enumeration value="CA_LARGEBODIES" />
+      <xs:enumeration value="CA_MEDIUMBODIES" />
+      <xs:enumeration value="CA_INTERMEDIATE" />
+      <xs:enumeration value="CA_MANYLAKES" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ClimateTerrainFactorType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CTO_WATER_HUMID" />
+      <xs:enumeration value="CTO_AVERAGE" />
+      <xs:enumeration value="CTO_MOUNTAIN" />
+      <xs:enumeration value="CTO_USER" />
+      <xs:enumeration value="CTO_CALC" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RainfallModelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ITU_RAIN_MODEL" />
+      <xs:enumeration value="CRANE_RAIN_MODEL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ClimaticRegionITUType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="A" />
+      <xs:enumeration value="B" />
+      <xs:enumeration value="C" />
+      <xs:enumeration value="D" />
+      <xs:enumeration value="E" />
+      <xs:enumeration value="F" />
+      <xs:enumeration value="G" />
+      <xs:enumeration value="H" />
+      <xs:enumeration value="J" />
+      <xs:enumeration value="K" />
+      <xs:enumeration value="L" />
+      <xs:enumeration value="M" />
+      <xs:enumeration value="N" />
+      <xs:enumeration value="P" />
+      <xs:enumeration value="Q" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ClimaticRegionCraneType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="A" />
+      <xs:enumeration value="B" />
+      <xs:enumeration value="B1" />
+      <xs:enumeration value="B2" />
+      <xs:enumeration value="C" />
+      <xs:enumeration value="D1" />
+      <xs:enumeration value="D2" />
+      <xs:enumeration value="D3" />
+      <xs:enumeration value="E" />
+      <xs:enumeration value="F" />
+      <xs:enumeration value="G" />
+      <xs:enumeration value="H" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="RegionEffectType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LOC_GLOBAL" />
+      <xs:enumeration value="LOC_EUROPE_NW" />
+      <xs:enumeration value="LOC_EUROPE_NW_1_3_GHz" />
+      <xs:enumeration value="LOC_EUROPE_NW_11_GHz" />
+      <xs:enumeration value="LOC_EUROPE_MEDITERRANEAN" />
+      <xs:enumeration value="LOC_EUROPE_NORDIC" />
+      <xs:enumeration value="LOC_EUROPE_ALPINE" />
+      <xs:enumeration value="LOC_EUROPE_POLAND" />
+      <xs:enumeration value="LOC_EUROPE_RUSSIA" />
+      <xs:enumeration value="LOC_EUROPE_UK_40_50_GHZ" />
+      <xs:enumeration value="LOC_CONGO" />
+      <xs:enumeration value="LOC_CANADA_PRAIRIE_N" />
+      <xs:enumeration value="LOC_CANADA_COAST_GT_LAKE" />
+      <xs:enumeration value="LOC_CANADA_CENTRAL_MOUNTAINS" />
+      <xs:enumeration value="LOC_USA_VIRGINIA" />
+      <xs:enumeration value="LOC_RUSSIA_N_EUROPEAN" />
+      <xs:enumeration value="LOC_RUSSIA_CW_EUROPEAN" />
+      <xs:enumeration value="LOC_RUSSIA_MIDDLE_V_SOUTH_URAL" />
+      <xs:enumeration value="LOC_RUSSIA_CS_SOUTH_EUROPEAN" />
+      <xs:enumeration value="LOC_RUSSIA_W_SIBERIAN" />
+      <xs:enumeration value="LOC_RUSSIA_M_SUBERIAN_PJ" />
+      <xs:enumeration value="LOC_RUSSIA_SFE" />
+      <xs:enumeration value="LOC_AUSTRALIA_TEMPERATE_COSTAL" />
+      <xs:enumeration value="LOC_AUSTRALIA_SUB_TROPICAL_COSTAL" />
+      <xs:enumeration value="LOC_AUSTRALIA_TROPICAL_ARID" />
+      <xs:enumeration value="LOC_BRAZIL_EQUATORIAL" />
+      <xs:enumeration value="LOC_BRAZIL_TROPICAL_MARITIME" />
+      <xs:enumeration value="LOC_BRAZIL_TROPICAL_INLAND" />
+      <xs:enumeration value="LOC_BRAZIL_SUBTROPICAL" />
+      <xs:enumeration value="LOC_INDONESIA" />
+      <xs:enumeration value="LOC_JAPAN_TOKYO" />
+      <xs:enumeration value="LOC_JAPAN_YAMAGUCHI" />
+      <xs:enumeration value="LOC_JAPAN_KASHIMA" />
+      <xs:enumeration value="LOC_S_KOREA" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PropagationEffectType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PE_RAIN_EFFECT_TERRESTRIAL" />
+      <xs:enumeration value="PE_RAIN_EFFECT_SLANT_PATH" />
+      <xs:enumeration value="PE_RAIN_RATE" />
+      <xs:enumeration value="PE_MULTIPATH" />
+      <xs:enumeration value="PE_TRANS_HORIZON_LAND" />
+      <xs:enumeration value="PE_TRANS_HORIZON_SEA" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ReliabilityPeriodUnitType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TU_HOURS" />
+      <xs:enumeration value="TU_DAYS" />
+      <xs:enumeration value="TU_WEEKS" />
+      <xs:enumeration value="TU_MONTHS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ReliabilityPeriodType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PT_FLAT" />
+      <xs:enumeration value="PT_HILLY" />
+      <xs:enumeration value="PT_MOUNTAINOUS" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LinkObjectiveCalculationMethodType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LOCM_821" />
+      <xs:enumeration value="LOCM_826" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="LinkGradeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LINK_GRADE_ACCESS" />
+      <xs:enumeration value="LINK_GRADE_LONGHAUL" />
+      <xs:enumeration value="LINK_GRADE_SHORTHAUL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfPtPLinkendType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PtPLinkend" type="tns:PtPLinkendType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkendType">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q14="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" base="q14:RootEntityType">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="PtPLink" type="q14:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkTerminalType" type="q14:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Location" type="q14:IDType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkendMain" type="tns:PtPLinkendMainOrDiversityType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="LinkendDiversity" type="tns:PtPLinkendMainOrDiversityType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="Antennas" type="tns:ArrayOfPtPLinkendAntennaType" />
+          <xs:element minOccurs="0" maxOccurs="1" name="RxLevel" type="xs:double" />
+          <xs:element xmlns:q15="http://www.aircominternational.com/Schemas/ReadOnlyTypes/2010/01" minOccurs="1" maxOccurs="1" name="AllowedOperations" type="q15:ReadOnlyType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkendMainOrDiversityType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="FrequencyDesignation" type="tns:FrequencyDesignationType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CentreFrequency" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FrequencyBandwidth" type="xs:double" />
+      <xs:element xmlns:q16="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="RadioEquipment" type="q16:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ATPCEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ATPCRange" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ATPCRangeOverrideEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ThresholdOption" type="tns:ThresholdOptionType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxMimPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxMaxPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxNominalPower" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxNominalPowerOverrideEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="OperatingMode" type="tns:OperatingModeType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxAnttenuationLosses" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RxAnttenuationLosses" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxBranchingLosses" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RxBranchingLosses" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TxMiscLosses" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RxMiscLosses" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="XpifValue" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="XpicEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="XpifValueOverrideEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AMCEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ModulationTypeOverrideEnabled" type="xs:boolean" />
+      <xs:element xmlns:q17="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="ModulationType" type="q17:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="RequiredThroughput" type="xs:double" />
+      <xs:element xmlns:q18="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="ModulationTypeSuggested" type="q18:IDType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="FrequencyDesignationType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="FD_HIGH" />
+      <xs:enumeration value="FD_LOW" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ThresholdOptionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="THRESHOPT1" />
+      <xs:enumeration value="THRESHOPT2" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OperatingModeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="MOU_SINGLE" />
+      <xs:enumeration value="MOU_HOTSB" />
+      <xs:enumeration value="MOU_HOTSBSPACE" />
+      <xs:enumeration value="MOU_ONEPLUSONE1ANT" />
+      <xs:enumeration value="MOU_ONEPLUSONE2ANT" />
+      <xs:enumeration value="MOU_NPLUSM1ANT" />
+      <xs:enumeration value="MOU_NPLUSM2ANT" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfPtPLinkendAntennaType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Antenna" type="tns:PtPLinkendAntennaType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkendAntennaType">
+    <xs:sequence>
+      <xs:element xmlns:q19="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="MWAntennaType" type="q19:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="AntennaHeight" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DryRadomeLoss" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WetRadomeLoss" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Tilt" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActualElevationOverrideEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ActualElevationOverrideValue" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DirectionOverrideEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DirectionOverrideValue" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Longitude" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Latitude" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EirpOverrideEnabled" type="xs:boolean" />
+      <xs:element minOccurs="0" maxOccurs="1" name="EirpOverrideValue" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Feeders" type="tns:ArrayOfPtPLinkendFeederType" />
+    </xs:sequence>
+    <xs:attribute name="iid" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPtPLinkendFeederType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Feeder" type="tns:PtPLinkendFeederType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkendFeederType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="IsTxAnntenna" type="xs:boolean" />
+      <xs:element xmlns:q20="http://www.aircominternational.com/Schemas/CommonTypes/2009/05" minOccurs="0" maxOccurs="1" name="FeederType" type="q20:IDType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FeederLength" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FeederLossValue" type="xs:double" />
+      <xs:element minOccurs="0" maxOccurs="1" name="FeederLossOverrideEnabled" type="xs:boolean" />
+    </xs:sequence>
+    <xs:attribute name="Type" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfPtPLinkTimeSlotType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TimeSlot" type="tns:PtPLinkTimeSlotType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PtPLinkTimeSlotType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="CommentsEndA" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="CommentsEndB" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Comments" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS0" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS1" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS2" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS3" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS4" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS5" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS6" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS7" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS8" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS9" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS10" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS11" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS12" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS13" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS14" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS15" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS16" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS17" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS18" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS19" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS20" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS21" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS22" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS23" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS24" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS25" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS26" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS27" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS28" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS29" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS30" type="tns:PtPLinkTimeSlotMapType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="TS31" type="tns:PtPLinkTimeSlotMapType" />
+    </xs:sequence>
+    <xs:attribute name="iid" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="PtPLinkTimeSlotMapType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Value64KB" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value16KB0" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value16KB1" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value16KB2" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Value16KB3" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="Divided" type="xs:boolean" />
+  </xs:complexType>
+</xs:schema>

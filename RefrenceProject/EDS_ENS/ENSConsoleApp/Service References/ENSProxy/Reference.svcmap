@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5bdc8adf-2c25-42be-8963-695273bc5ad4" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8833/ENS/SubscriptionManager" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SubscriptionManager.wsdl" MetadataType="Wsdl" ID="4f87694d-af87-4914-a0f9-9c2c0a6271d6" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?wsdl=wsdl0" />
+    <MetadataFile FileName="SubscriptionManager.xsd" MetadataType="Schema" ID="2dc9a59d-ba4b-40b9-a863-7cf0a89954b5" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd4" />
+    <MetadataFile FileName="SubscriptionManager1.xsd" MetadataType="Schema" ID="4ca05195-ea23-44bf-93fe-157939876508" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd1" />
+    <MetadataFile FileName="SubscriptionManager2.xsd" MetadataType="Schema" ID="4427c42c-c3f5-4374-9289-93391d9d0c44" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd2" />
+    <MetadataFile FileName="SubscriptionManagerService.wsdl" MetadataType="Wsdl" ID="c992e99e-4a3a-4a0b-8712-7af95f35320e" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?wsdl" />
+    <MetadataFile FileName="SubscriptionManager1.wsdl" MetadataType="Wsdl" ID="26302daf-e148-4601-a759-823e64808ceb" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?wsdl=wsdl1" />
+    <MetadataFile FileName="SubscriptionManager3.xsd" MetadataType="Schema" ID="3e88f5f3-1e6b-49a2-8d3c-14714a1681d2" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd0" />
+    <MetadataFile FileName="SubscriptionManager.disco" MetadataType="Disco" ID="20f4bdcd-ac13-4bcc-9809-f7b5a33dca65" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?disco" />
+    <MetadataFile FileName="SubscriptionManager4.xsd" MetadataType="Schema" ID="73076be9-0bb4-4fbf-a40e-e6b7578f65b9" SourceId="1" SourceUrl="http://localhost:8833/ENS/SubscriptionManager?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

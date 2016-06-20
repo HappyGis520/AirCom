@@ -1,0 +1,8 @@
+J:\AirCom\Code\Client\Componet\bin\Release\NetPlanClient.Componet.dll
+J:\AirCom\Code\Client\Componet\bin\Release\NetPlanClient.Componet.pdb
+J:\AirCom\Code\Client\Componet\bin\Release\DevComponents.DotNetBar2.dll
+J:\AirCom\Code\Client\Componet\bin\Release\DevComponents.DotNetBar2.xml
+J:\AirCom\Code\Client\Componet\obj\Release\NetPlanClient.Componet.ucHeaderButton.resources
+J:\AirCom\Code\Client\Componet\obj\Release\NetPlanClient.Componet.csproj.GenerateResource.Cache
+J:\AirCom\Code\Client\Componet\obj\Release\NetPlanClient.Componet.dll
+J:\AirCom\Code\Client\Componet\obj\Release\NetPlanClient.Componet.pdb

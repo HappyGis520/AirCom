@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://AircomPlan.com" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://AircomPlan.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://AircomPlan.com">
+      <s:element name="CreateTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:PLAData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PLAData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="WorkOrder" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseInfo" type="tns:AirComLTENodeBaseInfo" />
+          <s:element minOccurs="0" maxOccurs="1" name="CellSectors" type="tns:ArrayOfCellSector" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverRadius" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AirComLTENodeBaseInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StationId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StationAlias" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Lng" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Lat" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="StationType" type="tns:EnumStationType" />
+          <s:element minOccurs="1" maxOccurs="1" name="SaveType" type="tns:EnumSaveType" />
+          <s:element minOccurs="1" maxOccurs="1" name="CoverType" type="tns:EnumCoverType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="EnumStationType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Planning" />
+          <s:enumeration value="Extant" />
+          <s:enumeration value="Other" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="EnumSaveType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Save" />
+          <s:enumeration value="Delete" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="EnumCoverType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Outdoor" />
+          <s:enumeration value="Indoor" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfCellSector">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CellSector" nillable="true" type="tns:CellSector" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CellSector">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CellID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Antenners" type="tns:ArrayOfAirComAntennaType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAirComAntennaType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AirComAntennaType" nillable="true" type="tns:AirComAntennaType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AirComAntennaType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="tns:AirComLocationType" />
+          <s:element minOccurs="1" maxOccurs="1" name="SectorId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AntennaTypeName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Azimuth" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Height" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="MechanicalDownTilt" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ElectricalDownTilt" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Power" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Burthen" type="s:double" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModelType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CarrierAlias" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CarrierId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="RadiusKm" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="ResolutionMetres" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AirComLocationType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LongitudeField" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Latitude" type="s:double" />
+        </s:sequence>
+        <s:attribute name="LongitudeSpecified" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:element name="CreateTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateTaskResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTaskByXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateTaskByXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreateTaskByXMLResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HelloWord">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="HelloWordResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTask" />
+  </wsdl:message>
+  <wsdl:message name="CreateTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateTaskByXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateTaskByXML" />
+  </wsdl:message>
+  <wsdl:message name="CreateTaskByXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateTaskByXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="HelloWordSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWord" />
+  </wsdl:message>
+  <wsdl:message name="HelloWordSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWordResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AirComServiceSoap">
+    <wsdl:operation name="CreateTask">
+      <wsdl:input message="tns:CreateTaskSoapIn" />
+      <wsdl:output message="tns:CreateTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateTaskByXML">
+      <wsdl:input message="tns:CreateTaskByXMLSoapIn" />
+      <wsdl:output message="tns:CreateTaskByXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="HelloWord">
+      <wsdl:input message="tns:HelloWordSoapIn" />
+      <wsdl:output message="tns:HelloWordSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AirComServiceSoap" type="tns:AirComServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTask">
+      <soap:operation soapAction="http://AircomPlan.com/CreateTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTaskByXML">
+      <soap:operation soapAction="http://AircomPlan.com/CreateTaskByXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWord">
+      <soap:operation soapAction="http://AircomPlan.com/HelloWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AirComServiceSoap12" type="tns:AirComServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateTask">
+      <soap12:operation soapAction="http://AircomPlan.com/CreateTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateTaskByXML">
+      <soap12:operation soapAction="http://AircomPlan.com/CreateTaskByXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="HelloWord">
+      <soap12:operation soapAction="http://AircomPlan.com/HelloWord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AirComService">
+    <wsdl:port name="AirComServiceSoap" binding="tns:AirComServiceSoap">
+      <soap:address location="http://127.0.0.1:8015/AirComService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AirComServiceSoap12" binding="tns:AirComServiceSoap12">
+      <soap12:address location="http://127.0.0.1:8015/AirComService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

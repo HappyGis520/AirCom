@@ -1,0 +1,17 @@
+I:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll.config
+I:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll
+I:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.pdb
+I:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.dll
+I:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.pdb
+I:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.csprojResolveAssemblyReference.cache
+E:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll.config
+E:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll
+E:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.pdb
+E:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.dll
+E:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.pdb
+H:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll.config
+H:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll
+H:\AirCom\Code_New\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.pdb
+H:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.csprojResolveAssemblyReference.cache
+H:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.dll
+H:\AirCom\Code_New\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.pdb
