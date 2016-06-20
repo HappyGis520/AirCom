@@ -18,6 +18,7 @@ namespace NetPlan.BLL
      {
          private AutoResetEvent _ReSet = new AutoResetEvent(false);
         private     Queue<PLAData> PLADatas = new Queue<PLAData>();
+         private bool DoNextTask = false;
 
         private void RegistEAWSEventHandle()
         {
@@ -92,9 +93,9 @@ namespace NetPlan.BLL
                      XmlFilePackageInfo xmlFilePage = new XmlFilePackageInfo();
                      //生成XML文件
                      JLog.Instance.AppInfo("开始生成XML文件....");
-                     var ok = LteNodeBuildFactory.BuilLTEXMLFilesInterface(_CurProcData.BaseInfo, _CurProcData.CellSectors, _CurProcData.Savedir,
+                     var _BuilLTEXMLResult = LteNodeBuildFactory.BuilLTEXMLFilesInterface(_CurProcData.BaseInfo, _CurProcData.CellSectors, _CurProcData.Savedir,
                          out xmlFilePage);
-                     if (ok) //生成成功
+                     if (_BuilLTEXMLResult) //生成成功
                      {
                         #region 导入仿真
                         JLog.Instance.AppInfo("开始生成XML成功,开始导入XML文件...");
@@ -110,12 +111,52 @@ namespace NetPlan.BLL
                                 string SchemaName = GlobalInfo.Instance.ConfigParam.EAWSSchemaName;
                                 if (!String.IsNullOrEmpty(Taskname))
                                 {
+                                    //获取带号
+                                    _CurProcData.GetExtend(_CurProcData.BaseInfo.Lng,_CurProcData.BaseInfo.Lat,_CurProcData.CoverRadius,7,out _CurProcData.RegionBound);
                                     BLLEAWS.Instance.UpdateRegionREQ(_CurProcData.RegionBound, SchemaName, Taskname);
+                                 
                                     _ReSet.WaitOne(60000);
-                                    BLLEAWS.Instance.StartTaskREQ(SchemaName, Taskname);
-                                    _ReSet.WaitOne(3600000);
-                                    //压缩文件，上传至浪潮
-                                    _ReSet.WaitOne(1800000);
+                                    if (DoNextTask)
+                                    {
+                                        BLLEAWS.Instance.StartTaskREQ(SchemaName, Taskname);
+                                        DoNextTask = false;
+                                        _ReSet.WaitOne(10000);
+                                        if (DoNextTask)
+                                        {
+                                         
+                                            _ReSet.WaitOne(1800000);
+                                            DoNextTask = false;
+                                            if (DoNextTask)
+                                            {
+                                                JLog.Instance.AppInfo("压缩文件，上传至浪潮");
+
+                                                if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete) //需要删除基站的，执行删除程序
+                                                {
+                                                    JLog.Instance.AppInfo("执行删除xml操作");
+
+                                                    #region 执行删除xml操作
+
+                                                    if (
+                                                        !ExecuteCommand(
+                                                            AutoEDSDeleteCommand(xmlFilePage.DeleteLTENodeFileFullName,
+                                                                _CurProcData.ProjectName),
+                                                            60000))
+                                                    {
+                                                        //提示删除失败
+                                                        JLog.Instance.AppInfo("执行删除xml操作失败");
+
+                                                    }
+                                                    else
+                                                    {
+                                                        JLog.Instance.AppInfo("执行删除xml操作成功");
+                                                        //提示删除成功
+                                                    }
+
+                                                    #endregion
+                                                }
+                                            }
+                                        }
+                                    }
 
                                 }
                                 else
@@ -136,30 +177,7 @@ namespace NetPlan.BLL
 
                                     //        #endregion
 
-                                    //    if (Data.BaseInfo.SaveType == EnumSaveType.Delete) //需要删除基站的，执行删除程序
-                                    //    {
-                                    //        JLog.Instance.AppInfo("执行删除xml操作");
 
-                                    //        #region 执行删除xml操作
-
-                                    //        if (
-                                    //            !ExecuteCommand(
-                                    //                AutoEDSDeleteCommand(xmlFilePage.DeleteLTENodeFileFullName,
-                                    //                    Data.ProjectName),
-                                    //                60000))
-                                    //        {
-                                    //            //提示删除失败
-                                    //            JLog.Instance.AppInfo("执行删除xml操作失败");
-
-                                    //        }
-                                    //        else
-                                    //        {
-                                    //            JLog.Instance.AppInfo("执行删除xml操作成功");
-                                    //            //提示删除成功
-                                    //        }
-
-                                    //        #endregion
-                                    //    } 
                                     #endregion
 
                                 }
@@ -172,10 +190,6 @@ namespace NetPlan.BLL
                         } 
                         #endregion
                     }
-                     else
-                     {
-                         //删除ＸＭＬ
-                     }
                  }
                  else
                  {
@@ -332,6 +346,11 @@ namespace NetPlan.BLL
 
         protected void SubDoEditRegionAck(bool Success, string Msg)
         {
+            JLog.Instance.AppInfo(string.Format("设置仿真范围{0}",Success?"成功":"失败"));
+            if (Success)
+            {
+                DoNextTask = true;
+            }
             _ReSet.Set();
 
         }
@@ -348,6 +367,11 @@ namespace NetPlan.BLL
 
         protected void SubDoEAWSTaskStartState(bool Success, string Msg)
         {
+            JLog.Instance.AppInfo(string.Format("启动仿真任务{0}", Success ? "成功" : "失败"));
+            if (Success)
+            {
+                DoNextTask = true;
+            }
             _ReSet.Set();
         }
 
@@ -363,6 +387,11 @@ namespace NetPlan.BLL
 
         protected void SubDoEAWSTaskCompletAck(bool Success, string SavePath)
         {
+            JLog.Instance.AppInfo(string.Format("运行仿真任务{0}", Success ? "成功" : "失败"));
+            if (Success)
+            {
+                DoNextTask = true;
+            }
             _ReSet.Set();
         }
 
