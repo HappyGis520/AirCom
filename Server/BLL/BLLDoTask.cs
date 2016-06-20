@@ -18,6 +18,15 @@ namespace NetPlan.BLL
      {
          private AutoResetEvent _ReSet = new AutoResetEvent(false);
         private     Queue<PLAData> PLADatas = new Queue<PLAData>();
+
+        private void RegistEAWSEventHandle()
+        {
+            BLLEAWS.Instance.RegistEditRegionAckEvent(SubDoEditRegionAck);
+            BLLEAWS.Instance.RegistEAWSTaskStartStateEvent(SubDoEAWSTaskStartState);
+            BLLEAWS.Instance.RegistEAWSTaskCompletAckEvent(SubDoEAWSTaskCompletAck);
+
+        }
+
         public void CreateTask(PLAData Data)
          {
             try
@@ -58,11 +67,6 @@ namespace NetPlan.BLL
 
         }
 
-         private void RegistEAWSAck()
-         {
-
-             
-         }
 
          private void DoWork()
          {
@@ -107,12 +111,19 @@ namespace NetPlan.BLL
                                 if (!String.IsNullOrEmpty(Taskname))
                                 {
                                     BLLEAWS.Instance.UpdateRegionREQ(_CurProcData.RegionBound, SchemaName, Taskname);
+                                    _ReSet.WaitOne(60000);
+                                    BLLEAWS.Instance.StartTaskREQ(SchemaName, Taskname);
+                                    _ReSet.WaitOne(3600000);
+                                    //压缩文件，上传至浪潮
+                                    _ReSet.WaitOne(1800000);
+
                                 }
                                 else
                                 {
                                     JLog.Instance.AppInfo("配置文件中没有找到相应的工程信息，中断");
                                 }
-                                
+
+                                #region MyRegion
                                 //if ((_CurProcData.ProjectName)) //启动EAWS仿真，源码有，没有合并
                                 {
                                     //    while (true) //等待EAW执行完成
@@ -148,7 +159,8 @@ namespace NetPlan.BLL
                                     //        }
 
                                     //        #endregion
-                                    //    }
+                                    //    } 
+                                    #endregion
 
                                 }
 
@@ -308,5 +320,58 @@ namespace NetPlan.BLL
             myProcess.WaitForExit(WaitForTime); //等待程序退出 
              return true;
          }
+
+
+
+
+        #region 自定义事件
+
+        #region 编辑仿真范围应答
+
+
+
+        protected void SubDoEditRegionAck(bool Success, string Msg)
+        {
+
+        }
+
+
+
+        #endregion
+
+
+
+        #region EAWS仿真任务启动状态
+
+
+
+        protected void SubDoEAWSTaskStartState(bool Success, string Msg)
+        {
+
+        }
+
+
+
+        #endregion
+
+
+
+        #region 仿真任务执行结果应答
+
+
+
+        protected void SubDoEAWSTaskCompletAck(bool Success, string SavePath)
+        {
+          
+        }
+
+
+        #endregion
+
+
+
+
+
+        #endregion
     }
 }

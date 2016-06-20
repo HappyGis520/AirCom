@@ -15,21 +15,30 @@ using NetPlan.Model;
 namespace NetPlan.BLL
 {
      public  class BLLEAWS:Singleton<BLLEAWS>
-    {
-       
-       
+     {
+
+         private EAWSCallBackSolid _CallBackHandle = null;
+         InstanceContext _callbackContext = null;
         private EAWSClient m_EAWSClient;
         private System.Object lockThis = new System.Object();
         private int counter = 0;
 
         public BLLEAWS()
         {
-            var CallBackHandle = new EAWSCallBackSolid();
-            CallBackHandle.RegistEAWSTaskCompletAckEvent(DoEAWSTaskCompulet);
-            InstanceContext _callbackContext = new InstanceContext(CallBackHandle);
+            _CallBackHandle = new EAWSCallBackSolid();
+            _CallBackHandle.RegistEAWSTaskCompletAckEvent(DoEAWSTaskCompulet);
+            _callbackContext = new InstanceContext(_CallBackHandle);
             m_EAWSClient = new EAWSClient(_callbackContext, "EAWSHTTPService");
             GlobalInfo.Instance.JobsRunning = new Hashtable();
         }
+
+         private void RegistEventHandle()
+         {
+            _CallBackHandle.RegistEditRegionAckEvent(SubDoEditRegionAck);
+            _CallBackHandle.RegistEAWSTaskStartStateEvent(SubDoEAWSTaskStartState);
+             _CallBackHandle.RegistEAWSTaskCompletAckEvent(SubDoEAWSTaskStartState);
+            
+         }
          public void GetAllTasksREQ()
          {
              ////Create a new AllSchemaTaskNamesRequest Object and create a new message GUID
@@ -452,12 +461,118 @@ namespace NetPlan.BLL
 
              }
          }
-        #region EAWS 事件处理
 
-         private void DoEAWSTaskCompulet(bool Success , string Message)
-         {
-             
-         }
+        #region 自定义事件
+
+        #region 编辑仿真范围应答
+
+        protected event Action<bool, string> EditRegionAckEvent;
+
+        protected void SubDoEditRegionAck(bool Success, string Msg)
+        {
+            JLog.Instance.AppInfo("编辑仿真范围应答。。");
+            RaiseEditRegionAckEvent(Success, Msg);
+        }
+
+        protected void RaiseEditRegionAckEvent(bool Success, string Msg)
+        {
+            if (EditRegionAckEvent != null)
+            {
+                EditRegionAckEvent.BeginInvoke(Success, Msg, null, null);
+            }
+
+        }
+
+        public void RegistEditRegionAckEvent(Action<bool, string> handle)
+        {
+            DeRegistEditRegionAckEvent(handle);
+            EditRegionAckEvent = handle;
+
+
+        }
+
+        public void DeRegistEditRegionAckEvent(Action<bool, string> handle)
+        {
+            EditRegionAckEvent = null;
+
+        }
+
+        #endregion
+
+
+
+        #region EAWS仿真任务启动状态
+
+        protected event Action<bool, string> EAWSTaskStartStateEvent;
+
+        protected void SubDoEAWSTaskStartState(bool Success, string Msg)
+        {
+            JLog.Instance.AppInfo("任务启动应答");
+            RaiseEAWSTaskStartStateEvent(Success, Msg);
+        }
+
+        protected void RaiseEAWSTaskStartStateEvent(bool Success, string Msg)
+        {
+            if (EAWSTaskStartStateEvent != null)
+            {
+                EAWSTaskStartStateEvent.BeginInvoke(Success, Msg, null, null);
+            }
+        }
+
+        public void RegistEAWSTaskStartStateEvent(Action<bool, string> handle)
+        {
+            DeRegistEAWSTaskStartStateEvent(handle);
+            EAWSTaskStartStateEvent = handle;
+
+
+        }
+
+        public void DeRegistEAWSTaskStartStateEvent(Action<bool, string> handle)
+        {
+            EAWSTaskStartStateEvent = null;
+
+        }
+
+        #endregion
+
+
+
+        #region 仿真任务执行结果应答
+
+        protected event Action<bool, string> EAWSTaskCompletAckEvent;
+
+        protected void SubDoEAWSTaskCompletAck(bool Success, string SavePath)
+        {
+            JLog.Instance.AppInfo("任启执行完成应答");
+            RaiseEAWSTaskCompletAckEvent(Success, SavePath);
+        }
+
+        protected void RaiseEAWSTaskCompletAckEvent(bool Success, string SavePath)
+        {
+            if (EAWSTaskCompletAckEvent != null)
+            {
+                EAWSTaskCompletAckEvent.BeginInvoke(Success, SavePath, null, null);
+            }
+
+        }
+
+        public void RegistEAWSTaskCompletAckEvent(Action<bool, string> handle)
+        {
+            DeRegistEAWSTaskCompletAckEvent(handle);
+            EAWSTaskCompletAckEvent = handle;
+
+
+        }
+
+        public void DeRegistEAWSTaskCompletAckEvent(Action<bool, string> handle)
+        {
+            EAWSTaskCompletAckEvent = null;
+
+        }
+
+        #endregion
+
+
 
 
 
