@@ -1,8 +1,0 @@
-I:\AirCom\Code_New\Server\WinService\bin\Debug\WinService.dll
-I:\AirCom\Code_New\Server\WinService\bin\Debug\WinService.pdb
-I:\AirCom\Code_New\Server\WinService\obj\Debug\WinService.dll
-I:\AirCom\Code_New\Server\WinService\obj\Debug\WinService.pdb
-H:\AirCom\Code_New\Server\WinService\bin\Debug\WinService.dll
-H:\AirCom\Code_New\Server\WinService\bin\Debug\WinService.pdb
-H:\AirCom\Code_New\Server\WinService\obj\Debug\WinService.dll
-H:\AirCom\Code_New\Server\WinService\obj\Debug\WinService.pdb
