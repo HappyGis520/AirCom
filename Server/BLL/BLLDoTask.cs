@@ -5,19 +5,25 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Mime;
 using System.Reflection;
+using System.ServiceModel.Channels;
 using System.Text;
 using System.Threading;
 using JLIB.CSharp;
 using JLIB.Utility;
 using NetPlan.Model;
 using Oracle.ManagedDataAccess.Client;
+using ZipOneCode.ZipProvider;
 
 namespace NetPlan.BLL
 {
      public  class BLLDoTask:Singleton<BLLDoTask>
      {
          private AutoResetEvent _ReSet = new AutoResetEvent(false);
-        private     Queue<PLAData> PLADatas = new Queue<PLAData>();
+        private  Queue<PLAData> PLADatas = new Queue<PLAData>();
+         private string ReleaseSaveDir = string.Empty;
+        /// <summary>
+        /// 是否执行下一步
+        /// </summary>
          private bool DoNextTask = false;
 
         private void RegistEAWSEventHandle()
@@ -112,24 +118,43 @@ namespace NetPlan.BLL
                                 if (!String.IsNullOrEmpty(Taskname))
                                 {
                                     //获取带号
-                                    _CurProcData.GetExtend(_CurProcData.BaseInfo.Lng,_CurProcData.BaseInfo.Lat,_CurProcData.CoverRadius,7,out _CurProcData.RegionBound);
+                                
+                                    var ProjectInfo = GlobalInfo.Instance.ConfigParam.ProjectNames.FirstOrDefault(
+                                        Fo => Fo.ProjectName == _CurProcData.ProjectName);
+                                    if (ProjectInfo == null)
+                                    {
+                                       
+                                        JLog.Instance.AppInfo(string.Format("配置文件中没有找到工程名为：{0}的工程",_CurProcData.ProjectName));
+                                        continue;
+                                    }
+                                    var ProjNo = ProjectInfo.UtmID;
+                                    JLog.Instance.AppInfo(string.Format("工程投影带号为：{0}的", ProjNo));
+                                    _CurProcData.GetExtend(_CurProcData.BaseInfo.Lng,_CurProcData.BaseInfo.Lat,_CurProcData.CoverRadius, ProjNo, out _CurProcData.RegionBound);
+                                    JLog.Instance.AppInfo(string.Format("工程坐标范围为：{0}", _CurProcData.RegionBound.ToString()));
                                     BLLEAWS.Instance.UpdateRegionREQ(_CurProcData.RegionBound, SchemaName, Taskname);
-                                 
+                                   
                                     _ReSet.WaitOne(60000);
                                     if (DoNextTask)
                                     {
+                                        JLog.Instance.AppInfo("编辑仿真范围完成");
                                         BLLEAWS.Instance.StartTaskREQ(SchemaName, Taskname);
                                         DoNextTask = false;
                                         _ReSet.WaitOne(10000);
                                         if (DoNextTask)
                                         {
-                                         
+                                            JLog.Instance.AppInfo("启动仿真任务完成");
                                             _ReSet.WaitOne(1800000);
                                             DoNextTask = false;
                                             if (DoNextTask)
                                             {
+                                                JLog.Instance.AppInfo("仿真任务执行完成");
+                                                if (string.IsNullOrEmpty(ReleaseSaveDir))
+                                                {
+                                                    JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}",ReleaseSaveDir));
+                                                    continue;
+                                                }
+                                                JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}", ReleaseSaveDir));
                                                 JLog.Instance.AppInfo("压缩文件，上传至浪潮");
-
                                                 if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete) //需要删除基站的，执行删除程序
                                                 {
                                                     JLog.Instance.AppInfo("执行删除xml操作");

@@ -135,10 +135,10 @@ namespace NetPlan.BLL
                     //set the schema name, task name and the region.
                     rEditTaskRegionRequest.SchemaName = SchemaName;//IDC_SCHEMA_COMBO.SelectedItem.ToString();
                     rEditTaskRegionRequest.TaskName = TaskName;// IDC_TASK_COMBO.SelectedItem.ToString();
-                    rEditTaskRegionRequest.EastMin = Region.EastMin;// Convert.ToInt32(rEditRegion.IDC_EASTMIN.Text);
-                    rEditTaskRegionRequest.EastMax = Region.Eastmax;// Convert.ToInt32(rEditRegion.IDC_EASTMAX.Text);
-                    rEditTaskRegionRequest.NorthMin = Region.NorthMin;// Convert.ToInt32(rEditRegion.IDC_NORTHMIN.Text);
-                    rEditTaskRegionRequest.NorthMax = Region.NorthMax;// Convert.ToInt32(rEditRegion.IDC_NORTHMAX.Text);
+                    rEditTaskRegionRequest.EastMin = Convert.ToInt32(Region.EastMin.ToString());// Convert.ToInt32(rEditRegion.IDC_EASTMIN.Text);
+                    rEditTaskRegionRequest.EastMax = Convert.ToInt32(Region.Eastmax.ToString());// Convert.ToInt32(rEditRegion.IDC_EASTMAX.Text);
+                    rEditTaskRegionRequest.NorthMin = Convert.ToInt32(Region.NorthMin.ToString());// Convert.ToInt32(rEditRegion.IDC_NORTHMIN.Text);
+                    rEditTaskRegionRequest.NorthMax = Convert.ToInt32(Region.NorthMax.ToString());// Convert.ToInt32(rEditRegion.IDC_NORTHMAX.Text);
 
                 GlobalInfo.Instance.JobsRunning[rEditTaskRegionRequest.itemID] = rEditTaskRegionRequest;
 

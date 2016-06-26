@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Diagnostics;
 using ICSharpCode.SharpZipLib;
-using ICSharpCode.SharpZipLib.Checksum;
+using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 namespace ZipOneCode.ZipProvider
@@ -89,7 +89,7 @@ namespace ZipOneCode.ZipProvider
         /// <param name="buffer">读取文件的缓冲区大小</param>
         private void CompressDirectory(string root, string path, ZipOutputStream s, byte[] buffer)
         {
-            root = root.TrimEnd(@"/") + @"/";
+            root = root.TrimEnd('/') + @"/";
             string[] fileNames = Directory.GetFiles(path);
             string[] dirNames = Directory.GetDirectories(path);
             string relativePath = path.Replace(root, "");
@@ -131,7 +131,7 @@ namespace ZipOneCode.ZipProvider
         /// <param name="bufferSize">读取文件的缓冲区大小</param>
         public void Extract(string zipFilePath, string extractPath, int bufferSize)
         {
-            extractPath = extractPath.TrimEnd('//') + "//";
+            extractPath = extractPath.TrimEnd('/') + "//";
             byte[] data = new byte[bufferSize];
             int size;
             using (ZipInputStream s = new ZipInputStream(File.OpenRead(zipFilePath)))

@@ -16,5 +16,9 @@ namespace NetPlan.Model
         public double Eastmax = 120;
         public double NorthMin =0;
         public double NorthMax = 80;
+        public override string ToString()
+        {
+           return  string.Format("EastMin{0}：Eastmax：{1}NorthMin：{2}NorthMax：{3}", EastMin, Eastmax, NorthMin, NorthMax);
+        }
     }
 }
