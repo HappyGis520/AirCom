@@ -155,6 +155,7 @@ namespace NetPlan.BLL
                                                 }
                                                 JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}", ReleaseSaveDir));
                                                 JLog.Instance.AppInfo("压缩文件，上传至浪潮");
+                                                
                                                 if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete) //需要删除基站的，执行删除程序
                                                 {
                                                     JLog.Instance.AppInfo("执行删除xml操作");

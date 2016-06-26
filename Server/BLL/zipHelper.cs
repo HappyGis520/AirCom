@@ -10,7 +10,7 @@ using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 namespace ZipOneCode.ZipProvider
 {
-    public class ZipHelper
+    public class ZipHelper:sing
     {
         /// <summary>
         /// 压缩文件
