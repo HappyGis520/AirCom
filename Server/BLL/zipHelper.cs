@@ -8,9 +8,11 @@ using ICSharpCode.SharpZipLib;
 using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
+using JLIB.CSharp;
+
 namespace ZipOneCode.ZipProvider
 {
-    public class ZipHelper:sing
+    public class ZipHelper:Singleton<ZipHelper>
     {
         /// <summary>
         /// 压缩文件
