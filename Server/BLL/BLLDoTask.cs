@@ -157,8 +157,9 @@ namespace NetPlan.BLL
                                                 JLog.Instance.AppInfo("压缩文件，上传至浪潮");
 
                                                 //ZipHelper.Instance.CompressDirectory(ReleaseSaveDir,GlobalInfo.Instance.ConfigParam.EAWSRealseDir,0);
-                                                Inspur.UploadRelease.TaircomServiceImplService s = new Inspur.UploadRelease.TaircomServiceImplService();
-
+                                                Inspur.InspurService.TaircomServiceImplService s = new Inspur.InspurService.TaircomServiceImplService();
+                                                var sendxml = string.Empty;
+                                                var recxml= s.SycAirCom(sendxml);
 
                                                 if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete) //需要删除基站的，执行删除程序
                                                 {
