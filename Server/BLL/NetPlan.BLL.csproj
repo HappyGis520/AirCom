@@ -63,6 +63,10 @@
     <Compile Include="zipHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Inspur\Inspur.csproj">
+      <Project>{45c52049-3cb7-4a23-8264-936c33d3d41d}</Project>
+      <Name>Inspur</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BDL\NetPlan.BDL.csproj">
       <Project>{62378c53-2665-4d5a-a5f2-76c1a42b339c}</Project>
       <Name>NetPlan.BDL</Name>

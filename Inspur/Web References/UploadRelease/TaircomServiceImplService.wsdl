@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://impl.service.jswebservice.plugins.inspur.com/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="TaircomServiceImplService" targetNamespace="http://impl.service.jswebservice.plugins.inspur.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://impl.service.jswebservice.plugins.inspur.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="SycAirCom" type="tns:SycAirCom" />
+      <xs:element name="SycAirComResponse" type="tns:SycAirComResponse" />
+      <xs:complexType name="SycAirCom">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="SycAirComResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="SycAirCom">
+    <wsdl:part name="parameters" element="tns:SycAirCom" />
+  </wsdl:message>
+  <wsdl:message name="SycAirComResponse">
+    <wsdl:part name="parameters" element="tns:SycAirComResponse" />
+  </wsdl:message>
+  <wsdl:portType name="TaircomServiceImpl">
+    <wsdl:operation name="SycAirCom">
+      <wsdl:input name="SycAirCom" message="tns:SycAirCom" />
+      <wsdl:output name="SycAirComResponse" message="tns:SycAirComResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TaircomServiceImplServiceSoapBinding" type="tns:TaircomServiceImpl">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SycAirCom">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="SycAirCom">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SycAirComResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TaircomServiceImplService">
+    <wsdl:port name="TaircomServiceImplPort" binding="tns:TaircomServiceImplServiceSoapBinding">
+      <soap:address location="http://10.40.94.12:7100/nwom/ws/jswebservice/taircomTask" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
