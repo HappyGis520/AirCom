@@ -27,9 +27,9 @@ namespace Inspur.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://10.40.94.12:7100/nwom/ws/jswebservice/taircomTask")]
-        public string Inspur_UploadRelease_TaircomServiceImplService {
+        public string Inspur_InspurService_TaircomServiceImplService {
             get {
-                return ((string)(this["Inspur_UploadRelease_TaircomServiceImplService"]));
+                return ((string)(this["Inspur_InspurService_TaircomServiceImplService"]));
             }
         }
     }

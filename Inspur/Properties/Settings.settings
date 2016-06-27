@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Inspur.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="Inspur_UploadRelease_TaircomServiceImplService" Type="(Web Service URL)" Scope="Application">
+    <Setting Name="Inspur_InspurService_TaircomServiceImplService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://10.40.94.12:7100/nwom/ws/jswebservice/taircomTask</Value>
     </Setting>
   </Settings>

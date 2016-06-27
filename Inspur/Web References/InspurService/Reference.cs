@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace Inspur.UploadRelease {
+namespace Inspur.InspurService {
     using System;
     using System.Web.Services;
     using System.Diagnostics;
@@ -35,7 +35,7 @@ namespace Inspur.UploadRelease {
         
         /// <remarks/>
         public TaircomServiceImplService() {
-            this.Url = global::Inspur.Properties.Settings.Default.Inspur_UploadRelease_TaircomServiceImplService;
+            this.Url = global::Inspur.Properties.Settings.Default.Inspur_InspurService_TaircomServiceImplService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;
