@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Inspur
 {
-    public class Class1
+    [Serializable]
+    public class MQueset
     {
+    }
+    [Serializable]
+    public class MResponse
+    {
+
     }
 }
