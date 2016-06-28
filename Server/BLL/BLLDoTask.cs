@@ -13,14 +13,13 @@ using JLIB.Utility;
 using NetPlan.Model;
 using Oracle.ManagedDataAccess.Client;
 using ZipOneCode.ZipProvider;
-
 namespace NetPlan.BLL
 {
      public  class BLLDoTask:Singleton<BLLDoTask>
      {
          private AutoResetEvent _ReSet = new AutoResetEvent(false);
         private  Queue<PLAData> PLADatas = new Queue<PLAData>();
-         private string ReleaseSaveDir = string.Empty;
+         private string EAWSReleaseSaveDir = string.Empty;
         /// <summary>
         /// 是否执行下一步
         /// </summary>
@@ -148,19 +147,27 @@ namespace NetPlan.BLL
                                             if (DoNextTask)
                                             {
                                                 JLog.Instance.AppInfo("仿真任务执行完成");
-                                                if (string.IsNullOrEmpty(ReleaseSaveDir))
+                                                if (string.IsNullOrEmpty(EAWSReleaseSaveDir))
                                                 {
-                                                    JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}",ReleaseSaveDir));
+                                                    JLog.Instance.AppInfo(string.Format("EAWS返回仿真结果保存路径：{0}",EAWSReleaseSaveDir));
                                                     continue;
                                                 }
-                                                JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}", ReleaseSaveDir));
+                                                JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}", EAWSReleaseSaveDir));
                                                 JLog.Instance.AppInfo("压缩文件，上传至浪潮");
 
-                                                //ZipHelper.Instance.CompressDirectory(ReleaseSaveDir,GlobalInfo.Instance.ConfigParam.EAWSRealseDir,0);
-                                                Inspur.InspurService.TaircomServiceImplService s = new Inspur.InspurService.TaircomServiceImplService();
-                                                var sendxml = string.Empty;
-                                                var recxml= s.SycAirCom(sendxml);
+                                                ZipHelper.Instance.CompressDirectory(EAWSReleaseSaveDir,GlobalInfo.Instance.ConfigParam.EAWSRealseDir,0,0);
+                                                
 
+                                                Inspur.InspurRequestApiModel sendmodel = new Inspur.InspurRequestApiModel()
+                                                {
+                                                    flow_id = _CurProcData.WorkOrder,
+                                                    name = "wjj",
+                                                    remark = ""
+                                                };
+                                                var sendxml = XMLHelper.SerializeToXmlStr(sendmodel, true);
+                                                var s = new Inspur.InspurService.TaircomServiceImplService();
+                                                var recxml= s.SycAirCom(sendxml);
+                                                var recModel = XMLHelper.XmlDeserialize<Inspur.InspurRequestApiModel>(recxml);
                                                 if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete) //需要删除基站的，执行删除程序
                                                 {
                                                     JLog.Instance.AppInfo("执行删除xml操作");

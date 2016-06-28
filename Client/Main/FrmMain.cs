@@ -9,10 +9,13 @@ using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using EDSProxy.EDSClient;
+using ICSharpCode.SharpZipLib.Checksums;
+using ICSharpCode.SharpZipLib.Zip;
 using JLIB.CSharp;
 using JLIB.Utility;
 using NetPlan.BLL;
 using NetPlan.Model;
+using ZipOneCode.ZipProvider;
 
 
 namespace NetPlanClient
@@ -407,5 +410,31 @@ namespace NetPlanClient
 
             }
         }
+
+        private void buttonX2_Click_1(object sender, EventArgs e)
+        {
+            Inspur.InspurRequestApiModel model = new Inspur.InspurRequestApiModel()
+            {
+                flow_id = 1,
+                name = "wjj",
+                remark = "dfsafsafasf"
+            };
+            //var objs = XMLHelper.SerializeToXmlStr(model, false);
+            var objs2 = XMLHelper.SerializeToXmlStr(model,true);
+            //var objs3 = XMLHelper.XmlDeserialize<Inspur.InspurRequestApiModel>(objs);
+            var objs4 = XMLHelper.XmlDeserialize<Inspur.InspurRequestApiModel>(objs2);
+        }
+
+        private void buttonX3_Click_1(object sender, EventArgs e)
+        {
+            //Utility. (@"d:\", @"D:\wjj");
+            //Utility.DirectoryToZip(@"D:\wjj", @"d:\tt.zip");
+            //Utility.zipDir(@"d:\tt.zip", @"D:\wjj");
+            Utility.Zip(@"d:\tt.zip", @"D:\wjj",string.Empty,Utility.CompressLevel.Level5);
+        }
+
+
+
+
     }
 }
