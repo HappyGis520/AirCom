@@ -144,6 +144,8 @@
     <Content Include="AppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DOC\AppConfig.xml" />
+    <Content Include="DOC\test.xml" />
     <None Include="Resources\PDT_Close.png" />
     <None Include="Resources\LOGO.png" />
     <None Include="Resources\login_Logo.png" />
