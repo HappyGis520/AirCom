@@ -107,11 +107,19 @@ namespace NetPlanClient
         #endregion
 
         #region Zip folder
-
-        public static int Zip(string destFolder, string srcFolder, string password, CompressLevel level)
+        /// <summary>
+        /// 压缩文件夹
+        /// </summary>
+        /// <param name="destFile">压缩后的文件</param>
+        /// <param name="srcFolder">压缩文件夹</param>
+        /// <param name="password">密码</param>
+        /// <param name="level">压缩级别</param>
+        /// <returns></returns>
+        public static int Zip(string destFile, string srcFolder, string password, CompressLevel level)
         {
             ZipOutputStream zipStream = null;
             FileStream streamWriter = null;
+            ///文件数
             int count = 0;
 
             try
@@ -120,7 +128,7 @@ namespace NetPlanClient
                 Crc32 crc32 = new Crc32();
 
                 //Create Zip File
-                zipStream = new ZipOutputStream(File.Create(destFolder));
+                zipStream = new ZipOutputStream(File.Create(destFile));
 
                 //Specify Level
                 zipStream.SetLevel(Convert.ToInt32(level));
@@ -239,52 +247,58 @@ namespace NetPlanClient
         #region Common Function
 
         /// <summary>
-        /// Example : Make "C:TestZipFile" To "ZipFile"
+        /// 获取最后一个文件夹名称；Example : Make "C:TestZipFile" To "ZipFile"
         /// </summary>
         /// <param name="directory">Directory</param>
         /// <returns></returns>
         private static string GetDirectoryName(string directory)
         {
-            directory = directory.Replace("/", @"").Replace(@"\", @"");
-            if (directory[directory.Length - 1].ToString() == @"")
+            directory = directory.Replace("/", @" ").Replace(@"\", @" ");
+            if (directory[directory.Length - 1].ToString() == @" ")
             {
                 directory = directory.Substring(0, directory.Length - 1);
             }
 
-            int lastRoot = directory.LastIndexOfAny(@"".ToCharArray());
+            int lastRoot = directory.LastIndexOfAny(@" ".ToCharArray());
 
-            return directory.Substring(lastRoot + 1, directory.Length - lastRoot - 1);
+            return directory.Substring(lastRoot + 1, directory.Length - lastRoot -1 );
         }
-
+        /// <summary>
+        /// 添加文件夹至压缩文件
+        /// </summary>
+        /// <param name="directory">压缩的文件夹</param>
+        /// <param name="logicBaseDir">上级文件夹</param>
+        /// <param name="zipStream"></param>
+        /// <param name="crc32"></param>
+        /// <param name="streamWriter"></param>
+        /// <returns></returns>
         private static int PutDirectoryToZipStream(string directory, string logicBaseDir,
                                                    ZipOutputStream zipStream, Crc32 crc32, FileStream streamWriter)
         {
             int count = 0;
 
             //Get the logic directory
-            string logicDir = null;
-            if (logicBaseDir == null || logicBaseDir.Length == 0)
+            string logicDir = string.Empty;
+            if (string.IsNullOrEmpty(logicBaseDir))
             {
-                logicDir = GetDirectoryName(directory);
+                logicDir = ".";// GetDirectoryName(directory);
             }
             else
             {
-                logicDir = logicBaseDir + @"" + GetDirectoryName(directory);
+                logicDir = logicBaseDir + @"\" + GetDirectoryName(directory);
             }
-            logicDir = logicDir.Replace("/", @"").Replace(@"\", @"");
+            //if (!string.IsNullOrEmpty(logicBaseDir))
+            //{
+
+            //    logicDir = logicBaseDir + @"\" + GetDirectoryName(directory);
+            //}
+            //logicDir = logicDir.Replace("/", @"").Replace(@"\", @"");
 
             //Get Directories Name
             string[] dirs = Directory.GetDirectories(directory);
 
             //Get Files Name
             string[] files = Directory.GetFiles(directory);
-
-            //Foreach Directories
-            foreach (string dir in dirs)
-            {
-                count = count + PutDirectoryToZipStream(dir, logicDir, zipStream, crc32, streamWriter);
-            }
-
             //Foreach Files
             foreach (string file in files)
             {
@@ -297,7 +311,9 @@ namespace NetPlanClient
                 //Specify ZipEntry
                 crc32.Reset();
                 crc32.Update(buffer);
-                ZipEntry zipEntry = new ZipEntry(Path.Combine(logicDir, Path.GetFileName(file)));
+                string FileName =string.IsNullOrEmpty(logicBaseDir)? Path.GetFileName(file): Path.Combine(logicDir, Path.GetFileName(file));
+                ZipEntry zipEntry = new ZipEntry(FileName);
+
                 zipEntry.DateTime = DateTime.Now;
                 zipEntry.Size = buffer.Length;
                 zipEntry.Crc = crc32.Value;
@@ -310,7 +326,11 @@ namespace NetPlanClient
 
                 count++;
             }
-
+            //Foreach Directories
+            foreach (string dir in dirs)
+            {
+                count = count + PutDirectoryToZipStream(dir, logicDir, zipStream, crc32, streamWriter);
+            }
             return count;
         }
 
