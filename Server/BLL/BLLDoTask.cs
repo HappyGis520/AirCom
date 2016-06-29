@@ -166,7 +166,15 @@ namespace NetPlan.BLL
                                                 var sendxml = XMLHelper.SerializeToXmlStr(sendmodel, true);
                                                 var s = new Inspur.InspurService.TaircomServiceImplService();
                                                 var recxml= s.SycAirCom(sendxml);
-                                                var recModel = XMLHelper.XmlDeserialize<Inspur.InspurRequestApiModel>(recxml);
+                                                var recModel = XMLHelper.XmlDeserialize<Inspur.InspurResponeseApiModel>(recxml);
+                                                if (recModel.is_archive.Equals("0"))
+                                                {
+                                                    JLog.Instance.AppInfo("浪潮返回调用成功消息");
+                                                }
+                                                else
+                                                {
+                                                    JLog.Instance.AppInfo("浪潮返回调用失败消息");
+                                                }
                                                 if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete) //需要删除基站的，执行删除程序
                                                 {
                                                     JLog.Instance.AppInfo("执行删除xml操作");
