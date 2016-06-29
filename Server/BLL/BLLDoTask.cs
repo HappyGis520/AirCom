@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Mime;
 using System.Reflection;
@@ -154,10 +155,8 @@ namespace NetPlan.BLL
                                                 }
                                                 JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}", EAWSReleaseSaveDir));
                                                 JLog.Instance.AppInfo("压缩文件，上传至浪潮");
-
-                                                ZipHelper.Instance.CompressDirectory(EAWSReleaseSaveDir,GlobalInfo.Instance.ConfigParam.EAWSRealseDir,0,0);
-                                                
-
+                                                string rarFileName = string.Format("{0}.rar", Guid.NewGuid().ToString());
+                                                ZipHelper.Zip(Path.Combine( GlobalInfo.Instance.ConfigParam.EAWSRealseDir, rarFileName), EAWSReleaseSaveDir, string.Empty,ZipHelper.CompressLevel.Level6);
                                                 Inspur.InspurRequestApiModel sendmodel = new Inspur.InspurRequestApiModel()
                                                 {
                                                     flow_id = _CurProcData.WorkOrder,

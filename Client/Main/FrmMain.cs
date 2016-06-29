@@ -430,7 +430,7 @@ namespace NetPlanClient
             //Utility. (@"d:\", @"D:\wjj");
             //Utility.DirectoryToZip(@"D:\wjj", @"d:\tt.zip");
             //Utility.zipDir(@"d:\tt.zip", @"D:\wjj");
-            Utility.Zip(@"d:\wjj.zip", @"D:\wjj",string.Empty,Utility.CompressLevel.Level5);
+            Utility.Zip(@"d:\afdsaf.zip", @"D:\wjj",string.Empty,Utility.CompressLevel.Level5);
         }
 
 

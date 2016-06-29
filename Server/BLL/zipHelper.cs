@@ -9,168 +9,336 @@ using ICSharpCode.SharpZipLib.Checksums;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
 using JLIB.CSharp;
+using JLIB.Utility;
 
 namespace ZipOneCode.ZipProvider
 {
     public class ZipHelper:Singleton<ZipHelper>
     {
-        /// <summary>
-        /// 压缩文件
-        /// </summary>
-        /// <param name="sourceFilePath"></param>
-        /// <param name="destinationZipFilePath"></param>
-        public static void CreateZip(string sourceFilePath, string destinationZipFilePath)
+        public const int BUFFER_SIZE = 2048;
+
+        #region CompressLevel
+
+        // 0 - store only to 9 - means best compression
+        public enum CompressLevel
         {
-            if (sourceFilePath[sourceFilePath.Length - 1] != System.IO.Path.DirectorySeparatorChar)
-                sourceFilePath += System.IO.Path.DirectorySeparatorChar;
-            ZipOutputStream zipStream = new ZipOutputStream(File.Create(destinationZipFilePath));
-            zipStream.SetLevel(6);  // 压缩级别 0-9
-            CreateZipFiles(sourceFilePath, zipStream);
-            zipStream.Finish();
-            zipStream.Close();
-        }
-        /// <summary>
-        /// 递归压缩文件
-        /// </summary>
-        /// <param name="sourceFilePath">待压缩的文件或文件夹路径</param>
-        /// <param name="zipStream">打包结果的zip文件路径（类似 D:\WorkSpace\a.zip）,全路径包括文件名和.zip扩展名</param>
-        /// <param name="staticFile"></param>
-        private static void CreateZipFiles(string sourceFilePath, ZipOutputStream zipStream)
-        {
-            Crc32 crc = new Crc32();
-            string[] filesArray = Directory.GetFileSystemEntries(sourceFilePath);
-            foreach (string file in filesArray)
-            {
-                if (Directory.Exists(file))                     //如果当前是文件夹，递归
-                {
-                    CreateZipFiles(file, zipStream);
-                }
-                else                                            //如果是文件，开始压缩
-                {
-                    FileStream fileStream = File.OpenRead(file);
-                    byte[] buffer = new byte[fileStream.Length];
-                    fileStream.Read(buffer, 0, buffer.Length);
-                    string tempFile = file.Substring(sourceFilePath.LastIndexOf("\\") + 1);
-                    ZipEntry entry = new ZipEntry(tempFile);
-                    entry.DateTime = DateTime.Now;
-                    entry.Size = fileStream.Length;
-                    fileStream.Close();
-                    crc.Reset();
-                    crc.Update(buffer);
-                    entry.Crc = crc.Value;
-                    zipStream.PutNextEntry(entry);
-                    zipStream.Write(buffer, 0, buffer.Length);
-                }
-            }
-        }
-        /// <summary>
-        /// 压缩文件夹
-        /// </summary>
-        /// <param name="dirPath">压缩文件夹的路径</param>
-        /// <param name="fileName">生成的zip文件路径</param>
-        /// <param name="level">压缩级别 0 - 9 0是存储级别 9是最大压缩</param>
-        /// <param name="bufferSize">读取文件的缓冲区大小</param>
-        public void CompressDirectory(string dirPath, string fileName, int level, int bufferSize)
-        {
-            byte[] buffer = new byte[bufferSize];
-            using (ZipOutputStream s = new ZipOutputStream(File.Create(fileName)))
-            {
-                s.SetLevel(level);
-                CompressDirectory(dirPath, dirPath, s, buffer);
-                s.Finish();
-                s.Close();
-            }
+            Store = 0,
+            Level1,
+            Level2,
+            Level3,
+            Level4,
+            Level5,
+            Level6,
+            Level7,
+            Level8,
+            Best
         }
 
-        /// <summary>
-        /// 压缩文件夹
-        /// </summary>
-        /// <param name="root">压缩文件夹路径</param>
-        /// <param name="path">压缩文件夹内当前要压缩的文件夹路径</param>
-        /// <param name="s"></param>
-        /// <param name="buffer">读取文件的缓冲区大小</param>
-        private void CompressDirectory(string root, string path, ZipOutputStream s, byte[] buffer)
-        {
-            root = root.TrimEnd('/') + @"/";
-            string[] fileNames = Directory.GetFiles(path);
-            string[] dirNames = Directory.GetDirectories(path);
-            string relativePath = path.Replace(root, "");
-            if (relativePath != "")
-            {
-                relativePath = relativePath.Replace("//", "/") + "/";
-            }
-            int sourceBytes;
-            foreach (string file in fileNames)
-            {
+        #endregion
 
-                ZipEntry entry = new ZipEntry(relativePath + Path.GetFileName(file));
-                entry.DateTime = DateTime.Now;
-                s.PutNextEntry(entry);
-                using (FileStream fs = File.OpenRead(file))
+        #region Unzip
+
+        public static int Unzip(string destFolder, string srcZipFile, string password)
+        {
+            ZipInputStream zipStream = null;
+            ZipEntry zipEntry = null;
+            FileStream streamWriter = null;
+            int count = 0;
+
+            try
+            {
+                zipStream = new ZipInputStream(File.OpenRead(srcZipFile));
+                zipStream.Password = password;
+
+                while ((zipEntry = zipStream.GetNextEntry()) != null)
                 {
-                    do
+                    string zipFileDirectory = Path.GetDirectoryName(zipEntry.Name);
+                    string destFileDirectory = Path.Combine(destFolder, zipFileDirectory);
+                    if (!Directory.Exists(destFileDirectory))
                     {
-                        sourceBytes = fs.Read(buffer, 0, buffer.Length);
-                        s.Write(buffer, 0, sourceBytes);
-                    } while (sourceBytes > 0);
-                }
-            }
-
-            foreach (string dirName in dirNames)
-            {
-                string relativeDirPath = dirName.Replace(root, "");
-                ZipEntry entry = new ZipEntry(relativeDirPath.Replace("//", "/") + "/");
-                s.PutNextEntry(entry);
-                CompressDirectory(root, dirName, s, buffer);
-            }
-        }
-
-        /// <summary>
-        /// 解压缩zip文件
-        /// </summary>
-        /// <param name="zipFilePath">解压的zip文件路径</param>
-        /// <param name="extractPath">解压到的文件夹路径</param>
-        /// <param name="bufferSize">读取文件的缓冲区大小</param>
-        public void Extract(string zipFilePath, string extractPath, int bufferSize)
-        {
-            extractPath = extractPath.TrimEnd('/') + "//";
-            byte[] data = new byte[bufferSize];
-            int size;
-            using (ZipInputStream s = new ZipInputStream(File.OpenRead(zipFilePath)))
-            {
-                ZipEntry entry;
-                while ((entry = s.GetNextEntry()) != null)
-                {
-                    string directoryName = Path.GetDirectoryName(entry.Name);
-                    string fileName = Path.GetFileName(entry.Name);
-
-                    //先创建目录
-                    if (directoryName.Length > 0)
-                    {
-                        Directory.CreateDirectory(extractPath + directoryName);
+                        Directory.CreateDirectory(destFileDirectory);
                     }
 
-                    if (fileName != String.Empty)
+                    string fileName = Path.GetFileName(zipEntry.Name);
+                    if (fileName.Length > 0)
                     {
-                        using (FileStream streamWriter = File.Create(extractPath + entry.Name.Replace("/", "//")))
+                        string destFilePath = Path.Combine(destFileDirectory, fileName);
+
+                        streamWriter = File.Create(destFilePath);
+                        int size = BUFFER_SIZE;
+                        byte[] data = new byte[BUFFER_SIZE];
+                        int extractCount = 0;
+                        while (true)
                         {
-                            while (true)
+                            size = zipStream.Read(data, 0, data.Length);
+                            if (size > 0)
                             {
-                                size = s.Read(data, 0, data.Length);
-                                if (size > 0)
-                                {
-                                    streamWriter.Write(data, 0, size);
-                                }
-                                else
-                                {
-                                    break;
-                                }
+                                streamWriter.Write(data, 0, size);
                             }
+                            else
+                            {
+                                break;
+                            }
+                            extractCount += size;
                         }
+
+                        streamWriter.Flush();
+                        streamWriter.Close();
+                        count++;
                     }
                 }
             }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                if (zipStream != null)
+                {
+                    zipStream.Close();
+                }
+
+                if (streamWriter != null)
+                {
+                    streamWriter.Close();
+                }
+            }
+
+            return count;
         }
+
+        #endregion
+
+        #region Zip folder
+        /// <summary>
+        /// 压缩文件夹
+        /// </summary>
+        /// <param name="destFile">压缩后的文件</param>
+        /// <param name="srcFolder">压缩文件夹</param>
+        /// <param name="password">密码</param>
+        /// <param name="level">压缩级别</param>
+        /// <returns></returns>
+        public static int Zip(string destFile, string srcFolder, string password, CompressLevel level)
+        {
+            ZipOutputStream zipStream = null;
+            FileStream streamWriter = null;
+            ///文件数
+            int count = 0;
+
+            try
+            {
+                //Use Crc32
+                Crc32 crc32 = new Crc32();
+
+                //Create Zip File
+                zipStream = new ZipOutputStream(File.Create(destFile));
+
+                //Specify Level
+                zipStream.SetLevel(Convert.ToInt32(level));
+
+                //Specify Password
+                if (password != null && password.Trim().Length > 0)
+                {
+                    zipStream.Password = password;
+                }
+
+                count = PutDirectoryToZipStream(srcFolder, null, zipStream, crc32, streamWriter);
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message);
+            }
+            finally
+            {
+                //Clear Resource
+                if (streamWriter != null)
+                {
+                    streamWriter.Close();
+                }
+                if (zipStream != null)
+                {
+                    zipStream.Finish();
+                    zipStream.Close();
+                }
+            }
+
+            return count;
+        }
+
+        #endregion
+
+        #region Zip multi files
+
+        public static int Zip(string destFolder, string[] srcFiles, string folderName, string password, CompressLevel level)
+        {
+            ZipOutputStream zipStream = null;
+            FileStream streamWriter = null;
+            int count = 0;
+
+            try
+            {
+                //Use Crc32
+                Crc32 crc32 = new Crc32();
+
+                //Create Zip File
+                zipStream = new ZipOutputStream(File.Create(destFolder));
+
+                //Specify Level
+                zipStream.SetLevel(Convert.ToInt32(level));
+
+                //Specify Password
+                if (password != null && password.Trim().Length > 0)
+                {
+                    zipStream.Password = password;
+                }
+
+                //Foreach File
+                foreach (string file in srcFiles)
+                {
+                    //Check Whether the file exists
+                    if (!File.Exists(file))
+                    {
+                        throw new FileNotFoundException(file);
+                    }
+
+                    //Read the file to stream
+                    streamWriter = File.OpenRead(file);
+                    byte[] buffer = new byte[streamWriter.Length];
+                    streamWriter.Read(buffer, 0, buffer.Length);
+                    streamWriter.Close();
+
+                    //Specify ZipEntry
+                    crc32.Reset();
+                    crc32.Update(buffer);
+                    ZipEntry zipEntry = new ZipEntry(Path.Combine(folderName, Path.GetFileName(file)));
+                    zipEntry.DateTime = DateTime.Now;
+                    zipEntry.Size = buffer.Length;
+                    zipEntry.Crc = crc32.Value;
+
+                    //Put file info into zip stream
+                    zipStream.PutNextEntry(zipEntry);
+
+                    //Put file data into zip stream
+                    zipStream.Write(buffer, 0, buffer.Length);
+
+                    count++;
+                }
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                //Clear Resource
+                if (streamWriter != null)
+                {
+                    streamWriter.Close();
+                }
+                if (zipStream != null)
+                {
+                    zipStream.Finish();
+                    zipStream.Close();
+                }
+            }
+
+            return count;
+        }
+
+        #endregion
+
+        #region Common Function
+
+        /// <summary>
+        /// 获取最后一个文件夹名称；Example : Make "C:TestZipFile" To "ZipFile"
+        /// </summary>
+        /// <param name="directory">Directory</param>
+        /// <returns></returns>
+        private static string GetDirectoryName(string directory)
+        {
+            directory = directory.Replace("/", @" ").Replace(@"\", @" ");
+            if (directory[directory.Length - 1].ToString() == @" ")
+            {
+                directory = directory.Substring(0, directory.Length - 1);
+            }
+
+            int lastRoot = directory.LastIndexOfAny(@" ".ToCharArray());
+
+            return directory.Substring(lastRoot + 1, directory.Length - lastRoot - 1);
+        }
+        /// <summary>
+        /// 添加文件夹至压缩文件
+        /// </summary>
+        /// <param name="directory">压缩的文件夹</param>
+        /// <param name="logicBaseDir">上级文件夹</param>
+        /// <param name="zipStream"></param>
+        /// <param name="crc32"></param>
+        /// <param name="streamWriter"></param>
+        /// <returns></returns>
+        private static int PutDirectoryToZipStream(string directory, string logicBaseDir,
+                                                   ZipOutputStream zipStream, Crc32 crc32, FileStream streamWriter)
+        {
+            int count = 0;
+
+            //Get the logic directory
+            string logicDir = string.Empty;
+            if (string.IsNullOrEmpty(logicBaseDir))
+            {
+                logicDir = ".";// GetDirectoryName(directory);
+            }
+            else
+            {
+                logicDir = logicBaseDir + @"\" + GetDirectoryName(directory);
+            }
+            //if (!string.IsNullOrEmpty(logicBaseDir))
+            //{
+
+            //    logicDir = logicBaseDir + @"\" + GetDirectoryName(directory);
+            //}
+            //logicDir = logicDir.Replace("/", @"").Replace(@"\", @"");
+
+            //Get Directories Name
+            string[] dirs = Directory.GetDirectories(directory);
+
+            //Get Files Name
+            string[] files = Directory.GetFiles(directory);
+            //Foreach Files
+            foreach (string file in files)
+            {
+                //Read the file to stream
+                streamWriter = File.OpenRead(file);
+                byte[] buffer = new byte[streamWriter.Length];
+                streamWriter.Read(buffer, 0, buffer.Length);
+                streamWriter.Close();
+
+                //Specify ZipEntry
+                crc32.Reset();
+                crc32.Update(buffer);
+                string FileName = string.IsNullOrEmpty(logicBaseDir) ? Path.GetFileName(file) : Path.Combine(logicDir, Path.GetFileName(file));
+                ZipEntry zipEntry = new ZipEntry(FileName);
+
+                zipEntry.DateTime = DateTime.Now;
+                zipEntry.Size = buffer.Length;
+                zipEntry.Crc = crc32.Value;
+
+                //Put file info into zip stream
+                zipStream.PutNextEntry(zipEntry);
+
+                //Put file data into zip stream
+                zipStream.Write(buffer, 0, buffer.Length);
+
+                count++;
+            }
+            //Foreach Directories
+            foreach (string dir in dirs)
+            {
+                count = count + PutDirectoryToZipStream(dir, logicDir, zipStream, crc32, streamWriter);
+            }
+            return count;
+        }
+
+        #endregion
 
     }
 }
