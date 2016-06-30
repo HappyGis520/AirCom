@@ -323,6 +323,7 @@ namespace NetPlan.BLL
                         "where t1.projectno = t2.projectno and t1.projectno = t3.projectnumber and t1.lognodepk = t2.lognodefk and t1.idname = '{0}' and t3.name = '{1}'",
                         StationName,CityPrjName);
                     //string sql = "select * from Location";
+                    JLog.Instance.AppInfo(string.Format("执行oracle查询命令：{0}", SQLStr));
                     OracleDataAdapter oda = new OracleDataAdapter(SQLStr, conn);
                     oda.Fill(ds);
                     DataTable dt = ds.Tables[0];
@@ -335,6 +336,8 @@ namespace NetPlan.BLL
             }
             catch (OracleException ex)
             {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
                 throw new Exception(ex.Message);
             }
         }
@@ -347,6 +350,7 @@ namespace NetPlan.BLL
          private string AutoEDSInputCommand(string XmlFileName,string ProjectName)
          {
              var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "Create", "input",XmlFileName,ProjectName);
+            JLog.Instance.AppInfo(string.Format("执行导入XML命令：{0}",cmd));
             return cmd;
          }
         /// <summary>
@@ -358,6 +362,7 @@ namespace NetPlan.BLL
         private string AutoEDSDeleteCommand(string XmlFileName, string ProjectName)
         {
             var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "Create", "input", XmlFileName, ProjectName);
+            JLog.Instance.AppInfo(string.Format("执行删除XML命令：{0}", cmd));
             return cmd;
         }
         /// <summary>
