@@ -105,6 +105,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="DOC\JLog.log" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -144,6 +145,8 @@
     <Content Include="AppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="DOC\AppConfig.xml" />
+    <Content Include="DOC\test.xml" />
     <None Include="Resources\PDT_Close.png" />
     <None Include="Resources\LOGO.png" />
     <None Include="Resources\login_Logo.png" />

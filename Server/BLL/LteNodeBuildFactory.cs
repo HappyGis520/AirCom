@@ -521,8 +521,8 @@ namespace NetPlan.BLL
             RefLteNode.PLMN = new IDType()
             {
                 //iid = GlobalInfo.Instance.ConfigParam.ProjectNames[0].ProjectName//工程同名---这个是必须的同---毕工确认  @20150808//
-                iid = "plan"//固定值plan---郭琴确认  @2015１１２７//
-
+                //iid = "plan"//固定值plan---郭琴确认  @2015１１２７//
+                iid = "PLMN0"//固定值plan---郭琴确认  @201606２2//
                 //工程名是定死的，用户可选择地市信息，系统根据地市信息获取工程名（可配置）
             };
             RefLteNode.Name2 = BaseInfo.PlanPrjID.ToString();//填基站的规划期数；规划期数由用户在界面上输入。
