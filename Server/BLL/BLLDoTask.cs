@@ -349,7 +349,8 @@ namespace NetPlan.BLL
          /// <returns></returns>
          private string AutoEDSInputCommand(string XmlFileName,string ProjectName)
          {
-             var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "create", "input",XmlFileName,ProjectName);
+             //var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "create", "input",XmlFileName,ProjectName);
+             var cmd = string.Format(" -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "create", "input", XmlFileName, ProjectName);
             JLog.Instance.AppInfo(string.Format("执行导入XML命令：{0}",cmd));
             return cmd;
          }
