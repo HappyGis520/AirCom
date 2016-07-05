@@ -427,10 +427,13 @@ namespace NetPlanClient
 
         private void buttonX3_Click_1(object sender, EventArgs e)
         {
-            //Utility. (@"d:\", @"D:\wjj");
-            //Utility.DirectoryToZip(@"D:\wjj", @"d:\tt.zip");
-            //Utility.zipDir(@"d:\tt.zip", @"D:\wjj");
-            Utility.Zip(@"d:\afdsaf.zip", @"D:\wjj",string.Empty,Utility.CompressLevel.Level5);
+            WGS84ToUTM.Exute(null);
+            var baseInfo = ucLTEStationType1.BuildBasicInfo();
+            baseInfo.Lng = 119.97;
+            baseInfo.Lat = 31.81;
+            var r = 1;
+            GeoRegion reg = new GeoRegion();
+            PLAData.GetExtend(baseInfo.Lng,baseInfo.Lat,r*1000,50,out reg);
         }
 
 

@@ -45,7 +45,7 @@ namespace NetPlan.Model
         /// <param name="X">UTM_X</param>
         /// <param name="Y">UTM_Y</param>
         /// <returns></returns>
-        private int LonLatToXY(double Lon, double Lat, int ProjNo, out double X, out double Y)
+        private static int LonLatToXY(double Lon, double Lat, int ProjNo, out double X, out double Y)
         {
             
 
@@ -101,7 +101,7 @@ namespace NetPlan.Model
         /// <param name="offset"></param>
         /// <param name="ProjNo"></param>
         /// <param name="region"></param>
-        public void GetExtend(double lon, double lat, double offset, int ProjNo,out GeoRegion region)
+        public static void GetExtend(double lon, double lat, double offset, int ProjNo,out GeoRegion region)
         {   //如果offset 是1000m,则是左右2000m,上下2000m
             double x, y;
             LonLatToXY(lon, lat, ProjNo, out x, out y);
@@ -113,6 +113,12 @@ namespace NetPlan.Model
                 NorthMax = y + offset
             };
         }
+
+
+
+
+
+
 
 
 

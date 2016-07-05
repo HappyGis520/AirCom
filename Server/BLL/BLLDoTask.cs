@@ -142,9 +142,14 @@ namespace NetPlan.BLL
                                             }
                                             var ProjNo = ProjectInfo.UtmID;
                                             JLog.Instance.AppInfo(string.Format("工程投影带号为：{0}", ProjNo));
-                                            _CurProcData.GetExtend(_CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat,
-                                                _CurProcData.CoverRadius, ProjNo, out _CurProcData.RegionBound);
-                                            JLog.Instance.AppInfo(string.Format("工程坐标范围为：{0}",
+                                        //_CurProcData.GetExtend(_CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat,
+                                        //    _CurProcData.CoverRadius, ProjNo, out _CurProcData.RegionBound);
+
+    
+                                            _CurProcData.RegionBound = WGS84ToUTM.LatLonToUTM(
+                                                _CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat, ProjNo,
+                                                _CurProcData.CoverRadius);
+                                        JLog.Instance.AppInfo(string.Format("工程坐标范围为：{0}",
                                                 _CurProcData.RegionBound.ToString()));
                                             BLLEAWS.Instance.UpdateRegionREQ(_CurProcData.RegionBound, SchemaName,
                                                 Taskname);
@@ -430,9 +435,6 @@ namespace NetPlan.BLL
             myProcess.WaitForExit(WaitForTime); //等待程序退出 
              return true;
          }
-
-
-
 
         #region 自定义事件
 

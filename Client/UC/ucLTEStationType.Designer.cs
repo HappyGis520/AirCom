@@ -151,7 +151,7 @@
             this.txtLng.Name = "txtLng";
             this.txtLng.Size = new System.Drawing.Size(104, 21);
             this.txtLng.TabIndex = 7;
-            this.txtLng.Text = "120.369";
+            this.txtLng.Text = "119.97";
             // 
             // label8
             // 
@@ -172,7 +172,7 @@
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(80, 21);
             this.txtLat.TabIndex = 7;
-            this.txtLat.Text = "30.147";
+            this.txtLat.Text = "31.81";
             // 
             // label7
             // 
