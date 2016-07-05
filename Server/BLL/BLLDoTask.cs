@@ -117,7 +117,7 @@ namespace NetPlan.BLL
                                         60000))
                                 {
                                     JLog.Instance.AppInfo("导入XML文件执行完成,判断导入位置数据是否成功...");
-                                    if (InputXmlSuccess(_CurProcData.BaseInfo.StationAlias, _CurProcData.ProjectName))
+                                    if (InputXmlSuccess(_CurProcData.BaseInfo.StationId, _CurProcData.ProjectName))
                                         //判断导入是否成功，导入成功执行
                                     {
                                         JLog.Instance.AppInfo("导入XML文件执行成功,启动EAWS仿真...");
@@ -141,7 +141,7 @@ namespace NetPlan.BLL
                                                 continue;
                                             }
                                             var ProjNo = ProjectInfo.UtmID;
-                                            JLog.Instance.AppInfo(string.Format("工程投影带号为：{0}的", ProjNo));
+                                            JLog.Instance.AppInfo(string.Format("工程投影带号为：{0}", ProjNo));
                                             _CurProcData.GetExtend(_CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat,
                                                 _CurProcData.CoverRadius, ProjNo, out _CurProcData.RegionBound);
                                             JLog.Instance.AppInfo(string.Format("工程坐标范围为：{0}",
@@ -421,8 +421,6 @@ namespace NetPlan.BLL
         /// <returns></returns>
         private bool ExecuteCommand(string Command,int WaitForTime)
          {
-            //System.Diagnostics.Process.Start(GlobalInfo.Instance.ConfigParam.EDSLoadAppFile).WaitForExit()；
-
             System.Diagnostics.ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo();
             myStartInfo.FileName = string.Format("{0} ", GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
             myStartInfo.Arguments = Command;
