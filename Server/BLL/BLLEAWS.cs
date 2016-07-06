@@ -28,7 +28,7 @@ namespace NetPlan.BLL
             _CallBackHandle = new EAWSCallBackSolid();
             RegistEventHandle();
             _callbackContext = new InstanceContext(_CallBackHandle);
-            m_EAWSClient = new EAWSClient(_callbackContext, "EAWSHTTPService");
+            m_EAWSClient = new EAWSClient(_callbackContext, "EAWSTCPService");
             GlobalInfo.Instance.JobsRunning = new Hashtable();
         }
 
