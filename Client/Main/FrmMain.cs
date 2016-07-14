@@ -433,7 +433,7 @@ namespace NetPlanClient
             baseInfo.Lat = 31.81;
             var r = 1;
             GeoRegion reg = new GeoRegion();
-            PLAData.GetExtend(baseInfo.Lng,baseInfo.Lat,r*1000,50,out reg);
+            //PLAData.GetExtend(baseInfo.Lng,baseInfo.Lat, out reg.EastMin,out reg.Eastmax,out reg.NorthMin,out reg.NorthMax, r*1000,50);
         }
 
 

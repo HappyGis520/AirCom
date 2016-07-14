@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,7 +19,8 @@ namespace NetPlan.BLL
 {
      public  class BLLDoTask:Singleton<BLLDoTask>
      {
-         private AutoResetEvent _ReSet = new AutoResetEvent(false);
+         BLLEAWS _bllEAWs = null;
+        private AutoResetEvent _ReSet = new AutoResetEvent(false);
         private  Queue<PLAData> PLADatas = new Queue<PLAData>();
          private string EAWSReleaseSaveDir = string.Empty;
         /// <summary>
@@ -26,11 +28,12 @@ namespace NetPlan.BLL
         /// </summary>
          private bool DoNextTask = false;
 
-        private void RegistEAWSEventHandle()
+        private void CreateNewEAWSHandle()
         {
-            BLLEAWS.Instance.RegistEditRegionAckEvent(SubDoEditRegionAck);
-            BLLEAWS.Instance.RegistEAWSTaskStartStateEvent(SubDoEAWSTaskStartState);
-            BLLEAWS.Instance.RegistEAWSTaskCompletAckEvent(SubDoEAWSTaskCompletAck);
+            _bllEAWs = new BLLEAWS();
+            _bllEAWs.RegistEditRegionAckEvent(SubDoEditRegionAck);
+            _bllEAWs.RegistEAWSTaskStartStateEvent(SubDoEAWSTaskStartState);
+            _bllEAWs.RegistEAWSTaskCompletAckEvent(SubDoEAWSTaskCompletAck);
 
         }
 
@@ -96,7 +99,8 @@ namespace NetPlan.BLL
                 #endregion
                 if (_CurProcData != null)
                  {
-                     XmlFilePackageInfo xmlFilePage = new XmlFilePackageInfo();
+                    CreateNewEAWSHandle();
+                    XmlFilePackageInfo xmlFilePage = new XmlFilePackageInfo();
                      //生成XML文件
                      JLog.Instance.AppInfo("开始生成XML文件....");
                      var _BuilLTEXMLResult = LteNodeBuildFactory.BuilLTEXMLFilesInterface(_CurProcData.BaseInfo, _CurProcData.CellSectors, _CurProcData.Savedir,
@@ -142,110 +146,122 @@ namespace NetPlan.BLL
                                             }
                                             var ProjNo = ProjectInfo.UtmID;
                                             JLog.Instance.AppInfo(string.Format("工程投影带号为：{0}", ProjNo));
-                                        //_CurProcData.GetExtend(_CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat,
-                                        //    _CurProcData.CoverRadius, ProjNo, out _CurProcData.RegionBound);
+                                            _CurProcData.GetExtend(_CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat,
+                                                out _CurProcData.RegionBound.EastMin,
+                                                out _CurProcData.RegionBound.Eastmax,
+                                                out _CurProcData.RegionBound.NorthMin,
+                                                out _CurProcData.RegionBound.NorthMax,
+                                                _CurProcData.CoverRadius*1000, ProjNo);
 
-    
-                                            _CurProcData.RegionBound = WGS84ToUTM.LatLonToUTM(
-                                                _CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat, ProjNo,
-                                                _CurProcData.CoverRadius);
-                                        JLog.Instance.AppInfo(string.Format("工程坐标范围为：{0}",
+
+                                            //_CurProcData.RegionBound = WGS84ToUTM.LatLonToUTM(
+                                            //    _CurProcData.BaseInfo.Lng, _CurProcData.BaseInfo.Lat, ProjNo,
+                                            //    _CurProcData.CoverRadius);
+                                            JLog.Instance.AppInfo(string.Format("工程坐标范围为：{0}",
                                                 _CurProcData.RegionBound.ToString()));
-                                            BLLEAWS.Instance.UpdateRegionREQ(_CurProcData.RegionBound, SchemaName,
+                                            _bllEAWs.UpdateRegionREQ(_CurProcData.RegionBound, SchemaName,
                                                 Taskname);
-
-                                            _ReSet.WaitOne(60000);
+                                            DoNextTask = false;
+                                            _ReSet.WaitOne(600000);
+                                            JLog.Instance.AppInfo("_ReSet等待完成，执行下一步操作");
                                             if (DoNextTask)
                                             {
                                                 JLog.Instance.AppInfo("编辑仿真范围完成");
 
                                                 #region 编辑仿真范围完成
 
-                                                BLLEAWS.Instance.StartTaskREQ(SchemaName, Taskname);
                                                 DoNextTask = false;
-                                                _ReSet.WaitOne(10000);
+                                                JLog.Instance.AppInfo("发送启动仿真请求");
+                                            _bllEAWs.StartTaskREQ(SchemaName, Taskname);
+                                            DoNextTask = false;
+                                            _ReSet.WaitOne(60000);
+                                            if (DoNextTask)
+                                            {
+                                                JLog.Instance.AppInfo("启动仿真任务完成,等待任务执行完成");
+                                                DoNextTask = false;
+                                                _ReSet.WaitOne(3600000);
+                                                JLog.Instance.AppInfo("_ReSet等待完成，执行下一步操作");
                                                 if (DoNextTask)
                                                 {
-                                                    JLog.Instance.AppInfo("启动仿真任务完成");
-                                                    _ReSet.WaitOne(1800000);
-                                                    DoNextTask = false;
-                                                    if (DoNextTask)
+                                                    JLog.Instance.AppInfo("仿真任务执行完成");
+
+                                                    #region 仿真任务执行完成后操作
+
+                                                    if (string.IsNullOrEmpty(EAWSReleaseSaveDir))
                                                     {
-                                                        JLog.Instance.AppInfo("仿真任务执行完成");
-
-                                                        #region 仿真任务执行完成后操作
-
-                                                        if (string.IsNullOrEmpty(EAWSReleaseSaveDir))
-                                                        {
-                                                            JLog.Instance.AppInfo(string.Format("EAWS返回仿真结果保存路径：{0}",
-                                                                EAWSReleaseSaveDir));
-                                                            continue;
-                                                        }
-                                                        JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}",
+                                                        JLog.Instance.AppInfo(string.Format("EAWS返回仿真结果保存路径：{0}",
                                                             EAWSReleaseSaveDir));
-                                                        JLog.Instance.AppInfo("压缩文件，上传至浪潮");
-                                                        string rarFileName = string.Format("{0}.rar",
-                                                            Guid.NewGuid().ToString());
-                                                        ZipHelper.Zip(
-                                                            Path.Combine(GlobalInfo.Instance.ConfigParam.EAWSRealseDir,
-                                                                rarFileName), EAWSReleaseSaveDir, string.Empty,
-                                                            ZipHelper.CompressLevel.Level6);
-                                                        Inspur.InspurRequestApiModel sendmodel = new Inspur.
-                                                            InspurRequestApiModel()
+                                                        continue;
+                                                    }
+                                                    JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}",
+                                                        EAWSReleaseSaveDir));
+                                                    JLog.Instance.AppInfo("压缩文件，上传至浪潮");
+                                                    string rarFileName = string.Format("{0}.rar",
+                                                        Guid.NewGuid().ToString());
+                                                    ZipHelper.Zip(
+                                                        Path.Combine(GlobalInfo.Instance.ConfigParam.EAWSRealseDir,
+                                                            rarFileName), EAWSReleaseSaveDir, string.Empty,
+                                                        ZipHelper.CompressLevel.Level6);
+                                                    Inspur.InspurRequestApiModel sendmodel = new Inspur.
+                                                        InspurRequestApiModel()
+                                                    {
+                                                        flow_id = _CurProcData.WorkOrder,
+                                                        name = "wjj",
+                                                        remark = ""
+                                                    };
+                                                    var sendxml = XMLHelper.SerializeToXmlStr(sendmodel, true);
+                                                    var s = new Inspur.InspurService.TaircomServiceImplService();
+                                                    var recxml = s.SycAirCom(sendxml);
+                                                    var recModel =
+                                                        XMLHelper.XmlDeserialize<Inspur.InspurResponeseApiModel>(
+                                                            recxml);
+                                                    if (recModel.is_archive.Equals("0"))
+                                                    {
+                                                        JLog.Instance.AppInfo("浪潮返回调用成功消息");
+                                                    }
+                                                    else
+                                                    {
+                                                        JLog.Instance.AppInfo("浪潮返回调用失败消息");
+                                                    }
+                                                    if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete)
+                                                        //需要删除基站的，执行删除程序
+                                                    {
+                                                        JLog.Instance.AppInfo("执行删除xml操作");
+
+                                                        #region 执行删除xml操作
+
+                                                        if (
+                                                            !ExecuteCommand(
+                                                                AutoEDSDeleteCommand(
+                                                                    xmlFilePage.DeleteLTENodeFileFullName,
+                                                                    _CurProcData.ProjectName),
+                                                                60000))
                                                         {
-                                                            flow_id = _CurProcData.WorkOrder,
-                                                            name = "wjj",
-                                                            remark = ""
-                                                        };
-                                                        var sendxml = XMLHelper.SerializeToXmlStr(sendmodel, true);
-                                                        var s = new Inspur.InspurService.TaircomServiceImplService();
-                                                        var recxml = s.SycAirCom(sendxml);
-                                                        var recModel =
-                                                            XMLHelper.XmlDeserialize<Inspur.InspurResponeseApiModel>(
-                                                                recxml);
-                                                        if (recModel.is_archive.Equals("0"))
-                                                        {
-                                                            JLog.Instance.AppInfo("浪潮返回调用成功消息");
+                                                            //提示删除失败
+                                                            JLog.Instance.AppInfo("执行删除xml操作失败");
+
                                                         }
                                                         else
                                                         {
-                                                            JLog.Instance.AppInfo("浪潮返回调用失败消息");
-                                                        }
-                                                        if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete)
-                                                            //需要删除基站的，执行删除程序
-                                                        {
-                                                            JLog.Instance.AppInfo("执行删除xml操作");
-
-                                                            #region 执行删除xml操作
-
-                                                            if (
-                                                                !ExecuteCommand(
-                                                                    AutoEDSDeleteCommand(
-                                                                        xmlFilePage.DeleteLTENodeFileFullName,
-                                                                        _CurProcData.ProjectName),
-                                                                    60000))
-                                                            {
-                                                                //提示删除失败
-                                                                JLog.Instance.AppInfo("执行删除xml操作失败");
-
-                                                            }
-                                                            else
-                                                            {
-                                                                JLog.Instance.AppInfo("执行删除xml操作成功");
-                                                                //提示删除成功
-                                                            }
-
-                                                            #endregion
+                                                            JLog.Instance.AppInfo("执行删除xml操作成功");
+                                                            //提示删除成功
                                                         }
 
                                                         #endregion
                                                     }
+
+                                                    #endregion
                                                 }
-
-                                                #endregion
-                                            }
-
+                                                JLog.Instance.Info("仿真任务执行失败,无需执行下一步，退出");
                                         }
+                                        JLog.Instance.Info("启动仿真失败，无需执行下一步，退出");
+
+                                        #endregion
+                                    }
+                                            JLog.Instance.AppInfo("编辑仿真范围失败,无需执行下一步");
+                                        
+
+                                    }
                                         else
                                         {
                                             JLog.Instance.AppInfo("配置文件中没有找到相应的工程信息，中断");
@@ -444,12 +460,28 @@ namespace NetPlan.BLL
 
         protected void SubDoEditRegionAck(bool Success, string Msg)
         {
-            JLog.Instance.AppInfo(string.Format("设置仿真范围{0}",Success?"成功":"失败"));
-            if (Success)
+            try
             {
-                DoNextTask = true;
+                JLog.Instance.AppInfo(string.Format("设置仿真范围{0}", Success ? "成功" : "失败"));
+                if (Success)
+                {
+                    DoNextTask = true;
+                }
+                _ReSet.Set();
             }
-            _ReSet.Set();
+            catch (DbException ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+
+            }
+
 
         }
 
@@ -488,6 +520,7 @@ namespace NetPlan.BLL
             JLog.Instance.AppInfo(string.Format("运行仿真任务{0}", Success ? "成功" : "失败"));
             if (Success)
             {
+                EAWSReleaseSaveDir = SavePath;
                 DoNextTask = true;
             }
             _ReSet.Set();

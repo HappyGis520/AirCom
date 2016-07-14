@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -38,10 +39,17 @@ namespace NetPlan.BLL
                         //IDC_RESULT_TEXT.Text += "\n Service Update Failure!!";
                         return;
                     }
-                  
+                    JLog.Instance.Info("当前所有任务列表如下：");
+                    foreach (var key in GlobalInfo.Instance.JobsRunning.Keys)
+                    {
+                        JLog.Instance.Info(string.Format("key:{0}",key));
+                    }
+                    
+
+
                     if (GlobalInfo.Instance.JobsRunning.ContainsKey(resp.itemIDRef) == false)
                     {
-                        JLog.Instance.AppInfo("服务端返回信息没有找到对应的请求");
+                        JLog.Instance.AppInfo( string.Format( "服务端返回信息,iD={0}没有找到对应的请求", resp.itemIDRef));
                         //IDC_RESULT_TEXT.Text += "\n Service Update Failure. Task GUID not found!!";
                         //IDC_RESULT_TEXT.Text += resp.Status.comment; //Might be exception thrown.
                         return;
@@ -53,26 +61,29 @@ namespace NetPlan.BLL
                         JLog.Instance.AppInfo("EAWS服务返回:任务执行完成");
                         #region TaskCompletionResponse
                         TaskCompletionResponse rTaskCompletionRepsonse = resp as TaskCompletionResponse;
-
+                        
                         //Call to RequestTaskStatus() was successful when:
                         //rTaskStatusResponse is not NULL
                         //rTaskStatusResponse is marked with success and
                         //GUID of rTaskStatusResponse and rTaskStatusRequest matches 
                         if (rTaskCompletionRepsonse.Success)
                         {
+                            JLog.Instance.AppInfo("任务执行完成");
+                            JLog.Instance.AppInfo("任务完成应答，从EAWS请求列表中移除任务");
+                            //GlobalInfo.Instance.JobsRunning.Remove(resp.itemIDRef);
+
+                            if (rTaskCompletionRepsonse.OutputLocation.Length > 0)
+                            {
+                                JLog.Instance.AppInfo("任务执行完成,输出路径: " + rTaskCompletionRepsonse.OutputLocation);
+                            }
                             if (rTaskCompletionRepsonse.Finished == true)
                             {
+                                JLog.Instance.AppInfo(string.Format("任务:{0} GUID:{1} 的已结束...", rTaskCompletionRepsonse.TaskName, rTaskCompletionRepsonse.itemIDRef.ToString()));
                                 //IDC_RESULT_TEXT.Text += "\n Task: " + rTaskCompletionRepsonse.TaskName
                                 //       + " Master Guid: " + resp.masterIDRef.ToString()
                                 //       + " Guid: " + resp.itemIDRef.ToString() + " is Complete."
                                 //       + "\n" + resp.Status.comment;
-                               JLog.Instance.AppInfo("任务执行完成");
-                               GlobalInfo.Instance.JobsRunning.Remove(resp.itemIDRef);
 
-                                if (rTaskCompletionRepsonse.OutputLocation.Length > 0)
-                                {
-                                    JLog.Instance.AppInfo("任务执行完成,输出路径: " + rTaskCompletionRepsonse.OutputLocation);
-                                }
                             }
                             else
                             {
@@ -109,7 +120,7 @@ namespace NetPlan.BLL
                         else
                         {
                             string msg = string.Format("无法启动EAWS任务");
-                            RaiseEAWSTaskStartStateEvent(false,"");
+                            RaiseEAWSTaskStartStateEvent(false, msg);
                             //IDC_RESULT_TEXT.Text += "\n Unable to start Task: "
                             //    + " Master Guid: " + resp.masterIDRef.ToString()
                             //    + rStartTaskResponse.TaskName + " Guid: " + rStartTaskResponse.itemIDRef.ToString();
@@ -310,26 +321,64 @@ namespace NetPlan.BLL
 
         #region 编辑仿真范围应答
 
-        protected event Action<bool,string> EditRegionAckEvent;
+        protected  Action<bool,string> EditRegionAckEvent;
 
-        protected void SubDoEditRegionAck(bool Success, string Msg)
-        {
-            RaiseEditRegionAckEvent( Success,  Msg);
-        }
+        //protected void SubDoEditRegionAck(bool Success, string Msg)
+        //{
+        //    RaiseEditRegionAckEvent( Success,  Msg);
+        ////}
 
         protected void RaiseEditRegionAckEvent(bool Success, string Msg)
         {
-            if (EditRegionAckEvent != null)
+            try
             {
-                EditRegionAckEvent.BeginInvoke( Success,  Msg,null, null);
+                JLog.Instance.AppInfo("EAWS回调函数产生事件EditRegionAckEvent");
+                if (EditRegionAckEvent != null)
+                {
+                    EditRegionAckEvent.BeginInvoke(Success, Msg, null, null);
+                }
+                else
+                {
+                    JLog.Instance.AppInfo("事件EditRegionAckEvent没有回调方法");
+                }
+
             }
+            catch (DbException ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+                Msg = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+                Msg = ex.Message;
+            }
+            
+
 
         }
 
         public void RegistEditRegionAckEvent(Action<bool,string> handle)
         {
-            DeRegistEditRegionAckEvent(handle);
-            EditRegionAckEvent = handle;
+            JLog.Instance.AppInfo("注册EditRegionAckEvent事件方法被调用");
+            try
+            {
+                DeRegistEditRegionAckEvent(handle);
+                EditRegionAckEvent = handle;
+
+            }
+            catch (DbException ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+            }
 
 
         }
@@ -346,7 +395,7 @@ namespace NetPlan.BLL
 
         #region EAWS仿真任务启动状态
 
-        protected event Action<bool,string> EAWSTaskStartStateEvent;
+        protected  Action<bool,string> EAWSTaskStartStateEvent;
 
         protected void SubDoEAWSTaskStartState(bool Success,string Msg)
         {
@@ -355,14 +404,36 @@ namespace NetPlan.BLL
 
         protected void RaiseEAWSTaskStartStateEvent(bool Success, string Msg)
         {
-            if (EAWSTaskStartStateEvent != null)
+            try
             {
-                EAWSTaskStartStateEvent.BeginInvoke( Success,Msg,null, null);
+                JLog.Instance.AppInfo("EAWS回调函数产生事件EAWSTaskStartStateEvent");
+                if (EAWSTaskStartStateEvent != null)
+                {
+                    EAWSTaskStartStateEvent.BeginInvoke(Success, Msg, null, null);
+                }
+                else
+                {
+                    JLog.Instance.AppInfo("事件EAWSTaskStartStateEvent没有回调方法");
+                }
             }
+            catch (DbException ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+                Msg = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+                Msg = ex.Message;
+            }
+
         }
 
         public void RegistEAWSTaskStartStateEvent(Action<bool, string > handle)
         {
+            JLog.Instance.AppInfo("注册EAWSTaskStartStateEvent事件方法被调用");
             DeRegistEAWSTaskStartStateEvent(handle);
             EAWSTaskStartStateEvent = handle;
 
@@ -381,7 +452,7 @@ namespace NetPlan.BLL
 
         #region 仿真任务执行结果应答
 
-        protected event Action<bool,string> EAWSTaskCompletAckEvent;
+        protected  Action<bool,string> EAWSTaskCompletAckEvent;
 
         protected void SubDoEAWSTaskCompletAck(bool Success , string SavePath)
         {
@@ -390,15 +461,31 @@ namespace NetPlan.BLL
 
         protected void RaiseEAWSTaskCompletAckEvent(bool Success, string SavePath)
         {
-            if (EAWSTaskCompletAckEvent != null)
+            try
             {
-                EAWSTaskCompletAckEvent.BeginInvoke( Success,  SavePath,null, null);
+                JLog.Instance.AppInfo("EAWS回调函数产生事件EAWSTaskCompletAckEvent");
+                if (EAWSTaskCompletAckEvent != null)
+                {
+                    EAWSTaskCompletAckEvent.BeginInvoke(Success, SavePath, null, null);
+
+                }
+            }
+            catch (DbException ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
             }
 
         }
 
         public void RegistEAWSTaskCompletAckEvent(Action<bool, string> handle)
         {
+            JLog.Instance.AppInfo("注册EAWSTaskCompletAckEvent事件方法被调用");
             DeRegistEAWSTaskCompletAckEvent(handle);
             EAWSTaskCompletAckEvent = handle;
 
