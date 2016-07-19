@@ -50,10 +50,10 @@ namespace NetPlan.BLL
                     if (GlobalInfo.Instance.JobsRunning.ContainsKey(resp.itemIDRef) == false)
                     {
                         JLog.Instance.AppInfo( string.Format( "服务端返回信息,iD={0}没有找到对应的请求", resp.itemIDRef));
-                        //IDC_RESULT_TEXT.Text += "\n Service Update Failure. Task GUID not found!!";
-                        //IDC_RESULT_TEXT.Text += resp.Status.comment; //Might be exception thrown.
                         return;
                     }
+                    JLog.Instance.AppInfo("从JobsRunning移除任务");
+                    GlobalInfo.Instance.JobsRunning.Remove(resp.itemIDRef);
 
                     //Poll status or Completed Job Update
                     if (resp is TaskCompletionResponse)
