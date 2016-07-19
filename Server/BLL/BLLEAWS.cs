@@ -35,7 +35,7 @@ namespace NetPlan.BLL
 
          private void RegistEventHandle()
          {
-            JLog.Instance.AppInfo("在ＥＡＷＳ回调方法上注册事件方法　");
+            JLog.Instance.AppInfo("在ＥＡＷＳ回调方法上注册事件方法");
             _CallBackHandle.RegistEditRegionAckEvent(SubDoEditRegionAck);
             _CallBackHandle.RegistEAWSTaskStartStateEvent(SubDoEAWSTaskStartState);
             _CallBackHandle.RegistEAWSTaskCompletAckEvent(SubDoEAWSTaskCompletAck);

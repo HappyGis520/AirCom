@@ -193,13 +193,15 @@ namespace NetPlan.BLL
                                                             EAWSReleaseSaveDir));
                                                         continue;
                                                     }
+                                                    EAWSReleaseSaveDir = string.Format(@"{0}\{1}", EAWSReleaseSaveDir,
+                                                        ProjectInfo.ProjectName);
                                                     JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}",
                                                         EAWSReleaseSaveDir));
                                                     JLog.Instance.AppInfo("压缩文件，上传至浪潮");
                                                     string rarFileName = string.Format("{0}.rar",
                                                         Guid.NewGuid().ToString());
                                                     ZipHelper.Zip(
-                                                        Path.Combine(GlobalInfo.Instance.ConfigParam.EAWSRealseDir,
+                                                        Path.Combine(GlobalInfo.Instance.ConfigParam.FTPDir,
                                                             rarFileName), EAWSReleaseSaveDir, string.Empty,
                                                         ZipHelper.CompressLevel.Level6);
                                                     Inspur.InspurRequestApiModel sendmodel = new Inspur.
@@ -367,6 +369,29 @@ namespace NetPlan.BLL
 
              }
          }
+
+         private string GetCityEName(string ProjectName)
+         {
+            try
+            {
+                var obj = GlobalInfo.Instance.ConfigParam.ProjectNames.FindAll(Fo => Fo.ProjectName.Equals(ProjectName));
+                if (obj != null && obj.Count > 0)
+                {
+                    return obj[0].CityEName;
+
+                }
+                return string.Empty;
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,
+                    MethodBase.GetCurrentMethod().Module.Name);
+                return string.Empty;
+
+
+            }
+        }
+       
         
         /// <summary>
         /// 判断导入xml是否成功
@@ -521,6 +546,14 @@ namespace NetPlan.BLL
             if (Success)
             {
                 EAWSReleaseSaveDir = SavePath;
+                if (string.IsNullOrEmpty(SavePath))
+                {
+                    JLog.Instance.AppInfo("EAWSIM没有返回输出目录，从配置文件获取输出目录");
+                    var ename = GetCityEName(_CurProcData.ProjectName);
+                    EAWSReleaseSaveDir = string.Format(GlobalInfo.Instance.ConfigParam.EAWSRealseDir, ename);
+                    JLog.Instance.AppInfo(string.Format("从配置文件获取输出目录{0}", EAWSReleaseSaveDir));
+
+                }
                 DoNextTask = true;
             }
             _ReSet.Set();

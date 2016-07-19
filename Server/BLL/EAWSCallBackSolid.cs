@@ -69,12 +69,16 @@ namespace NetPlan.BLL
                         if (rTaskCompletionRepsonse.Success)
                         {
                             JLog.Instance.AppInfo("任务执行完成");
-                            JLog.Instance.AppInfo("任务完成应答，从EAWS请求列表中移除任务");
+
                             //GlobalInfo.Instance.JobsRunning.Remove(resp.itemIDRef);
 
-                            if (rTaskCompletionRepsonse.OutputLocation.Length > 0)
+                            if (!string.IsNullOrEmpty(rTaskCompletionRepsonse.OutputLocation))
                             {
-                                JLog.Instance.AppInfo("任务执行完成,输出路径: " + rTaskCompletionRepsonse.OutputLocation);
+                                JLog.Instance.AppInfo("任务执行完成,输出路径: " + rTaskCompletionRepsonse.OutputLocation.Trim());
+                            }
+                            else
+                            {
+                                RaiseEAWSTaskCompletAckEvent(true,string.Empty);
                             }
                             if (rTaskCompletionRepsonse.Finished == true)
                             {
