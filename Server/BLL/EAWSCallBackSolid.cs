@@ -52,13 +52,14 @@ namespace NetPlan.BLL
                         JLog.Instance.AppInfo( string.Format( "服务端返回信息,iD={0}没有找到对应的请求", resp.itemIDRef));
                         return;
                     }
-                    JLog.Instance.AppInfo("从JobsRunning移除任务");
-                    GlobalInfo.Instance.JobsRunning.Remove(resp.itemIDRef);
+
 
                     //Poll status or Completed Job Update
                     if (resp is TaskCompletionResponse)
                     {
                         JLog.Instance.AppInfo("EAWS服务返回:任务执行完成");
+                        JLog.Instance.AppInfo("从JobsRunning移除任务");
+                        GlobalInfo.Instance.JobsRunning.Remove(resp.itemIDRef);
                         #region TaskCompletionResponse
                         TaskCompletionResponse rTaskCompletionRepsonse = resp as TaskCompletionResponse;
                         
@@ -217,6 +218,8 @@ namespace NetPlan.BLL
                     else if (resp is EditTaskRegionResponse)
                     {
                         JLog.Instance.AppInfo("EAWS服务返回编辑仿真范围结果");
+                        JLog.Instance.AppInfo("从JobsRunning移除任务");
+                        GlobalInfo.Instance.JobsRunning.Remove(resp.itemIDRef);
                         #region EditTaskRegionResponse
                         EditTaskRegionResponse rEditTaskRegionResponse = resp as EditTaskRegionResponse;
                         if (rEditTaskRegionResponse.Success)

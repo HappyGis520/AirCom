@@ -181,7 +181,7 @@ namespace NetPlan.BLL
                                                         if (!string.IsNullOrEmpty(EAWSReleaseSaveDir))
                                                         {
                                                             EAWSReleaseSaveDir = string.Format(@"{0}\{1}", EAWSReleaseSaveDir,
-                                                                  ProjectInfo.ProjectName);
+                                                                  ProjectInfo.TaskName);
                                                         }
                                                         else
                                                         {

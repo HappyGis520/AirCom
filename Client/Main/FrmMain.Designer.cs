@@ -399,7 +399,7 @@
             this.txtPrjName.PreventEnterBeep = true;
             this.txtPrjName.Size = new System.Drawing.Size(100, 21);
             this.txtPrjName.TabIndex = 6;
-            this.txtPrjName.Text = "22changzhou";
+            this.txtPrjName.Text = "auto_changzhou";
             // 
             // labelX1
             // 
