@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Globalization;
@@ -114,6 +115,10 @@ namespace NetPlan.BLL
                         string SaveDirName = Guid.NewGuid().ToString();
                         string SaveFileDir = Path.Combine(GlobalInfo.Instance.ConfigParam.FTPDir, SaveDirName
                             );
+                        if (!System.IO.Directory.Exists(SaveFileDir))
+                        {
+                            System.IO.Directory.CreateDirectory(SaveFileDir);
+                        }
 
                         if (!String.IsNullOrEmpty(Taskname))
                         {
@@ -263,7 +268,7 @@ namespace NetPlan.BLL
                                                                             BrarFileName), EAWSReleaseSaveDir, "595303122@qq.com",
                                                                         ZipHelper.CompressLevel.Level6);
                                                                     #endregion
-
+                                                                    Thread.Sleep(60000);
                                                                     #region 解压文件
                                                                     RepackageFile(SaveFileDir);
                                                                     #endregion
@@ -610,13 +615,34 @@ namespace NetPlan.BLL
 
         private void RepackageFile(string SaveFileDir)
         {
-            JLog.Instance.AppInfo("开始解压A");
-            ZipHelper.Unzip(SaveFileDir, Path.Combine(SaveFileDir, "A.rar"), "595303122@qq.com");
-            JLog.Instance.AppInfo("开始解压B");
-            ZipHelper.Unzip(SaveFileDir, Path.Combine(SaveFileDir, "B.rar"), "595303122@qq.com");
+
+            string ArarFile = Path.Combine(SaveFileDir, "A.rar");
+            string AsaveDir = Path.Combine(SaveFileDir, "A");
+            JLog.Instance.AppInfo(string.Format("开始解压A,文件大小：{0}KB", GetFilesize(ArarFile)));
+            ZipHelper.Unzip(AsaveDir, ArarFile, "595303122@qq.com");
+
+            string BrarFile = Path.Combine(SaveFileDir, "B.rar");
+            string BsaveDir = Path.Combine(SaveFileDir, "B");
+            JLog.Instance.AppInfo(string.Format("开始解压B,文件大小：{0}KB", GetFilesize(BrarFile)));
+            ZipHelper.Unzip(BsaveDir, BrarFile, "595303122@qq.com");
             JLog.Instance.AppInfo("开始删除压缩文件");
             File.Delete(Path.Combine(SaveFileDir, "A.rar"));
             File.Delete(Path.Combine(SaveFileDir, "B.rar"));
+
+        }
+
+        private long GetFilesize(string FileFullName)
+        {
+
+            if (File.Exists(FileFullName))
+            {
+                dynamic fa = System.IO.File.GetAttributes(FileFullName);
+                System.IO.FileInfo fi = new System.IO.FileInfo(FileFullName);
+                var size = fi.Length;
+                long Ksize = size /1024;
+                return Ksize;
+            }
+            return 0;
 
         }
 

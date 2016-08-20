@@ -129,7 +129,7 @@ namespace ZipOneCode.ZipProvider
             try
             {
                 //Use Crc32
-                Crc32 crc32 = new Crc32();
+                //Crc32 crc32 = new Crc32();
 
                 //Create Zip File
                 zipStream = new ZipOutputStream(File.Create(destFile));
@@ -143,7 +143,7 @@ namespace ZipOneCode.ZipProvider
                     zipStream.Password = password;
                 }
 
-                count = PutDirectoryToZipStream(srcFolder, null, zipStream, crc32, streamWriter);
+                count = PutDirectoryToZipStream(srcFolder, null, zipStream,/* crc32,*/ streamWriter);
             }
             catch (Exception ex)
             {
@@ -277,7 +277,7 @@ namespace ZipOneCode.ZipProvider
         /// <param name="streamWriter"></param>
         /// <returns></returns>
         private static int PutDirectoryToZipStream(string directory, string logicBaseDir,
-                                                   ZipOutputStream zipStream, Crc32 crc32, FileStream streamWriter)
+                                                   ZipOutputStream zipStream, /*Crc32 crc32,*/ FileStream streamWriter)
         {
             int count = 0;
 
@@ -313,14 +313,14 @@ namespace ZipOneCode.ZipProvider
                 streamWriter.Close();
 
                 //Specify ZipEntry
-                crc32.Reset();
-                crc32.Update(buffer);
+                //crc32.Reset();
+                //crc32.Update(buffer);
                 string FileName = string.IsNullOrEmpty(logicBaseDir) ? Path.GetFileName(file) : Path.Combine(logicDir, Path.GetFileName(file));
                 ZipEntry zipEntry = new ZipEntry(FileName);
 
                 zipEntry.DateTime = DateTime.Now;
                 zipEntry.Size = buffer.Length;
-                zipEntry.Crc = crc32.Value;
+                //zipEntry.Crc = crc32.Value;
 
                 //Put file info into zip stream
                 zipStream.PutNextEntry(zipEntry);
@@ -333,7 +333,7 @@ namespace ZipOneCode.ZipProvider
             //Foreach Directories
             foreach (string dir in dirs)
             {
-                count = count + PutDirectoryToZipStream(dir, logicDir, zipStream, crc32, streamWriter);
+                count = count + PutDirectoryToZipStream(dir, logicDir, zipStream, /*crc32,*/ streamWriter);
             }
             return count;
         }

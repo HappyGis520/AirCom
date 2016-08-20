@@ -16,25 +16,25 @@
       <publishTime>06/28/2016 20:13:51</publishTime>
     </File>
     <File Include="bin/AirCom_Service.dll">
-      <publishTime>07/19/2016 21:03:57</publishTime>
+      <publishTime>08/20/2016 21:31:32</publishTime>
     </File>
     <File Include="bin/ApplicationInsights.config">
       <publishTime>06/28/2016 20:13:51</publishTime>
     </File>
     <File Include="bin/EAWSProxy.dll">
-      <publishTime>07/19/2016 21:03:52</publishTime>
+      <publishTime>08/20/2016 21:31:29</publishTime>
     </File>
     <File Include="bin/EDSProxy.dll">
-      <publishTime>07/19/2016 21:03:53</publishTime>
+      <publishTime>08/20/2016 21:31:29</publishTime>
     </File>
     <File Include="bin/ICSharpCode.SharpZipLib.dll">
       <publishTime>06/28/2016 20:15:48</publishTime>
     </File>
     <File Include="bin/Inspur.dll">
-      <publishTime>07/19/2016 21:03:52</publishTime>
+      <publishTime>08/20/2016 21:31:29</publishTime>
     </File>
     <File Include="bin/Inspur.XmlSerializers.dll">
-      <publishTime>07/19/2016 21:03:52</publishTime>
+      <publishTime>08/20/2016 21:31:29</publishTime>
     </File>
     <File Include="bin/JLIB.CSharp.dll">
       <publishTime>06/28/2016 20:13:50</publishTime>
@@ -73,13 +73,13 @@
       <publishTime>05/22/2016 16:51:00</publishTime>
     </File>
     <File Include="bin/NetPlan.BLL.dll">
-      <publishTime>07/19/2016 21:03:53</publishTime>
+      <publishTime>08/20/2016 21:31:30</publishTime>
     </File>
     <File Include="bin/NetPlan.DAL.dll">
       <publishTime>05/22/2016 16:50:52</publishTime>
     </File>
     <File Include="bin/NetPlan.Model.dll">
-      <publishTime>07/19/2016 21:03:52</publishTime>
+      <publishTime>08/20/2016 21:31:29</publishTime>
     </File>
     <File Include="bin/Oracle.ManagedDataAccess.dll">
       <publishTime>06/28/2016 20:13:50</publishTime>
@@ -120,6 +120,15 @@
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>06/28/2016 20:13:50</publishTime>
     </File>
+    <File Include="DOC/AppConfig.xml">
+      <publishTime>07/20/2016 09:28:47</publishTime>
+    </File>
+    <File Include="DOC/NetPlanClient.exe.config">
+      <publishTime>07/20/2016 09:28:47</publishTime>
+    </File>
+    <File Include="DOC/Web.config">
+      <publishTime>07/20/2016 09:28:47</publishTime>
+    </File>
     <File Include="packages.config">
       <publishTime>06/28/2016 20:13:51</publishTime>
     </File>
@@ -130,7 +139,7 @@
       <publishTime>06/28/2016 20:13:51</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/20/2016 09:17:30</publishTime>
+      <publishTime>08/20/2016 21:31:47</publishTime>
     </File>
   </ItemGroup>
 </Project>
