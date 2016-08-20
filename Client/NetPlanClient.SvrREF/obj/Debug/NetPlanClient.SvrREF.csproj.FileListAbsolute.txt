@@ -1,0 +1,5 @@
+F:\Aircom\Code\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll.config
+F:\Aircom\Code\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.dll
+F:\Aircom\Code\Client\NetPlanClient.SvrREF\bin\Debug\NetPlanClient.SvrREF.pdb
+F:\Aircom\Code\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.dll
+F:\Aircom\Code\Client\NetPlanClient.SvrREF\obj\Debug\NetPlanClient.SvrREF.pdb

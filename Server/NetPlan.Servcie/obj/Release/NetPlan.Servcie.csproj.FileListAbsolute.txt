@@ -1,0 +1,12 @@
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\NetPlan.Servcie.dll
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\NetPlan.Servcie.pdb
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\JLIB.CSharp.dll
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\JLIB.Utility.dll
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\log4net.dll
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\NetPlan.IContract.dll
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\NetPlan.Model.dll
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\NetPlan.IContract.pdb
+F:\Aircom\Code\Server\NetPlan.Servcie\bin\Release\NetPlan.Model.pdb
+F:\Aircom\Code\Server\NetPlan.Servcie\obj\Release\NetPlan.Servcie.csprojResolveAssemblyReference.cache
+F:\Aircom\Code\Server\NetPlan.Servcie\obj\Release\NetPlan.Servcie.dll
+F:\Aircom\Code\Server\NetPlan.Servcie\obj\Release\NetPlan.Servcie.pdb

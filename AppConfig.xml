@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserConfigParam xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <程序文件路径>C:\Program Files\AIRCOM International\EWS 8.1\bin\Aircom.EDS.Loader.exe</程序文件路径>
+  <XML文件存放目录>E:\XML</XML文件存放目录>
+  <可选天线型号>
+    <string>Default_F\Default_F</string>
+    <string>Default_D\Default_D</string>
+  </可选天线型号>
+  <可选载波>
+    <MCarrierItem 别名="Carrier1" 编号="1" />
+    <MCarrierItem 别名="Carrier2" 编号="2" />
+  </可选载波>
+  <工程列表>
+    <MProjectName 所属城市="常州" 工程名称="22changzhou"  城市英文="changzhou" 投影带号="50" 仿真任务名="EAWS_changzhou"/>
+    <MProjectName 所属城市="淮安" 工程名称="auto_huaian"  城市英文="huaian" 投影带号="50" 仿真任务名="EAWS_huaian"/>
+    <MProjectName 所属城市="连云港" 工程名称="auto_lianyungang"  城市英文="lianyungang" 投影带号="50" 仿真任务名="EAWS_lianyungang"/>
+    <MProjectName 所属城市="南京" 工程名称="auto_nanjing"  城市英文="nanjing" 投影带号="50" 仿真任务名="EAWS_nanjing"/>
+    <MProjectName 所属城市="南通" 工程名称="auto_nantong"  城市英文="nantong" 投影带号="51" 仿真任务名="EAWS_nantong"/>
+    <MProjectName 所属城市="宿迁" 工程名称="auto_suqian"  城市英文="suqian" 投影带号="50" 仿真任务名="EAWS_suqian"/>
+    <MProjectName 所属城市="苏州" 工程名称="auto_suzhou"  城市英文="suzhou" 投影带号="51" 仿真任务名="EAWS_suzhou"/>
+    <MProjectName 所属城市="泰州" 工程名称="auto_taizhou"  城市英文="taizhou" 投影带号="50" 仿真任务名="EAWS_taizhou"/>
+    <MProjectName 所属城市="无锡" 工程名称="auto_wuxi"  城市英文="wuxi" 投影带号="51" 仿真任务名="EAWS_wuxi"/>
+    <MProjectName 所属城市="徐州" 工程名称="auto_xuzhou"  城市英文="xuzhou" 投影带号="50" 仿真任务名="EAWS_xuzhou"/>
+    <MProjectName 所属城市="盐城" 工程名称="auto_yancheng"  城市英文="yancheng" 投影带号="51" 仿真任务名="EAWS_yancheng"/>
+    <MProjectName 所属城市="扬州" 工程名称="auto_yangzhou"  城市英文="yangzhou" 投影带号="50" 仿真任务名="EAWS_yangzhou"/>
+    <MProjectName 所属城市="镇江" 工程名称="auto_zhenjiang"  城市英文="zhenjiang" 投影带号="50" 仿真任务名="EAWS_zhenjiang"/>
+  </工程列表>
+  <传播模型>
+    <string>F01</string>
+    <string>Myriad</string>
+  </传播模型>
+  <EDS数据库参数 用户名="admin" 密码="admin" Host="localhost" SERVICE_NAME="CHM82" />
+  <EAWSSchemaName>ARRAYWIZARD</EAWSSchemaName>
+  <仿真结果目录>E:\XML2</仿真结果目录>
+  <FTP保存目录>E:\XML3</FTP保存目录>
+</UserConfigParam>

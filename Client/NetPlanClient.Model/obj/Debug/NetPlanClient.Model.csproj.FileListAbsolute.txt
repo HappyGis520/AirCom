@@ -1,0 +1,12 @@
+F:\Aircom\Code\Client\NetPlanClient.Model\bin\Debug\NetPlanClient.Model.dll
+F:\Aircom\Code\Client\NetPlanClient.Model\bin\Debug\NetPlanClient.Model.pdb
+F:\Aircom\Code\Client\NetPlanClient.Model\bin\Debug\JLIB.CSharp.dll
+F:\Aircom\Code\Client\NetPlanClient.Model\bin\Debug\NetPlan.Model.dll
+F:\Aircom\Code\Client\NetPlanClient.Model\bin\Debug\JLIB.Utility.dll
+F:\Aircom\Code\Client\NetPlanClient.Model\bin\Debug\log4net.dll
+F:\Aircom\Code\Client\NetPlanClient.Model\bin\Debug\NetPlan.Model.pdb
+F:\Aircom\Code\Client\NetPlanClient.Model\obj\Debug\NetPlanClient.Model.csprojResolveAssemblyReference.cache
+F:\Aircom\Code\Client\NetPlanClient.Model\obj\Debug\NetPlanClient.Model.Properties.Resources.resources
+F:\Aircom\Code\Client\NetPlanClient.Model\obj\Debug\NetPlanClient.Model.csproj.GenerateResource.Cache
+F:\Aircom\Code\Client\NetPlanClient.Model\obj\Debug\NetPlanClient.Model.dll
+F:\Aircom\Code\Client\NetPlanClient.Model\obj\Debug\NetPlanClient.Model.pdb

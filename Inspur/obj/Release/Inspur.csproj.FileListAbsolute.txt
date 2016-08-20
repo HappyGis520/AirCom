@@ -1,0 +1,8 @@
+F:\Aircom\Code\Inspur\bin\Release\Inspur.dll.config
+F:\Aircom\Code\Inspur\bin\Release\Inspur.dll
+F:\Aircom\Code\Inspur\bin\Release\Inspur.XmlSerializers.dll
+F:\Aircom\Code\Inspur\bin\Release\Inspur.pdb
+F:\Aircom\Code\Inspur\obj\Release\Inspur.dll
+F:\Aircom\Code\Inspur\obj\Release\Inspur.pdb
+F:\Aircom\Code\Inspur\obj\Release\Inspur.XmlSerializers.dll
+F:\Aircom\Code\Inspur\obj\Release\Inspur.csprojResolveAssemblyReference.cache

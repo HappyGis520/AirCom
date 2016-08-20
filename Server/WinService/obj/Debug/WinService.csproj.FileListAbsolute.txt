@@ -1,0 +1,5 @@
+F:\Aircom\Code\Server\WinService\bin\Debug\WinService.dll
+F:\Aircom\Code\Server\WinService\bin\Debug\WinService.pdb
+F:\Aircom\Code\Server\WinService\obj\Debug\WinService.csprojResolveAssemblyReference.cache
+F:\Aircom\Code\Server\WinService\obj\Debug\WinService.dll
+F:\Aircom\Code\Server\WinService\obj\Debug\WinService.pdb

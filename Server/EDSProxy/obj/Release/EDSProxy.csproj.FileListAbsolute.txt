@@ -1,0 +1,6 @@
+F:\Aircom\Code\Server\EDSProxy\bin\Release\EDSProxy.dll.config
+F:\Aircom\Code\Server\EDSProxy\bin\Release\EDSProxy.dll
+F:\Aircom\Code\Server\EDSProxy\bin\Release\EDSProxy.pdb
+F:\Aircom\Code\Server\EDSProxy\obj\Release\EDSProxy.dll
+F:\Aircom\Code\Server\EDSProxy\obj\Release\EDSProxy.pdb
+F:\Aircom\Code\Server\EDSProxy\obj\Release\EDSProxy.csprojResolveAssemblyReference.cache

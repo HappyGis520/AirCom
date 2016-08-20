@@ -1,0 +1,12 @@
+F:\Aircom\Code\Server\BDL\bin\Release\NetPlan.BDL.dll
+F:\Aircom\Code\Server\BDL\bin\Release\NetPlan.BDL.pdb
+F:\Aircom\Code\Server\BDL\bin\Release\NetPlan.DAL.dll
+F:\Aircom\Code\Server\BDL\bin\Release\NetPlan.Model.dll
+F:\Aircom\Code\Server\BDL\bin\Release\JLIB.Utility.dll
+F:\Aircom\Code\Server\BDL\bin\Release\JLIB.CSharp.dll
+F:\Aircom\Code\Server\BDL\bin\Release\log4net.dll
+F:\Aircom\Code\Server\BDL\bin\Release\NetPlan.DAL.pdb
+F:\Aircom\Code\Server\BDL\bin\Release\NetPlan.Model.pdb
+F:\Aircom\Code\Server\BDL\obj\Release\NetPlan.BDL.csprojResolveAssemblyReference.cache
+F:\Aircom\Code\Server\BDL\obj\Release\NetPlan.BDL.dll
+F:\Aircom\Code\Server\BDL\obj\Release\NetPlan.BDL.pdb

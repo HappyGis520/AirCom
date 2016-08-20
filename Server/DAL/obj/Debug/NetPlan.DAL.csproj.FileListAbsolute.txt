@@ -1,0 +1,11 @@
+F:\Aircom\Code\Server\DAL\bin\Debug\NetPlan.DAL.dll
+F:\Aircom\Code\Server\DAL\bin\Debug\NetPlan.DAL.pdb
+F:\Aircom\Code\Server\DAL\bin\Debug\JLIB.CSharp.dll
+F:\Aircom\Code\Server\DAL\bin\Debug\JLIB.Utility.dll
+F:\Aircom\Code\Server\DAL\bin\Debug\log4net.dll
+F:\Aircom\Code\Server\DAL\bin\Debug\NetPlan.Model.dll
+F:\Aircom\Code\Server\DAL\bin\Debug\Oracle.ManagedDataAccess.dll
+F:\Aircom\Code\Server\DAL\bin\Debug\NetPlan.Model.pdb
+F:\Aircom\Code\Server\DAL\obj\Debug\NetPlan.DAL.csprojResolveAssemblyReference.cache
+F:\Aircom\Code\Server\DAL\obj\Debug\NetPlan.DAL.dll
+F:\Aircom\Code\Server\DAL\obj\Debug\NetPlan.DAL.pdb
