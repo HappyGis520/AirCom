@@ -363,6 +363,9 @@ namespace NetPlanClient
             }
         }
 
+
+
+
         private void buttonX2_Click(object sender, EventArgs e)
         {
             //if( AirComServer.HelloWord())
@@ -436,8 +439,35 @@ namespace NetPlanClient
             //PLAData.GetExtend(baseInfo.Lng,baseInfo.Lat, out reg.EastMin,out reg.Eastmax,out reg.NorthMin,out reg.NorthMax, r*1000,50);
         }
 
+        private void btnLoadXML_Click(object sender, EventArgs e)
+        {
+            Stream myStream = null;
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
+            openFileDialog1.InitialDirectory = "E:\\";
+            openFileDialog1.Filter = "txt files (*.xml)|*.xml|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
 
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var imageFile = openFileDialog1.FileName;
+                    txtXMLFile.Text = imageFile;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
+        }
 
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            var data = XMLHelper.XmlFileDeserialize<PLAData>(txtXMLFile.Text.Trim());
+            
+            BLLDoTask.Instance.CreateTask(data);
+        }
     }
 }

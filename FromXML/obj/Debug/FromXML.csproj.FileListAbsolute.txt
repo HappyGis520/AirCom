@@ -1,0 +1,14 @@
+F:\Aircom\Code\FromXML\bin\Debug\FromXML.exe.config
+F:\Aircom\Code\FromXML\bin\Debug\FromXML.exe
+F:\Aircom\Code\FromXML\bin\Debug\FromXML.pdb
+F:\Aircom\Code\FromXML\bin\Debug\JLIB.CSharp.dll
+F:\Aircom\Code\FromXML\bin\Debug\JLIB.Utility.dll
+F:\Aircom\Code\FromXML\bin\Debug\log4net.dll
+F:\Aircom\Code\FromXML\bin\Debug\NetPlan.Model.dll
+F:\Aircom\Code\FromXML\bin\Debug\NetPlan.Model.pdb
+F:\Aircom\Code\FromXML\obj\Debug\FromXML.csprojResolveAssemblyReference.cache
+F:\Aircom\Code\FromXML\obj\Debug\FromXML.Form1.resources
+F:\Aircom\Code\FromXML\obj\Debug\FromXML.Properties.Resources.resources
+F:\Aircom\Code\FromXML\obj\Debug\FromXML.csproj.GenerateResource.Cache
+F:\Aircom\Code\FromXML\obj\Debug\FromXML.exe
+F:\Aircom\Code\FromXML\obj\Debug\FromXML.pdb

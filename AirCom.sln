@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NetPlannerServer", "NetPlannerServer", "{F1BBD151-DF71-41A4-92B0-E7485F33B8C6}"
 EndProject
@@ -54,6 +54,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetPlan.Servcie", "Server\NetPlan.Servcie\NetPlan.Servcie.csproj", "{B9616A55-C869-4AD4-8355-1DCA51DA71B2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inspur", "Inspur\Inspur.csproj", "{45C52049-3CB7-4A23-8264-936C33D3D41D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FromXML", "FromXML\FromXML.csproj", "{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -239,6 +241,14 @@ Global
 		{45C52049-3CB7-4A23-8264-936C33D3D41D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{45C52049-3CB7-4A23-8264-936C33D3D41D}.Release|x86.ActiveCfg = Release|Any CPU
 		{45C52049-3CB7-4A23-8264-936C33D3D41D}.Release|x86.Build.0 = Release|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Debug|x86.Build.0 = Debug|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Release|x86.ActiveCfg = Release|Any CPU
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -267,5 +277,6 @@ Global
 		{C1A65789-F74B-4C69-A8FE-DA1CADC4FD04} = {F1BBD151-DF71-41A4-92B0-E7485F33B8C6}
 		{B9616A55-C869-4AD4-8355-1DCA51DA71B2} = {F1BBD151-DF71-41A4-92B0-E7485F33B8C6}
 		{45C52049-3CB7-4A23-8264-936C33D3D41D} = {F1BBD151-DF71-41A4-92B0-E7485F33B8C6}
+		{DDE6DDD3-90DA-46ED-8EDB-D2B21ED5B5EC} = {D1F12636-79D4-4C7E-BA48-27DDC040D124}
 	EndGlobalSection
 EndGlobal
