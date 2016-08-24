@@ -474,7 +474,7 @@ namespace NetPlanClient
         {
             try
             {
-                PLAData data = new PLAData();
+               AirComService.PLAData data = new AirComService.PLAData();
                 data.ProjectName = txtPrjName.Text;
                 data.WorkOrder = 1000;
                 data.CoverRadius = double.Parse(txtCoverRadius.Text);
@@ -484,7 +484,7 @@ namespace NetPlanClient
                 baseInfo.CityName = txtCityName.Text;
                 data.BaseInfo = baseInfo;
 
-                data.CellSectors = new List<CellSector>();
+                //data.CellSectors = new List<AirComService.CellSector>();
                 int index = 0;
                 foreach (var sector in Sectors)
                 {
@@ -500,7 +500,7 @@ namespace NetPlanClient
                 JLog.Instance.AppInfo(string.Format("生成XML{0}", FileName));
                 JFileExten.ToXML(data, FileName);
                 JLog.Instance.AppInfo("调用传对象接口");
-               // AirComServer.CreateTask(data);
+                AirComService.AirComService.CreateTask(data);
       
 
             }
