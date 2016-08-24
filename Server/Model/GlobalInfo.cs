@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
 using JLIB.CSharp;
+using JLIB.Utility;
+
 
 namespace NetPlan.Model
 {
@@ -11,7 +14,9 @@ namespace NetPlan.Model
      {
          public GlobalInfo()
          {
-           ConfigParam =  JFileExten.FromXML<UserConfigParam>(".\\AppConfig.xml");
+            JLog.Instance.AppInfo("反序列化配置文件");
+            //ConfigParam = JFileExten.FromXML<UserConfigParam>((@".\AppConfig.xml");
+            ConfigParam =  JFileExten.FromXML<UserConfigParam>(HttpContext.Current.Server.MapPath(@"~/AppConfig.xml"));
          }
 
        public Hashtable JobsRunning = null;

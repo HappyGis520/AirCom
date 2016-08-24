@@ -3,3 +3,4 @@ F:\Aircom\Code\Inspur\bin\Debug\Inspur.dll
 F:\Aircom\Code\Inspur\bin\Debug\Inspur.pdb
 F:\Aircom\Code\Inspur\obj\Debug\Inspur.dll
 F:\Aircom\Code\Inspur\obj\Debug\Inspur.pdb
+F:\Aircom\Code\Inspur\obj\Debug\Inspur.csprojResolveAssemblyReference.cache

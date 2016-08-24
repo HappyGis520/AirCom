@@ -5,3 +5,4 @@ F:\Aircom\Code\Server\Model\bin\Debug\JLIB.Utility.dll
 F:\Aircom\Code\Server\Model\bin\Debug\log4net.dll
 F:\Aircom\Code\Server\Model\obj\Debug\NetPlan.Model.dll
 F:\Aircom\Code\Server\Model\obj\Debug\NetPlan.Model.pdb
+F:\Aircom\Code\Server\Model\obj\Debug\NetPlan.Model.csprojResolveAssemblyReference.cache

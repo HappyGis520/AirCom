@@ -44,7 +44,8 @@ namespace NetPlan.BLL
             {
                 JLog.Instance.AppInfo("外部程序调用，添加仿真数据");
                 Monitor.Enter(PLADatas);
-                Data.Savedir = GlobalInfo.Instance.ConfigParam.XmlFileSaveDir;
+                JLog.Instance.AppInfo("读取配置文件，获取XML保存目录");
+                Data.Savedir =  GlobalInfo.Instance.ConfigParam.XmlFileSaveDir;
                 JLog.Instance.AppInfo(string.Format("保存路径{0}", Data.Savedir));
                 PLADatas.Enqueue(Data);
                 JLog.Instance.AppInfo(string.Format("添加到仿真数据队列，当前共计{0}", PLADatas.Count));
