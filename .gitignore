@@ -1,0 +1,21 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/Server/WinService/obj/Debug
+/Server/NetPlan.Servcie/obj/Debug
+/Server/IContract/obj/Debug
+/Server/Hoster/ConsolHoster/obj/Debug
+/Server/AirCom_Service/bin
+/Client/Main/obj/Debug
+/Client/NetPlanClient.SvrREF/obj/Debug
+/Client/NetPlanClient.Model/obj/Debug
+/Client/UC/obj/Debug
+/Server/AirCom_Service/obj/Debug
+/Server/BDL/obj/Debug
+/Server/BLL/obj/Debug
+/Server/DAL/obj/Debug
+/Server/EAWSProxy/obj/Debug
+/Server/EDSProxy/obj/Debug
+/Server/Model/obj/Debug
+/.vs/config
