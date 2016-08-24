@@ -22,5 +22,15 @@ namespace NetPlanClient.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://10.40.12.80:8015/AirComService.asmx")]
+        public string NetPlanClient_AirComService_AirComService {
+            get {
+                return ((string)(this["NetPlanClient_AirComService_AirComService"]));
+            }
+        }
     }
 }
