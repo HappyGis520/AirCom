@@ -469,5 +469,46 @@ namespace NetPlanClient
             
             BLLDoTask.Instance.CreateTask(data);
         }
+
+        private void btnCallWebSerivce_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PLAData data = new PLAData();
+                data.ProjectName = txtPrjName.Text;
+                data.WorkOrder = 1000;
+                data.CoverRadius = double.Parse(txtCoverRadius.Text);
+
+
+                var baseInfo = ucLTEStationType1.BuildBasicInfo();
+                baseInfo.CityName = txtCityName.Text;
+                data.BaseInfo = baseInfo;
+
+                data.CellSectors = new List<CellSector>();
+                int index = 0;
+                foreach (var sector in Sectors)
+                {
+                    data.CellSectors.Add(new CellSector()
+                    {
+                        Antenners = sector.Value,
+                        CellID = sector.Key
+                    });
+                    index++;
+                }
+
+                string FileName = string.Format(@"E:\SendXML{0}.xml", DateTime.Now.ToString("hh-mm-ss"));
+                JLog.Instance.AppInfo(string.Format("生成XML{0}", FileName));
+                JFileExten.ToXML(data, FileName);
+                JLog.Instance.AppInfo("调用传对象接口");
+               // AirComServer.CreateTask(data);
+      
+
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message);
+
+            }
+        }
     }
 }
