@@ -15,14 +15,19 @@ using JLIB.CSharp;
 using JLIB.Utility;
 using NetPlan.BLL;
 using NetPlan.Model;
+using NetPlanClient.AirComService;
 using ZipOneCode.ZipProvider;
+using AirComAntennaType = NetPlan.Model.AirComAntennaType;
+using AirComLTENodeBaseInfo = NetPlan.Model.AirComLTENodeBaseInfo;
+using CellSector = NetPlan.Model.CellSector;
+using PLAData = NetPlan.Model.PLAData;
 
 
 namespace NetPlanClient
 {
     public partial class FrmMain : Form
     {
-       
+        AirComService.AirComService Server = new AirComService.AirComService();
 
         //AirComService AirComServer =null;
         /// <summary>
@@ -482,26 +487,58 @@ namespace NetPlanClient
 
                 var baseInfo = ucLTEStationType1.BuildBasicInfo();
                 baseInfo.CityName = txtCityName.Text;
-                data.BaseInfo = baseInfo;
+                data.BaseInfo = new AirComService.AirComLTENodeBaseInfo()
+                {
+                    CityName = baseInfo.CityName,
+                    CoverType = (AirComService.EnumCoverType) (byte) baseInfo.CoverType,
+                    Lat = baseInfo.Lat,
+                    Lng = baseInfo.Lng,
+                    SaveType = (AirComService.EnumSaveType) (byte) baseInfo.SaveType,
+                    StationAlias = baseInfo.StationAlias,
+                    StationId = baseInfo.StationId,
+                    StationType = (AirComService.EnumStationType) (Byte) baseInfo.StationType
 
-                //data.CellSectors = new List<AirComService.CellSector>();
-                int index = 0;
+                };
+                data.CellSectors = new AirComService.CellSector[Sectors.Count];
+                int n = 0;
                 foreach (var sector in Sectors)
                 {
-                    data.CellSectors.Add(new CellSector()
+                    AirComService.CellSector sec = new AirComService.CellSector();
+                    sec.CellID = sector.Key;
+                    sec.Antenners = new AirComService.AirComAntennaType[sector.Value.Count];
+                    int Index = 0;
+                    foreach (var cell in sector.Value)
                     {
-                        Antenners = sector.Value,
-                        CellID = sector.Key
-                    });
-                    index++;
-                }
+                        sec.Antenners[Index] = new AirComService.AirComAntennaType()
+                        {
+                            AntennaTypeName = cell.AntennaTypeName,
+                            Azimuth = cell.Azimuth,
+                            Burthen = cell.Burthen,
+                            CarrierAlias = cell.CarrierAlias,
+                            CarrierId = cell.CarrierId,
+                            ElectricalDownTilt = cell.ElectricalDownTilt,
+                            Height = cell.Height,
+                            Location = new AirComService.AirComLocationType()
+                            {
 
+                                Latitude = cell.Location.Latitude,
+                                LongitudeField = cell.Location.LongitudeField,
+                                LongitudeSpecified1 = cell.Location.LongitudeSpecified
+                            },
+                            MechanicalDownTilt = cell.MechanicalDownTilt,
+                            ModelType = cell.ModelType
+                        };
+                        Index++;
+                    }
+                    data.CellSectors[n] = sec;
+                    n++;
+
+                }
                 string FileName = string.Format(@"E:\SendXML{0}.xml", DateTime.Now.ToString("hh-mm-ss"));
                 JLog.Instance.AppInfo(string.Format("生成XML{0}", FileName));
                 JFileExten.ToXML(data, FileName);
                 JLog.Instance.AppInfo("调用传对象接口");
-                AirComService.AirComService.CreateTask(data);
-      
+                Server.CreateTask(data);
 
             }
             catch (Exception ex)
