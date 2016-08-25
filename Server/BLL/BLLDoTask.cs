@@ -741,19 +741,22 @@ namespace NetPlan.BLL
         private bool ExecuteCommand(string Command, int WaitForTime)
         {
 
-//#if WEB
-//            var exeFile = Path.GetFileName(GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
-//            var fillfullName = HttpContext.Current.Server.MapPath(string.Format("~/EDSLoadAppFileDir/{0}", exeFile));
-//            JLog.Instance.AppInfo(fillfullName);
-//            //myStartInfo.FileName = string.Format("{0} ", fillfullName);
-//            ExeCommand(Command, fillfullName);
-//            return true;
-//#else
+            //#if WEB
+            //            var exeFile = Path.GetFileName(GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
+            //            var fillfullName = HttpContext.Current.Server.MapPath(string.Format("~/EDSLoadAppFileDir/{0}", exeFile));
+            //            JLog.Instance.AppInfo(fillfullName);
+            //            //myStartInfo.FileName = string.Format("{0} ", fillfullName);
+            //            ExeCommand(Command, fillfullName);
+            //            return true;
+            //#else
+            JLog.Instance.AppInfo("fdsafwW==========================");
+            ExeCommand(Command, "");
+            return true;
             try
             {
                 System.Diagnostics.ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo();
                 myStartInfo.FileName = string.Format("{0} ", GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
-
+                myStartInfo.CreateNoWindow = false; 
                 myStartInfo.Arguments = Command;
 
                 System.Diagnostics.Process myProcess = new System.Diagnostics.Process();
@@ -775,12 +778,12 @@ namespace NetPlan.BLL
         public string ExeCommand(string commandText,string exefile)
         {
             Process p = new Process();
-            p.StartInfo.FileName = exefile;
+            p.StartInfo.FileName = "cmd.exe";
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.RedirectStandardInput = true;
             p.StartInfo.RedirectStandardOutput = true;
             p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.CreateNoWindow = false;
             string strOutput = null;
             try
             {
@@ -791,6 +794,7 @@ namespace NetPlan.BLL
                 p.StandardInput.WriteLine(string.Format("Aircom.EDS.Loader.exe {0}", commandText) );
                 p.StandardInput.WriteLine("exit");
                 strOutput = p.StandardOutput.ReadToEnd();
+                JLog.Instance.AppInfo(string.Format("获取界面命令为：{0}",strOutput));
                 p.WaitForExit();
                 p.Close();
             }
