@@ -48,9 +48,9 @@ namespace NetPlanClient
             this.编号 = new DevComponents.DotNetBar.LabelX();
             this.txtSectorID = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.ucLTEAntennaType1 = new NetPlanClient.UC.ucLTEAntennaType();
             this.btnAppend = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewButtonXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewButtonXColumn();
-            this.ucLTEAntennaType1 = new NetPlanClient.UC.ucLTEAntennaType();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewX1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -277,6 +277,20 @@ namespace NetPlanClient
             this.tableLayoutPanel1.Size = new System.Drawing.Size(819, 415);
             this.tableLayoutPanel1.TabIndex = 6;
             // 
+            // ucLTEAntennaType1
+            // 
+            this.ucLTEAntennaType1.BackColor = System.Drawing.SystemColors.Control;
+            this.ucLTEAntennaType1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tableLayoutPanel1.SetColumnSpan(this.ucLTEAntennaType1, 3);
+            this.ucLTEAntennaType1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucLTEAntennaType1.Location = new System.Drawing.Point(5, 3);
+            this.ucLTEAntennaType1.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
+            this.ucLTEAntennaType1.MaximumSize = new System.Drawing.Size(2, 133);
+            this.ucLTEAntennaType1.MinimumSize = new System.Drawing.Size(626, 131);
+            this.ucLTEAntennaType1.Name = "ucLTEAntennaType1";
+            this.ucLTEAntennaType1.Size = new System.Drawing.Size(626, 131);
+            this.ucLTEAntennaType1.TabIndex = 5;
+            // 
             // btnAppend
             // 
             this.btnAppend.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -300,20 +314,6 @@ namespace NetPlanClient
             this.dataGridViewButtonXColumn1.Name = "dataGridViewButtonXColumn1";
             this.dataGridViewButtonXColumn1.ReadOnly = true;
             this.dataGridViewButtonXColumn1.Text = null;
-            // 
-            // ucLTEAntennaType1
-            // 
-            this.ucLTEAntennaType1.BackColor = System.Drawing.SystemColors.Control;
-            this.ucLTEAntennaType1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tableLayoutPanel1.SetColumnSpan(this.ucLTEAntennaType1, 3);
-            this.ucLTEAntennaType1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucLTEAntennaType1.Location = new System.Drawing.Point(5, 3);
-            this.ucLTEAntennaType1.Margin = new System.Windows.Forms.Padding(3, 3, 5, 3);
-            this.ucLTEAntennaType1.MaximumSize = new System.Drawing.Size(2, 133);
-            this.ucLTEAntennaType1.MinimumSize = new System.Drawing.Size(626, 131);
-            this.ucLTEAntennaType1.Name = "ucLTEAntennaType1";
-            this.ucLTEAntennaType1.Size = new System.Drawing.Size(626, 131);
-            this.ucLTEAntennaType1.TabIndex = 5;
             // 
             // FrmSector
             // 

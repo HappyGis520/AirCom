@@ -538,7 +538,14 @@ namespace NetPlanClient
                 JLog.Instance.AppInfo(string.Format("生成XML{0}", FileName));
                 JFileExten.ToXML(data, FileName);
                 JLog.Instance.AppInfo("调用传对象接口");
-                Server.CreateTask(data);
+                if (Server.CreateTask(data))
+                {
+                    MessageBox.Show("调用成功");
+                }
+                else
+                {
+                    MessageBox.Show("调用失败");
+                }
 
             }
             catch (Exception ex)

@@ -15,11 +15,16 @@ namespace NetPlan.Model
          public GlobalInfo()
          {
             JLog.Instance.AppInfo("反序列化配置文件");
-            //ConfigParam = JFileExten.FromXML<UserConfigParam>((@".\AppConfig.xml");
-            ConfigParam =  JFileExten.FromXML<UserConfigParam>(HttpContext.Current.Server.MapPath(@"~/AppConfig.xml"));
-         }
 
-       public Hashtable JobsRunning = null;
+
+#if WEB
+            ConfigParam =  JFileExten.FromXML<UserConfigParam>(HttpContext.Current.Server.MapPath(@"~/AppConfig.xml"));
+#else
+                        ConfigParam = JFileExten.FromXML<UserConfigParam>(@".\AppConfig.xml");
+#endif
+        }
+
+        public Hashtable JobsRunning = null;
         private string _XMLSavePath = string.Empty;
          /// <summary>
          /// Xml文件存储位置

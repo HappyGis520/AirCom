@@ -29,3 +29,5 @@ F:\Aircom\Code\Client\Main\obj\Release\NetPlanClient.Properties.Resources.resour
 F:\Aircom\Code\Client\Main\obj\Release\NetPlanClient.csproj.GenerateResource.Cache
 F:\Aircom\Code\Client\Main\obj\Release\NetPlanClient.exe
 F:\Aircom\Code\Client\Main\obj\Release\NetPlanClient.pdb
+F:\Aircom\Code\Client\Main\bin\Release\NetPlanClient.XmlSerializers.dll
+F:\Aircom\Code\Client\Main\obj\Release\NetPlanClient.XmlSerializers.dll

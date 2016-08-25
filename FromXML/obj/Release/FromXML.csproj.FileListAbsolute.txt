@@ -6,9 +6,9 @@ F:\Aircom\Code\FromXML\bin\Release\JLIB.Utility.dll
 F:\Aircom\Code\FromXML\bin\Release\log4net.dll
 F:\Aircom\Code\FromXML\bin\Release\NetPlan.Model.dll
 F:\Aircom\Code\FromXML\bin\Release\NetPlan.Model.pdb
-F:\Aircom\Code\FromXML\obj\Release\FromXML.csprojResolveAssemblyReference.cache
 F:\Aircom\Code\FromXML\obj\Release\FromXML.Form1.resources
 F:\Aircom\Code\FromXML\obj\Release\FromXML.Properties.Resources.resources
 F:\Aircom\Code\FromXML\obj\Release\FromXML.csproj.GenerateResource.Cache
 F:\Aircom\Code\FromXML\obj\Release\FromXML.exe
 F:\Aircom\Code\FromXML\obj\Release\FromXML.pdb
+F:\Aircom\Code\FromXML\obj\Release\FromXML.csprojResolveAssemblyReference.cache

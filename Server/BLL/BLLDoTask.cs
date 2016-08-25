@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -16,6 +17,7 @@ using JLIB.Utility;
 using NetPlan.Model;
 using Oracle.ManagedDataAccess.Client;
 using ZipOneCode.ZipProvider;
+using System.Web;
 namespace NetPlan.BLL
 {
     public class BLLDoTask : Singleton<BLLDoTask>
@@ -114,8 +116,12 @@ namespace NetPlan.BLL
                         string Taskname = GetTaskName(_CurProcData.ProjectName);
                         string SchemaName = GlobalInfo.Instance.ConfigParam.EAWSSchemaName;
                         string SaveDirName = Guid.NewGuid().ToString();
-                        string SaveFileDir = Path.Combine(GlobalInfo.Instance.ConfigParam.FTPDir, SaveDirName
-                            );
+//#if WEB
+//                        string SaveFileDir = HttpContext.Current.Server.MapPath(string.Format("~/FTPDir/{0}", SaveDirName));
+//                        JLog.Instance.AppInfo(string.Format("FTP目录：{0}",SaveFileDir));
+//#else
+                        string SaveFileDir = Path.Combine(GlobalInfo.Instance.ConfigParam.FTPDir, SaveDirName);
+//#endif 
                         if (!System.IO.Directory.Exists(SaveFileDir))
                         {
                             System.IO.Directory.CreateDirectory(SaveFileDir);
@@ -154,7 +160,7 @@ namespace NetPlan.BLL
                             {
                                 JLog.Instance.AppInfo("编辑仿真范围完成");
 
-                                #region 启动仿真
+#region 启动仿真
 
                                 DoNextTask = false;
                                 JLog.Instance.AppInfo("发送启动仿真请求");
@@ -171,7 +177,7 @@ namespace NetPlan.BLL
                                     {
                                         JLog.Instance.AppInfo("仿真任务执行完成");
 
-                                        #region 压缩上传文件
+#region 压缩上传文件
                                         if (!string.IsNullOrEmpty(EAWSReleaseSaveDir))
                                         {
                                             EAWSReleaseSaveDir = string.Format(@"{0}\{1}", EAWSReleaseSaveDir,
@@ -183,16 +189,21 @@ namespace NetPlan.BLL
                                             continue;
 
                                         }
+//#if WEB
+//                                        EAWSReleaseSaveDir = HttpContext.Current.Server.MapPath(string.Format("~/ResultDir/{0}",_CurProcData.ProjectName));
+//#endif
                                         JLog.Instance.AppInfo(string.Format("仿真结果保存路径：{0}", EAWSReleaseSaveDir));
+
+
                                         string ArarFileName = "A.rar";// string.Format(, Guid.NewGuid().ToString());
                                         ZipHelper.Zip(
                                             Path.Combine(SaveFileDir,
                                                 ArarFileName), EAWSReleaseSaveDir, "595303122@qq.com",
                                             ZipHelper.CompressLevel.Level6);
                                         JLog.Instance.AppInfo("压缩文件成功");
-                                        #endregion
+#endregion
 
-                                        #region 导入XML文件,生成
+#region 导入XML文件,生成
                                         JLog.Instance.AppInfo("开始生成XML成功,开始...");
                                         //导入XML文件
                                         if (ExecuteCommand(AutoEDSInputCommand(xmlFilePage.InputLocationFileFullName, _CurProcData.ProjectName),
@@ -208,7 +219,7 @@ namespace NetPlan.BLL
                                                 {
                                                     JLog.Instance.AppInfo("导入XML文件执行成功,启动EAWS仿真...");
 
-                                                    #region 启动EAWS仿真
+#region 启动EAWS仿真
 
                                                     //string Taskname = GetTaskName(_CurProcData.ProjectName);
                                                     //string SchemaName = GlobalInfo.Instance.ConfigParam.EAWSSchemaName;
@@ -233,7 +244,7 @@ namespace NetPlan.BLL
                                                         {
                                                             JLog.Instance.AppInfo("编辑仿真范围完成");
 
-                                                            #region 启动仿真
+#region 启动仿真
 
                                                             DoNextTask = false;
                                                             JLog.Instance.AppInfo("发送启动仿真请求");
@@ -250,7 +261,7 @@ namespace NetPlan.BLL
                                                                 {
                                                                     JLog.Instance.AppInfo("仿真任务执行完成");
 
-                                                                    #region 压缩上传文件
+#region 压缩上传文件
                                                                     if (!string.IsNullOrEmpty(EAWSReleaseSaveDir))
                                                                     {
                                                                         EAWSReleaseSaveDir = string.Format(@"{0}\{1}", EAWSReleaseSaveDir,
@@ -268,13 +279,13 @@ namespace NetPlan.BLL
                                                                         Path.Combine(SaveFileDir,
                                                                             BrarFileName), EAWSReleaseSaveDir, "595303122@qq.com",
                                                                         ZipHelper.CompressLevel.Level6);
-                                                                    #endregion
+#endregion
                                                                     Thread.Sleep(60000);
-                                                                    #region 解压文件
+#region 解压文件
                                                                     RepackageFile(SaveFileDir);
-                                                                    #endregion
+#endregion
 
-                                                                    #region 调用浪潮接口上传
+#region 调用浪潮接口上传
                                                                     JLog.Instance.AppInfo("通知浪潮下载");
                                                                     Inspur.InspurRequestApiModel sendmodel = new Inspur.InspurRequestApiModel()
                                                                     {
@@ -296,14 +307,14 @@ namespace NetPlan.BLL
                                                                     {
                                                                         JLog.Instance.AppInfo("浪潮返回调用失败消息");
                                                                     }
-                                                                    #endregion
+#endregion
 
                                                                     if (_CurProcData.BaseInfo.SaveType == EnumSaveType.Delete)
                                                                     //需要删除基站的，执行删除程序
                                                                     {
                                                                         JLog.Instance.AppInfo("执行删除xml操作");
 
-                                                                        #region 执行删除xml操作
+#region 执行删除xml操作
 
                                                                         if (
                                                                             !ExecuteCommand(
@@ -319,7 +330,7 @@ namespace NetPlan.BLL
                                                                             JLog.Instance.AppInfo("执行删除xml操作成功");
 
                                                                         }
-                                                                        #endregion
+#endregion
                                                                     }
                                                                     continue;
                                                                 }
@@ -328,14 +339,14 @@ namespace NetPlan.BLL
                                                             }
                                                             JLog.Instance.Info("启动仿真失败，无需执行下一步，退出");
                                                             continue;
-                                                            #endregion
+#endregion
                                                         }
                                                         JLog.Instance.AppInfo("编辑仿真范围失败,无需执行下一步");
                                                         continue;
                                                     }
                                                     JLog.Instance.AppInfo("配置文件中没有找到相应的工程信息，中断");
                                                     continue;
-                                                    #endregion
+#endregion
 
                                                 }
                                                 JLog.Instance.AppInfo("导入XML文件执行失败，不执行仿真任务");
@@ -348,7 +359,7 @@ namespace NetPlan.BLL
                                         }
                                         JLog.Instance.AppInfo("执行导入location命令失败");
                                         continue;
-                                        #endregion
+#endregion
 
                                     }
                                     JLog.Instance.Info("仿真任务执行失败,无需执行下一步，退出");
@@ -356,16 +367,16 @@ namespace NetPlan.BLL
                                 }
                                 JLog.Instance.Info("启动仿真失败，无需执行下一步，退出");
                                 continue;
-                                #endregion
+#endregion
                             }
                             JLog.Instance.AppInfo("编辑仿真范围失败,无需执行下一步");
                             continue;
                         }
                         JLog.Instance.AppInfo("配置文件中没有找到相应的工程信息，中断");
                         continue;
-                        #endregion
+#endregion
 
-                        #region 导入XML文件,生成
+#region 导入XML文件,生成
                         //JLog.Instance.AppInfo("开始生成XML成功,开始...");
                         ////导入XML文件
                         //if (ExecuteCommand(AutoEDSInputCommand(xmlFilePage.InputLocationFileFullName, _CurProcData.ProjectName),
@@ -529,7 +540,7 @@ namespace NetPlan.BLL
                         //}
                         //JLog.Instance.AppInfo("执行导入location命令失败");
                         //continue;
-                        #endregion
+#endregion
                     }
                     JLog.Instance.AppInfo("开始生成XML文件失败");
                     continue;
@@ -697,8 +708,11 @@ namespace NetPlan.BLL
         /// <returns></returns>
         private string AutoEDSInputCommand(string XmlFileName, string ProjectName)
         {
-            //var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "create", "input",XmlFileName,ProjectName);
+//#if WEB
+//            var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "create", "input",XmlFileName,ProjectName);
+//#else
             var cmd = string.Format(" -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "create", "input", XmlFileName, ProjectName);
+//#endif
             JLog.Instance.AppInfo(string.Format("执行导入XML命令：{0}", cmd));
             return cmd;
         }
@@ -710,7 +724,11 @@ namespace NetPlan.BLL
         /// <returns></returns>
         private string AutoEDSDeleteCommand(string XmlFileName, string ProjectName)
         {
-            var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "Create", "input", XmlFileName, ProjectName);
+//#if WEB
+//            var cmd = string.Format("{0} -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "Create", "input", XmlFileName, ProjectName);
+//#else
+             var cmd = string.Format(" -{1} -{2}=\"{3}\" -bvid=\"{4}\"", "aircom.eds.loader.exe", "Create", "input", XmlFileName, ProjectName);
+//#endif
             JLog.Instance.AppInfo(string.Format("执行删除XML命令：{0}", cmd));
             return cmd;
         }
@@ -722,23 +740,75 @@ namespace NetPlan.BLL
         /// <returns></returns>
         private bool ExecuteCommand(string Command, int WaitForTime)
         {
-            System.Diagnostics.ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo();
-            myStartInfo.FileName = string.Format("{0} ", GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
-            myStartInfo.Arguments = Command;
-            System.Diagnostics.Process myProcess = new System.Diagnostics.Process();
-            myProcess.StartInfo = myStartInfo;
-            myProcess.Start();
-            myProcess.WaitForExit(WaitForTime); //等待程序退出 
-            return true;
+
+//#if WEB
+//            var exeFile = Path.GetFileName(GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
+//            var fillfullName = HttpContext.Current.Server.MapPath(string.Format("~/EDSLoadAppFileDir/{0}", exeFile));
+//            JLog.Instance.AppInfo(fillfullName);
+//            //myStartInfo.FileName = string.Format("{0} ", fillfullName);
+//            ExeCommand(Command, fillfullName);
+//            return true;
+//#else
+            try
+            {
+                System.Diagnostics.ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo();
+                myStartInfo.FileName = string.Format("{0} ", GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
+
+                myStartInfo.Arguments = Command;
+
+                System.Diagnostics.Process myProcess = new System.Diagnostics.Process();
+                myProcess.StartInfo = myStartInfo;
+                myProcess.Start();
+                myProcess.WaitForExit(WaitForTime); //等待程序退出 
+                return true;
+            }
+            catch (Exception ex)
+            {
+                JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,MethodBase.GetCurrentMethod().Module.Name);
+                return false;
+
+            }
+
+//#endif
         }
 
-        #region 自定义事件
+        public string ExeCommand(string commandText,string exefile)
+        {
+            Process p = new Process();
+            p.StartInfo.FileName = exefile;
+            p.StartInfo.UseShellExecute = false;
+            p.StartInfo.RedirectStandardInput = true;
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.RedirectStandardError = true;
+            p.StartInfo.CreateNoWindow = true;
+            string strOutput = null;
+            try
+            {
+                var Dirver = exefile.Substring(0, 2);
+                JLog.Instance.AppInfo(string.Format("根目录为{0}",Dirver));
+                p.Start();
+                p.StandardInput.WriteLine(string.Format("{0}",Dirver));
+                p.StandardInput.WriteLine(string.Format("Aircom.EDS.Loader.exe {0}", commandText) );
+                p.StandardInput.WriteLine("exit");
+                strOutput = p.StandardOutput.ReadToEnd();
+                p.WaitForExit();
+                p.Close();
+            }
+            catch (Exception e)
+            {
+                strOutput = e.Message;
+            }
+            return strOutput;
+        }
+    
 
-        #region 编辑仿真范围应答
+#region 自定义事件
+
+#region 编辑仿真范围应答
 
 
 
-        protected void SubDoEditRegionAck(bool Success, string Msg)
+    protected void SubDoEditRegionAck(bool Success, string Msg)
         {
             try
             {
@@ -767,11 +837,11 @@ namespace NetPlan.BLL
 
 
 
-        #endregion
+#endregion
 
 
 
-        #region EAWS仿真任务启动状态
+#region EAWS仿真任务启动状态
 
 
 
@@ -787,11 +857,11 @@ namespace NetPlan.BLL
 
 
 
-        #endregion
+#endregion
 
 
 
-        #region 仿真任务执行结果应答
+#region 仿真任务执行结果应答
 
 
 
@@ -815,12 +885,12 @@ namespace NetPlan.BLL
         }
 
 
-        #endregion
+#endregion
 
 
 
 
 
-        #endregion
+#endregion
     }
 }
