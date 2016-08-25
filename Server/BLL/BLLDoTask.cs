@@ -753,7 +753,7 @@ namespace NetPlan.BLL
             {
                 System.Diagnostics.ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo();
                 myStartInfo.FileName = string.Format("{0} ", GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
-
+                myStartInfo.CreateNoWindow = false;
                 myStartInfo.Arguments = Command;
 
                 System.Diagnostics.Process myProcess = new System.Diagnostics.Process();
