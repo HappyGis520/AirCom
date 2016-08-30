@@ -323,14 +323,28 @@ namespace NetPlan.BLL
                                                                                     _CurProcData.ProjectName),
                                                                                 60000))
                                                                         {
-                                                                            JLog.Instance.AppInfo("执行删除xml操作失败");
+                                                                            JLog.Instance.AppInfo("执行删除LTENodexml操作失败");
                                                                         }
                                                                         else
                                                                         {
-                                                                            JLog.Instance.AppInfo("执行删除xml操作成功");
+                                                                            JLog.Instance.AppInfo("执行删除LTENodexml操作成功");
 
                                                                         }
-#endregion
+                                                                        if (
+                                                                            !ExecuteCommand(
+                                                                                AutoEDSDeleteCommand(
+                                                                                    xmlFilePage.DeleteLocationFileFullName,
+                                                                                    _CurProcData.ProjectName),
+                                                                                60000))
+                                                                        {
+                                                                            JLog.Instance.AppInfo("执行删除Location操作失败");
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            JLog.Instance.AppInfo("执行删除Location操作成功");
+
+                                                                        }
+                                                                        #endregion
                                                                     }
                                                                     continue;
                                                                 }
@@ -376,7 +390,7 @@ namespace NetPlan.BLL
                         continue;
 #endregion
 
-#region 导入XML文件,生成
+                        #region 导入XML文件,生成
                         //JLog.Instance.AppInfo("开始生成XML成功,开始...");
                         ////导入XML文件
                         //if (ExecuteCommand(AutoEDSInputCommand(xmlFilePage.InputLocationFileFullName, _CurProcData.ProjectName),
@@ -540,7 +554,7 @@ namespace NetPlan.BLL
                         //}
                         //JLog.Instance.AppInfo("执行导入location命令失败");
                         //continue;
-#endregion
+                         #endregion
                     }
                     JLog.Instance.AppInfo("开始生成XML文件失败");
                     continue;
@@ -740,18 +754,6 @@ namespace NetPlan.BLL
         /// <returns></returns>
         private bool ExecuteCommand(string Command, int WaitForTime)
         {
-
-            //#if WEB
-            //            var exeFile = Path.GetFileName(GlobalInfo.Instance.ConfigParam.EDSLoadAppFile);
-            //            var fillfullName = HttpContext.Current.Server.MapPath(string.Format("~/EDSLoadAppFileDir/{0}", exeFile));
-            //            JLog.Instance.AppInfo(fillfullName);
-            //            //myStartInfo.FileName = string.Format("{0} ", fillfullName);
-            //            ExeCommand(Command, fillfullName);
-            //            return true;
-            //#else
-            JLog.Instance.AppInfo("fdsafwW==========================");
-            ExeCommand(Command, "");
-            return true;
             try
             {
                 System.Diagnostics.ProcessStartInfo myStartInfo = new System.Diagnostics.ProcessStartInfo();
@@ -769,41 +771,7 @@ namespace NetPlan.BLL
             {
                 JLog.Instance.Error(ex.Message, MethodBase.GetCurrentMethod().Name,MethodBase.GetCurrentMethod().Module.Name);
                 return false;
-                
-
             }
-
-//#endif
-        }
-
-        public string ExeCommand(string commandText,string exefile)
-        {
-            Process p = new Process();
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.UseShellExecute = false;
-            p.StartInfo.RedirectStandardInput = true;
-            p.StartInfo.RedirectStandardOutput = true;
-            p.StartInfo.RedirectStandardError = true;
-            p.StartInfo.CreateNoWindow = false;
-            string strOutput = null;
-            try
-            {
-                var Dirver = exefile.Substring(0, 2);
-                JLog.Instance.AppInfo(string.Format("根目录为{0}",Dirver));
-                p.Start();
-                p.StandardInput.WriteLine(string.Format("{0}",Dirver));
-                p.StandardInput.WriteLine(string.Format("Aircom.EDS.Loader.exe {0}", commandText) );
-                p.StandardInput.WriteLine("exit");
-                strOutput = p.StandardOutput.ReadToEnd();
-                JLog.Instance.AppInfo(string.Format("获取界面命令为：{0}",strOutput));
-                p.WaitForExit();
-                p.Close();
-            }
-            catch (Exception e)
-            {
-                strOutput = e.Message;
-            }
-            return strOutput;
         }
     
 

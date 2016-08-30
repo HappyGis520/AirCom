@@ -1,5 +1,0 @@
-F:\Aircom\Code\Server\EAWSProxy\bin\Release\EAWSProxy.dll.config
-F:\Aircom\Code\Server\EAWSProxy\bin\Release\EAWSProxy.dll
-F:\Aircom\Code\Server\EAWSProxy\bin\Release\EAWSProxy.pdb
-F:\Aircom\Code\Server\EAWSProxy\obj\Release\EAWSProxy.dll
-F:\Aircom\Code\Server\EAWSProxy\obj\Release\EAWSProxy.pdb

@@ -1,7 +1,0 @@
-F:\Aircom\Code\Client\NetPlanClient.SvrREF\bin\Release\NetPlanClient.SvrREF.dll.config
-F:\Aircom\Code\Client\NetPlanClient.SvrREF\bin\Release\NetPlanClient.SvrREF.dll
-F:\Aircom\Code\Client\NetPlanClient.SvrREF\bin\Release\NetPlanClient.SvrREF.XmlSerializers.dll
-F:\Aircom\Code\Client\NetPlanClient.SvrREF\bin\Release\NetPlanClient.SvrREF.pdb
-F:\Aircom\Code\Client\NetPlanClient.SvrREF\obj\Release\NetPlanClient.SvrREF.dll
-F:\Aircom\Code\Client\NetPlanClient.SvrREF\obj\Release\NetPlanClient.SvrREF.pdb
-F:\Aircom\Code\Client\NetPlanClient.SvrREF\obj\Release\NetPlanClient.SvrREF.XmlSerializers.dll

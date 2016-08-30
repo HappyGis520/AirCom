@@ -1,6 +1,0 @@
-F:\Aircom\Code\Server\EAWSProxy\bin\Debug\EAWSProxy.dll.config
-F:\Aircom\Code\Server\EAWSProxy\bin\Debug\EAWSProxy.dll
-F:\Aircom\Code\Server\EAWSProxy\bin\Debug\EAWSProxy.pdb
-F:\Aircom\Code\Server\EAWSProxy\obj\Debug\EAWSProxy.dll
-F:\Aircom\Code\Server\EAWSProxy\obj\Debug\EAWSProxy.pdb
-F:\Aircom\Code\Server\EAWSProxy\obj\Debug\EAWSProxy.csprojResolveAssemblyReference.cache
